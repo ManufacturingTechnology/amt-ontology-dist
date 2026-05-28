@@ -1,0 +1,170 @@
+@prefix ind:      <http://ontology.amt.org/industries#> .
+@prefix amtmeta:  <http://ontology.amt.org/meta#> .
+@prefix cmns-cls: <https://www.omg.org/spec/Commons/Classifiers/> .
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+
+<http://ontology.amt.org/industries>
+    a owl:Ontology, amtmeta:Taxonomy ;
+    owl:imports <http://ontology.amt.org/meta>,
+                <https://www.omg.org/spec/Commons/Classifiers/>,
+                <https://www.omg.org/spec/Commons/Collections/>,
+                <https://www.omg.org/spec/Commons/AnnotationVocabulary/> ;
+
+    dcterms:title    "Industry Classification Taxonomy" ;
+    owl:versionInfo  "0.2.2" ;
+    owl:versionIRI   <http://ontology.amt.org/industries/0.2.2> ;
+
+    amtmeta:status              amtmeta:Active ;
+    amtmeta:taxonomyOwner       "Chris Downs" ;
+    amtmeta:governedBy          "Allison", "Downs", "Kristin" ;
+    amtmeta:consumedBy          "Kristin", "Allison", "Downs", "Alka", "Kalesh" ;
+
+    amtmeta:relatedProduct
+        "IMTS (visitor reg)",
+        "Passport",
+        "Media Sponsorships (media kit)" ;
+
+    amtmeta:relatedSystem
+        "Maritz",
+        "Hubspot",
+        "Data warehouse",
+        "Data repository (MySQL)" ;
+
+    amtmeta:nextReviewDate      "2027-01-01"^^xsd:date ;
+
+    amtmeta:relatedDocumentation <https://amtonline.sharepoint.com/sites/governance/Shared%20Documents/Taxonomy%20Change%20Process.docx> ;
+
+    amtmeta:releaseDate     "2026-05-26"^^xsd:date ;
+    amtmeta:scopeSummary    "v0.2.2 -- remove ind:Other Classifier. The catch-all \"Other (Please specify)\" answer code is now modelled at the CodeSet layer as an amtmeta:SentinelCodeElement (no cmns-dsg:designates target) rather than as a synthetic 18th Classifier. Keeps ind.ttl as exactly 17 real industries; \"Other\" is acknowledged as a form-interaction concept, not a taxonomy concept." ;
+    amtmeta:releaseOwner    "Shaurabh" ;
+    amtmeta:approvalStatus  amtmeta:Draft ;
+    amtmeta:gitTag          "v0.2.2" ;
+    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.2.2> ;
+    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.2.2> ;
+
+    amtmeta:useCase
+        "Marketing uses this for targeted marketing",
+        "Marketing uses this for the media kit",
+        "Passport uses this as a filter for creating email lists",
+        "IMTS uses this as a reg field for visitor registration and for attendee goals setting",
+        "IMTS uses this in post-show reports" .
+
+#-------------------------------------------------------------------------------
+# Industry -- Classification Scheme (OMG Commons)
+#-------------------------------------------------------------------------------
+
+ind:Industry a owl:NamedIndividual, cmns-cls:ClassificationScheme ;
+    rdfs:label          "Industry Classification Scheme" ;
+    skos:prefLabel      "Industry" ;
+    cmns-cls:isExclusive "false"^^xsd:boolean ;
+    rdfs:comment        "Classification scheme grouping the 17 AMT industries." .
+
+#-------------------------------------------------------------------------------
+# 17 Industry classifiers
+#-------------------------------------------------------------------------------
+
+ind:AdditiveMachinery a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Additive Machinery & Equipment" ;
+    skos:prefLabel "Additive Machinery & Equipment" .
+
+ind:Aerospace a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Aerospace" ;
+    skos:prefLabel "Aerospace-Aircraft Space and Missiles" .
+
+ind:AgricultureConstructionOffRoad a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Agriculture/Construction/Off-Road" ;
+    skos:prefLabel "Agriculture/Construction/Off-Road" .
+
+ind:AutomationEquipmentServices a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Automation Equipment & Services" ;
+    skos:prefLabel "Automation Equipment & Services" .
+
+ind:Automotive a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Automotive/Transportation" ;
+    skos:prefLabel "Automotive/Transportation" .
+
+ind:ComputersElectronicsControls a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Computers, Electronics & Industrial Controls" ;
+    skos:prefLabel "Computers Electronics & Industrial Controls" .
+
+ind:ConsumerProducts a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Consumer Products/Appliances" ;
+    skos:prefLabel "Consumer Products/Appliances" .
+
+ind:Defense a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Defense/Military/Government" ;
+    skos:prefLabel "Defense/Military/Government" .
+
+ind:Distribution a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Distribution" ;
+    skos:prefLabel "Distribution" .
+
+ind:Education a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Education" ;
+    skos:prefLabel "Educators, Students, School Administrators" .
+
+ind:EnergyEquipment a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Energy Exploration & Power Generation Equipment" ;
+    skos:prefLabel "Energy Exploration & Power Generation Equipment" .
+
+ind:IndustrialMachinery a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Industrial Machinery" ;
+    skos:prefLabel "Industrial Machinery (Assembly Textile Food Processing and Material Handling Equipment)" .
+
+ind:MachineShops a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Machine Shops/Contract Manufacturers" ;
+    skos:prefLabel "Machine Shops/Contract Manufacturers" .
+
+ind:MedicalDental a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Medical/Dental" ;
+    skos:prefLabel "Medical/Dental" .
+
+ind:MetalworkingMachinery a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Metalworking Machinery & Equipment" ;
+    skos:prefLabel "Metalworking Machinery & Equipment (includes Metal Cutting & Fabrication)" .
+
+ind:SoftwareIndustry a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Software Industry" ;
+    skos:prefLabel "Software" .
+
+ind:FinancialServices a owl:NamedIndividual, cmns-cls:Classifier ;
+    cmns-cls:isDefinedIn ind:Industry ;
+    rdfs:label     "Financial Services" ;
+    skos:prefLabel "Venture Capital, Banking, Finance, Consulting" .
+
+#-------------------------------------------------------------------------------
+# Note on "Other"
+#-------------------------------------------------------------------------------
+# The taxonomy is exactly 17 industries above. There is intentionally no
+# ind:Other Classifier -- "Other (Please specify)" is a form-interaction
+# concept, not a taxonomy concept, and lives at the CodeSet layer
+# (codes/ind_codeset.ttl: ind_cs:codeOther typed as
+# amtmeta:SentinelCodeElement with amtmeta:promptsFreeText "true").
+# Companies whose industry is not in the 17 are recorded as
+# (form_answer = "Other", free_text = "...") at the form / storage layer,
+# not via a synthetic ind:Other Classifier.
+#
+# Historical: v0.1.0 had ind:OtherCollection (amtmeta:Collection);
+# v0.2.1 briefly had ind:Other (cmns-cls:Classifier);
+# v0.2.2 dropped both in favor of the CodeSet-layer sentinel pattern.

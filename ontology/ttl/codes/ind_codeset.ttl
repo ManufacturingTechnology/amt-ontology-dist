@@ -1,0 +1,262 @@
+@prefix ind_cs:   <http://ontology.amt.org/codes/industries#> .
+@prefix ind:      <http://ontology.amt.org/industries#> .
+@prefix amtmeta:  <http://ontology.amt.org/meta#> .
+@prefix cmns-cds: <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+@prefix cmns-col: <https://www.omg.org/spec/Commons/Collections/> .
+@prefix cmns-dsg: <https://www.omg.org/spec/Commons/Designators/> .
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# Industry Code Set -- IMTS Visitor Registration
+# ============================================================================
+# Replaces the retired ind_view.ttl. Models the Industry demographic
+# question on the IMTS Visitor Registration form as a Commons CodeSet
+# vocabulary: one cmns-cds:CodeSet (ind_cs:VisitorCodeSet), one
+# cmns-cds:CodeElement per Answer ID, each bound to a canonical ind:
+# Classifier via cmns-dsg:designates.
+#
+# Display text is NOT duplicated here: callers walk
+#   ind_cs:codeXxx --cmns-dsg:designates--> ind:Xxx --skos:prefLabel--> "..."
+# to obtain the form-facing label. One source of truth for the Industry
+# name (ind.ttl) and one for the form-side code (this file).
+#
+# Two special CodeElements:
+#   * ind_cs:codeOther       -- "Other (Please specify)" -- regular
+#     CodeElement that designates ind:Other; flagged with
+#     amtmeta:promptsFreeText so downstream tools know the form captures
+#     a free-text payload alongside the code.
+#   * ind_cs:codeNoResponse  -- "No Response" -- typed as
+#     amtmeta:SentinelCodeElement, exempt from cmns-dsg:designates.
+# ============================================================================
+
+<http://ontology.amt.org/codes/industries>
+    a owl:Ontology, amtmeta:CodeSetVocabulary ;
+    owl:imports <http://ontology.amt.org/meta>,
+                <http://ontology.amt.org/industries>,
+                <https://www.omg.org/spec/Commons/CodesAndCodeSets/>,
+                <https://www.omg.org/spec/Commons/Collections/>,
+                <https://www.omg.org/spec/Commons/Designators/> ;
+
+    dcterms:title    "Industry Code Set" ;
+    owl:versionInfo  "0.1.0" ;
+    owl:versionIRI   <http://ontology.amt.org/codes/industries/0.1.0> ;
+
+    amtmeta:status              amtmeta:Active ;
+    amtmeta:taxonomyOwner       "Chris Downs" ;
+    amtmeta:governedBy          "Allison", "Downs", "Kristin" ;
+    amtmeta:consumedBy          "Kristin", "Allison", "Downs", "Alka", "Kalesh" ;
+
+    amtmeta:relatedProduct
+        "IMTS (visitor reg)",
+        "Passport",
+        "Media Sponsorships (media kit)" ;
+
+    amtmeta:relatedSystem
+        "Maritz",
+        "Hubspot",
+        "Data warehouse",
+        "Data repository (MySQL)" ;
+
+    amtmeta:nextReviewDate      "2027-01-01"^^xsd:date ;
+
+    amtmeta:relatedDocumentation <https://amtonline.sharepoint.com/sites/governance/Shared%20Documents/Taxonomy%20Change%20Process.docx> ;
+
+    amtmeta:releaseDate     "2026-05-26"^^xsd:date ;
+    amtmeta:scopeSummary    "v0.1.0 -- initial CodeSet replacing ind_view.ttl. Models the IMTS Visitor Registration Industry demographic (Demo 1) as 17 Classifier-designating CodeElements plus one free-text \"Other (Please specify)\" element (ind_cs:codeOther) and one \"No Response\" sentinel (ind_cs:codeNoResponse). Notations match the AMT-managed Answer IDs from the Product Interest Category workbook." ;
+    amtmeta:releaseOwner    "Shaurabh" ;
+    amtmeta:approvalStatus  amtmeta:Draft ;
+    amtmeta:gitTag          "v0.1.0" ;
+    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.0> ;
+    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.0> ;
+
+    amtmeta:useCase
+        "Marketing uses this for targeted marketing",
+        "Marketing uses this for the media kit",
+        "Passport uses this as a filter for creating email lists",
+        "IMTS uses this as a reg field for visitor registration and for attendee goals setting",
+        "IMTS uses this in post-show reports" .
+
+#-------------------------------------------------------------------------------
+# Local property definitions
+#-------------------------------------------------------------------------------
+# demoId lives in the codeset namespace (not amtmeta) -- it's a per-form
+# concept that has not yet proven to be a shared abstraction. Promote to
+# amtmeta when a second CodeSet mints an analogous property.
+
+ind_cs:demoId a owl:DatatypeProperty ;
+    rdfs:label   "demo question ID" ;
+    rdfs:range   xsd:positiveInteger ;
+    rdfs:comment "Form-level question identifier. Identifies which demographic question on the registration form this code answers. Multiple CodeElements within the same CodeSet may share a demoId (multiple answers per question); demoId may also vary across elements when industry-related answers are spread across multiple form questions." .
+
+#-------------------------------------------------------------------------------
+# CodeSet
+#-------------------------------------------------------------------------------
+
+ind_cs:VisitorCodeSet
+    a cmns-cds:CodeSet, owl:NamedIndividual ;
+    rdfs:label          "Visitor Registration Industry CodeSet" ;
+    amtmeta:codesFor    ind:Industry ;
+    amtmeta:consumerFor "IMTS Visitor Registration" ;
+    rdfs:comment        "IMTS Visitor Registration's Industry Answer IDs, bound to ind: Classifier individuals via cmns-dsg:designates. Includes one free-text \"Other (Please specify)\" element and one \"No Response\" sentinel." .
+
+#-------------------------------------------------------------------------------
+# 17 Industry CodeElements
+#-------------------------------------------------------------------------------
+
+ind_cs:codeAdditiveMachinery
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:AdditiveMachinery ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1U"^^xsd:token .
+
+ind_cs:codeAerospace
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:Aerospace ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1M"^^xsd:token .
+
+ind_cs:codeAgricultureConstructionOffRoad
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:AgricultureConstructionOffRoad ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1D"^^xsd:token .
+
+ind_cs:codeAutomationEquipmentServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:AutomationEquipmentServices ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1V"^^xsd:token .
+
+ind_cs:codeAutomotive
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:Automotive ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1N"^^xsd:token .
+
+ind_cs:codeComputersElectronicsControls
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:ComputersElectronicsControls ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1G"^^xsd:token .
+
+ind_cs:codeConsumerProducts
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:ConsumerProducts ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1K"^^xsd:token .
+
+ind_cs:codeDefense
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:Defense ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1R"^^xsd:token .
+
+ind_cs:codeDistribution
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:Distribution ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1P"^^xsd:token .
+
+ind_cs:codeEducation
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:Education ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1Q"^^xsd:token .
+
+ind_cs:codeEnergyEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:EnergyEquipment ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1C"^^xsd:token .
+
+ind_cs:codeIndustrialMachinery
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:IndustrialMachinery ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1I"^^xsd:token .
+
+ind_cs:codeMachineShops
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:MachineShops ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1H"^^xsd:token .
+
+ind_cs:codeMedicalDental
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:MedicalDental ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1O"^^xsd:token .
+
+ind_cs:codeMetalworkingMachinery
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:MetalworkingMachinery ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1F"^^xsd:token .
+
+ind_cs:codeSoftwareIndustry
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:SoftwareIndustry ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1W"^^xsd:token .
+
+ind_cs:codeFinancialServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    cmns-dsg:designates ind:FinancialServices ;
+    ind_cs:demoId       1 ;
+    skos:notation       "1S"^^xsd:token .
+
+#-------------------------------------------------------------------------------
+# Special CodeElements
+#-------------------------------------------------------------------------------
+
+# 1T "Other (Please specify)" -- free-text sentinel. Does NOT designate
+# any canonical Industry Classifier (ind.ttl is intentionally exactly 17
+# industries; "Other" is a form-interaction concept, not a taxonomy one).
+# Typed as amtmeta:SentinelCodeElement (the umbrella class for codes
+# that record meta-facts rather than designate canonical concepts);
+# distinguished from absence-of-answer sentinels by
+# amtmeta:promptsFreeText "true", which tells downstream tools to
+# capture the user-supplied string at the form / storage layer.
+# Carries skos:prefLabel locally because there is no canonical concept
+# to walk to for a display label.
+ind_cs:codeOther
+    a cmns-cds:CodeElement, amtmeta:SentinelCodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf      ind_cs:VisitorCodeSet ;
+    ind_cs:demoId            1 ;
+    skos:notation            "1T"^^xsd:token ;
+    skos:prefLabel           "Other (Please specify)" ;
+    amtmeta:promptsFreeText  "true"^^xsd:boolean .
+
+# ZZ "No Response" -- absence-of-answer sentinel. Does NOT designate any
+# canonical concept; records the explicit absence of an answer. No
+# amtmeta:promptsFreeText flag (the form does not capture text when a
+# user opts out). Carries skos:prefLabel locally because there is no
+# canonical concept to walk to for a display label.
+ind_cs:codeNoResponse
+    a cmns-cds:CodeElement, amtmeta:SentinelCodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ind_cs:VisitorCodeSet ;
+    ind_cs:demoId       1 ;
+    skos:notation       "ZZ"^^xsd:token ;
+    skos:prefLabel      "No Response" .

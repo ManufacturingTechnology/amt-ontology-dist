@@ -1,0 +1,91 @@
+@prefix amtmeta:  <http://ontology.amt.org/meta#> .
+@prefix gufo:     <http://purl.org/nemo/gufo#> .
+@prefix sh:       <http://www.w3.org/ns/shacl#> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix cmns-cds: <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+
+<http://ontology.amt.org/meta>
+    a owl:Ontology ;
+    owl:imports <http://purl.org/nemo/gufo> ;
+    rdfs:label "AMT Metadata Vocabulary" ;
+    owl:versionInfo  "0.2.0" ;
+    owl:versionIRI   <http://ontology.amt.org/meta/0.2.0> ;
+
+    amtmeta:releaseDate     "2026-05-26"^^xsd:date ;
+    amtmeta:scopeSummary    "v0.2.0 -- add amtmeta:CodeSetVocabulary (sibling of Taxonomy / UserView / InformationModel) plus the codesFor and consumerFor annotation properties. Add amtmeta:SentinelCodeElement as the umbrella class for CodeElements that do not designate a canonical concept (covers both absence-of-answer sentinels like 'No Response' and free-text fallbacks like 'Other (Please specify)'). Add amtmeta:promptsFreeText boolean flag distinguishing free-text from absence-of-answer flavors. Supports OMG Commons CodeSet packaging for department-specific identifier schemes; the legacy Collection-based UserView remains for exhibitor / visitor product-category views (retirement tracked separately)." ;
+    amtmeta:releaseOwner    "Shaurabh" ;
+    amtmeta:approvalStatus  amtmeta:Draft ;
+    amtmeta:gitTag          "v0.2.0" ;
+    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.2.0> ;
+    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.2.0> ;
+    amtmeta:relatedDocumentation <https://amtonline.sharepoint.com/sites/governance/Shared%20Documents/Taxonomy%20Change%20Process.docx> .
+
+amtmeta:Vocabulary         a owl:Class ; rdfs:subClassOf owl:Ontology ; rdfs:label "Vocabulary" .
+amtmeta:Taxonomy           a owl:Class ; rdfs:subClassOf amtmeta:Vocabulary ; rdfs:label "Taxonomy" .
+amtmeta:UserView           a owl:Class ; rdfs:subClassOf amtmeta:Vocabulary ; rdfs:label "User View" .
+amtmeta:InformationModel   a owl:Class ; rdfs:subClassOf amtmeta:Vocabulary ; rdfs:label "Information Model" .
+amtmeta:CodeSetVocabulary  a owl:Class ; rdfs:subClassOf amtmeta:Vocabulary ; rdfs:label "Code Set Vocabulary" ;
+    rdfs:comment "An ontology file that packages one or more cmns-cds:CodeSet individuals together with their CodeElements. Used to bind a department / form / downstream system's native identifier scheme (e.g. Visitor Registration Answer IDs) to canonical concepts in the AMT taxonomies. See amtmeta:codesFor (which taxonomy the codes designate) and amtmeta:consumerFor (which downstream system consumes the codes)." .
+amtmeta:Collection         a owl:Class ; rdfs:subClassOf gufo:Category ; rdfs:label "Collection" .
+amtmeta:Status             a owl:Class ; rdfs:label "Status" .
+
+amtmeta:SentinelCodeElement a owl:Class ; rdfs:subClassOf cmns-cds:CodeElement ; rdfs:label "Sentinel Code Element" ;
+    rdfs:comment "A CodeElement that does not designate a canonical concept in the taxonomy. Two flavors: (1) absence-of-answer sentinels (\"No Response\", \"Refused\", \"Don't Know\") record that the respondent opted out; (2) free-text fallbacks (\"Other (Please specify)\") record that the respondent picked something outside the canonical concept space and supplied a string (additionally signalled by amtmeta:promptsFreeText \"true\"). The string itself is form / storage runtime data and is NOT stored in the ontology. Both flavors are exempt from the cmns-dsg:designates >=1 constraint (codeset-shapes.ttl) and forbidden from carrying any cmns-dsg:designates targets -- a code that points at a canonical concept contradicts the purpose of either flavor." .
+
+amtmeta:Active      a amtmeta:Status ; rdfs:label "Active" ; skos:prefLabel "Approved" ;
+    rdfs:comment "In-use / signed-off taxonomy state." .
+amtmeta:Draft       a amtmeta:Status ; rdfs:label "Draft" ; skos:prefLabel "Draft" .
+amtmeta:UnderReview a amtmeta:Status ; rdfs:label "Under Review" ; skos:prefLabel "Pending Review" ;
+    rdfs:comment "Review in progress." .
+amtmeta:Deprecated  a amtmeta:Status ; rdfs:label "Deprecated" ; skos:prefLabel "Deprecated" .
+
+amtmeta:groups a owl:ObjectProperty ; rdfs:domain amtmeta:Collection ; rdfs:label "groups" .
+
+amtmeta:viewOf   a owl:AnnotationProperty ; rdfs:label "view of" .
+amtmeta:scopedBy a owl:AnnotationProperty ; rdfs:label "scoped by" ;
+    rdfs:comment "Ties an IM concept to the user view that defines its runtime membership via SHACL." .
+
+amtmeta:codesFor    a owl:AnnotationProperty ; rdfs:label "codes for" ;
+    rdfs:comment "Asserted on a cmns-cds:CodeSet. Points at the canonical taxonomy individual the codes designate (e.g. ind:Industry). Used by tooling to discover which CodeSets belong to which taxonomy domain." .
+amtmeta:consumerFor a owl:AnnotationProperty ; rdfs:label "consumer for" ;
+    rdfs:comment "Asserted on a cmns-cds:CodeSet. Free-text identifier of the downstream form / system that consumes these codes (e.g. \"IMTS Visitor Registration\"). Multi-valued: one CodeSet may serve multiple consumers if the same code scheme is reused." .
+
+amtmeta:promptsFreeText a owl:DatatypeProperty ; rdfs:label "prompts free text" ;
+    rdfs:range   xsd:boolean ;
+    rdfs:comment "Asserted on a cmns-cds:CodeElement when the originating form captures a free-text string alongside selection of this code (e.g. \"Other (Please specify)\"). The string itself is form / storage runtime data and is NOT stored in the ontology -- this flag only records the UI affordance so downstream tools know to render and capture the prompt. Implied false when absent." .
+
+amtmeta:status              a owl:AnnotationProperty ; rdfs:label "status" .
+amtmeta:taxonomyOwner       a owl:AnnotationProperty ; rdfs:label "taxonomy owner" .
+amtmeta:governedBy          a owl:AnnotationProperty ; rdfs:label "governed by" .
+amtmeta:consumedBy          a owl:AnnotationProperty ; rdfs:label "consumed by" .
+amtmeta:technicalSteward    a owl:AnnotationProperty ; rdfs:label "technical steward" .
+amtmeta:relatedProduct      a owl:AnnotationProperty ; rdfs:label "related product" .
+amtmeta:relatedSystem       a owl:AnnotationProperty ; rdfs:label "related system" .
+amtmeta:nextReviewDate      a owl:AnnotationProperty ; rdfs:label "next review date" .
+amtmeta:nextReviewNote      a owl:AnnotationProperty ; rdfs:label "next review note" .
+amtmeta:useCase             a owl:AnnotationProperty ; rdfs:label "use case" .
+amtmeta:notes               a owl:AnnotationProperty ; rdfs:label "notes" ;
+    rdfs:comment "Free-form editorial / governance notes." .
+amtmeta:relatedDocumentation a owl:AnnotationProperty ; rdfs:label "related documentation" ;
+    rdfs:comment "IRI pointer to external documentation." .
+
+amtmeta:releaseDate    a owl:AnnotationProperty ; rdfs:label "release date" ;
+    rdfs:comment "Calendar date the current ontology release was tagged." .
+amtmeta:scopeSummary   a owl:AnnotationProperty ; rdfs:label "scope summary" .
+amtmeta:releaseOwner   a owl:AnnotationProperty ; rdfs:label "release owner" .
+amtmeta:approvalStatus a owl:AnnotationProperty ; rdfs:label "approval status" .
+amtmeta:releaseNotes   a owl:AnnotationProperty ; rdfs:label "release notes" .
+amtmeta:githubRelease  a owl:AnnotationProperty ; rdfs:label "GitHub release" .
+amtmeta:gitTag         a owl:AnnotationProperty ; rdfs:label "git tag" .
+
+amtmeta:CatalogValueShape a sh:NodeShape ;
+    rdfs:label "Catalog Value Constraint" ;
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:message "Value is abstract (lacks skos:prefLabel) and cannot be used as a catalog value."
+    ] .

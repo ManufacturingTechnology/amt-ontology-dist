@@ -1,0 +1,1329 @@
+@prefix pc_vcs:   <http://ontology.amt.org/codes/visitor-product-categories#> .
+@prefix pc:       <http://ontology.amt.org/product-categories#> .
+@prefix amtmeta:  <http://ontology.amt.org/meta#> .
+@prefix cmns-cds: <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+@prefix cmns-col: <https://www.omg.org/spec/Commons/Collections/> .
+@prefix cmns-dsg: <https://www.omg.org/spec/Commons/Designators/> .
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# Product Category Code Set -- IMTS Visitor Registration
+# ============================================================================
+# Replaces the retired visitor_view.ttl. Models the Product Category
+# demographic question on IMTS Visitor Registration as a Commons CodeSet
+# vocabulary: one root cmns-cds:CodeSet (pc_vcs:VisitorCodeSet), one cmns-cds:CodeElement per
+# pc: leaf referenced by the AMT-curated Major/Sub bucket hierarchy.
+# Buckets are amtmeta:Collection individuals authored locally (same
+# shape as the retired view file) so the existing exporter algorithm
+# (walk amtmeta:groups+ from top-level Collections) transfers with a
+# graph-target swap only.
+#
+# Display text comes from the designated pc class's skos:prefLabel.
+# Two special CodeElements at the bottom:
+#   * pc_vcs:codeOther       -- free-text sentinel
+#                       (amtmeta:SentinelCodeElement + promptsFreeText)
+#   * pc_vcs:codeNoResponse  -- absence-of-answer sentinel
+#
+# *** Placeholder notations ***
+# The skos:notation values below ("V001", "V002", ...) are TEMPORARY.
+# Replace with real AMT-managed Answer IDs from the Product Interest
+# Category workbook when they are available. The demoId value (2)
+# is also a placeholder; the real Demo question ID will be supplied
+# alongside the Answer IDs.
+# ============================================================================
+
+<http://ontology.amt.org/codes/visitor-product-categories>
+    a owl:Ontology, amtmeta:CodeSetVocabulary ;
+    owl:imports <http://ontology.amt.org/meta>,
+                <http://ontology.amt.org/product-categories>,
+                <https://www.omg.org/spec/Commons/CodesAndCodeSets/>,
+                <https://www.omg.org/spec/Commons/Collections/>,
+                <https://www.omg.org/spec/Commons/Designators/> ;
+
+    dcterms:title    "Visitor Registration Product Category CodeSet" ;
+    owl:versionInfo  "0.1.0" ;
+    owl:versionIRI   <http://ontology.amt.org/codes/visitor-product-categories/0.1.0> ;
+
+    amtmeta:status                    amtmeta:Active ;
+    amtmeta:taxonomyOwner             "Chris Downs" ;
+    amtmeta:technicalSteward          "Shaurabh" ;
+    amtmeta:governedBy                "Allison", "Ryan", "Downs" ;
+    amtmeta:consumedBy                "Kristin", "Mark K", "Jess", "Allison", "Downs", "Alka", "Kalesh" ;
+    amtmeta:relatedProduct            "IMTS (visitor reg and exhibitor categories/showrooms)", "Passport", "Media Sponsorships (media kit)" ;
+    amtmeta:relatedSystem             "Maritz", "Hubspot", "Data warehouse", "Passport", "Exhibitor Space Application (linked at major category)" ;
+    amtmeta:nextReviewDate      "2026-06-01"^^xsd:date ;
+    amtmeta:nextReviewNote      "Need to discuss for Space Application." ;
+    amtmeta:relatedDocumentation <https://amtonline.sharepoint.com/sites/governance/Shared%20Documents/Taxonomy%20Change%20Process.docx> ;
+
+    amtmeta:releaseDate     "2026-05-26"^^xsd:date ;
+    amtmeta:scopeSummary    "v0.1.0 -- initial CodeSet replacing visitor_view.ttl. Models IMTS Visitor Registration's Product Category demographic as 156 cmns-cds:CodeElement individuals (one per leaf pc class or catalog-residual Collection referenced by the AMT-curated bucket hierarchy), grouped via 26 amtmeta:Collection buckets mirroring the Major/Sub structure. Plus one free-text Other sentinel and one No Response sentinel. Notations and demoId are placeholders pending the AMT-managed Answer ID dump." ;
+    amtmeta:releaseOwner    "Shaurabh" ;
+    amtmeta:approvalStatus  amtmeta:Draft ;
+    amtmeta:gitTag          "v0.1.0" ;
+    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.0> ;
+    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.0> ;
+
+    amtmeta:useCase
+        "Marketing uses this for targeted marketing",
+        "Passport uses this as a filter to create lists",
+        "IMTS uses this as a demographic field for visitor registration",
+        "IMTS uses this in post-show reporting",
+        "IMTS uses this to create exhibitor product categories".
+
+#------------------------------------------------------------------------------
+# Local property
+#------------------------------------------------------------------------------
+
+pc_vcs:demoId a owl:DatatypeProperty ;
+    rdfs:label   "demo question ID" ;
+    rdfs:range   xsd:positiveInteger ;
+    rdfs:comment "Form-level question identifier. Placeholder value 2 used for all elements until the real Demo question ID is supplied." .
+
+#------------------------------------------------------------------------------
+# Root CodeSet
+#------------------------------------------------------------------------------
+
+pc_vcs:VisitorCodeSet
+    a cmns-cds:CodeSet, owl:NamedIndividual ;
+    rdfs:label          "Visitor Registration Product Category CodeSet" ;
+    amtmeta:codesFor    pc:ProductCategory ;
+    amtmeta:consumerFor "IMTS Visitor Registration" ;
+    rdfs:comment        "Root CodeSet for the IMTS Visitor Registration Product Category form question. Buckets organising the codes live in this same file as amtmeta:Collection individuals." .
+
+#------------------------------------------------------------------------------
+# Major buckets
+#------------------------------------------------------------------------------
+
+pc_vcs:bucketAdditive a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Additive" ;
+    amtmeta:groups pc_vcs:codeBinderJetting, pc_vcs:codeDirectedEnergyDeposition, pc_vcs:codeHybridAdditiveManufacturing, pc_vcs:codeMaterialExtrusion, pc_vcs:codeMaterialJetting, pc_vcs:codeMoldEnabledAdditiveManufacturing, pc_vcs:codePowderBedFusion, pc_vcs:codeSheetLamination, pc_vcs:codeVatPhotopolymerization .
+
+pc_vcs:bucketAutomatedSystems a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Automated Systems" ;
+    amtmeta:groups pc_vcs:bucketAutomatedSystemsCells, pc_vcs:bucketAutomationAndMaterialHandling .
+
+pc_vcs:bucketAutomatedSystemsCells a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Automated Systems & Cells" ;
+    amtmeta:groups pc_vcs:codeAssemblyTestCell, pc_vcs:codeMaterialFormingCell, pc_vcs:codeMaterialJoiningCell, pc_vcs:codeMaterialRemovalCell .
+
+pc_vcs:bucketAutomationAndMaterialHandling a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Automation and Material Handling" ;
+    amtmeta:groups pc_vcs:codeAutomaticStorageRetrievalSystem, pc_vcs:codeBarFeedMechanism, pc_vcs:codeConveyorPartHandlingAutomation, pc_vcs:codeFormingEquipmentLoadingPositioning, pc_vcs:codeGantryLoader, pc_vcs:codeIndustrialAutoIDSystem, pc_vcs:codeIndustrialBuildingAutomationSystem, pc_vcs:codeIndustrialImageProcessingSystem, pc_vcs:codeIndustrialPC, pc_vcs:codeLaserTechnologyCollection, pc_vcs:codeMeasuringTestSystem, pc_vcs:codeMobileRobot, pc_vcs:codeMultiMachineToolStorageSystem, pc_vcs:codePalletChangerShuttleTransferDevice, pc_vcs:codeRobotToolingGripper, pc_vcs:codeSafetySecuritySystem, pc_vcs:codeSensorActuatorCollection, pc_vcs:codeStationaryRobot, pc_vcs:codeWorkpieceHandlingLoadingFeedingEquipment .
+
+pc_vcs:bucketCADCAM a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "CAD / CAM" ;
+    amtmeta:groups pc_vcs:codeEngineeringAnalysisSimulationSoftware .
+
+pc_vcs:bucketControls a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Controls" ;
+    amtmeta:groups pc_vcs:codeCNCUnit, pc_vcs:codeCommunicationNetworkFieldBusSystem, pc_vcs:codeDNCSystem, pc_vcs:codeDROUnit, pc_vcs:codeEmbeddedSystem, pc_vcs:codePLC, pc_vcs:codePLCSCADAControlSystem, pc_vcs:codeRobotController .
+
+pc_vcs:bucketEDMECMLaserPlasmaAndWaterJetCutting a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "EDM, ECM, Laser, Plasma and Water Jet Cutting" ;
+    amtmeta:groups pc_vcs:codeElectroChemicalMachine, pc_vcs:codeLaserCuttingSystem, pc_vcs:codeLaserMarkingSystem, pc_vcs:codeRamEDM, pc_vcs:codeSmallHoleEDM, pc_vcs:codeWaterJetCuttingMachine, pc_vcs:codeWireEDM .
+
+pc_vcs:bucketFinishingAndPostProcessing a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Finishing and Post-processing" ;
+    amtmeta:groups pc_vcs:codeBuffingPolishingMachine, pc_vcs:codeCenterlessGrinder, pc_vcs:codeCylindricalODGrinder, pc_vcs:codeDeburringEtchingCleaningPeening, pc_vcs:codeHoningMachine, pc_vcs:codeInternalCylindricalGrinder, pc_vcs:codeLappingMachine, pc_vcs:codeSurfaceGrindingMachine, pc_vcs:codeToolCutterDrillPointGrinder .
+
+pc_vcs:bucketForming a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Forming" ;
+    amtmeta:groups pc_vcs:codeCoilHandling, pc_vcs:codeHydraulicPress, pc_vcs:codeMechanicalPress, pc_vcs:codePressBrake, pc_vcs:codePunchPress, pc_vcs:codeRollFormingBendingMachine, pc_vcs:codeShearing, pc_vcs:codeWireFormingMachine .
+
+pc_vcs:bucketGearManufacturing a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Gear Manufacturing" ;
+    amtmeta:groups pc_vcs:codeBevelGearGenerationMachine, pc_vcs:codeGearHobbingMachine, pc_vcs:codeGearRollingMachine, pc_vcs:codeGearShapingMachine, pc_vcs:codeGearShavingMachine .
+
+pc_vcs:bucketIndustrialAI a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Industrial AI" ;
+    amtmeta:groups pc_vcs:codeAutonomousAI, pc_vcs:codeGenerativeAI, pc_vcs:codePredictiveAI, pc_vcs:codeVisionAI .
+
+pc_vcs:bucketJoiningAndForming a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Joining and Forming" ;
+    amtmeta:groups pc_vcs:bucketForming, pc_vcs:bucketWelding .
+
+pc_vcs:bucketMachineComponentsAndAccessories a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Machine Components and Accessories" ;
+    amtmeta:groups pc_vcs:codeBallLeadScrew, pc_vcs:codeCompressor, pc_vcs:codeCoolantPump, pc_vcs:codeElectricalSwitchgearEnclosureComponent, pc_vcs:codeFormedPart, pc_vcs:codeGrindingAttachmentAccessory, pc_vcs:codeIndexerRotaryTable, pc_vcs:codeSlideWayLinearGuide, pc_vcs:codeSpeedReducerGearBox, pc_vcs:codeSpindle .
+
+pc_vcs:bucketMaterials a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Materials" ;
+    amtmeta:groups pc_vcs:codeFerrousMaterial, pc_vcs:codeNonFerrousMaterial, pc_vcs:codeSmartMaterial .
+
+pc_vcs:bucketMetrology a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Metrology" ;
+    amtmeta:groups pc_vcs:codeCoordinateMeasuringMachine, pc_vcs:codeFlatnessMeasuringEquipment, pc_vcs:codeFlawDetectionEquipment, pc_vcs:codeHardnessTestingEquipment, pc_vcs:codeOpticalComparator, pc_vcs:codeRoundnessMeasuringEquipment, pc_vcs:codeVisionSystem .
+
+pc_vcs:bucketMillingBoringDrillingAndTapping a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Milling, Boring, Drilling and Tapping" ;
+    amtmeta:groups pc_vcs:codeBoringMachine, pc_vcs:codeCNCDrillingTappingMachine, pc_vcs:codeHorizontalMachiningCenter, pc_vcs:codeJigBoringMachine, pc_vcs:codeProfileDuplicatingMillingMachine, pc_vcs:codeUniversalMachiningCenter, pc_vcs:codeVerticalBridgeGantryMachiningCenter, pc_vcs:codeVerticalColumnMachiningCenter .
+
+pc_vcs:bucketPlantOperationsAndMaintenanceEquipment a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Plant Operations and Maintenance Equipment" ;
+    amtmeta:groups pc_vcs:codeCleaningDegreasingEquipment, pc_vcs:codeCoolantCuttingFluidOil, pc_vcs:codeDustCollectorAirFiltrationEquipment, pc_vcs:codePlantMaintenanceRepairEquipment, pc_vcs:codeSafetyRelatedProduct, pc_vcs:codeVacuumPump .
+
+pc_vcs:bucketSawing a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Sawing" ;
+    amtmeta:groups pc_vcs:codeAbrasiveCutOffMachine, pc_vcs:codeBandsaw, pc_vcs:codeCircularCutOffSawingMachine, pc_vcs:codeSawingMachineOtherCollection, pc_vcs:codeVerticalTiltFrameBandsaw .
+
+pc_vcs:bucketServices a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Services" ;
+    amtmeta:groups pc_vcs:codeAutomationService, pc_vcs:codeContractManufacturingMachiningService, pc_vcs:codeInsuranceFinancialHRService, pc_vcs:codePrototypingDesignService .
+
+pc_vcs:bucketSoftwareAndDigitalSolutions a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Software and Digital Solutions" ;
+    amtmeta:groups pc_vcs:codeAdministrativeSoftware, pc_vcs:codeIndustrialITOtherSoftware, pc_vcs:codeProductionFloorSoftware .
+
+pc_vcs:bucketSubtractive a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Subtractive" ;
+    amtmeta:groups pc_vcs:bucketEDMECMLaserPlasmaAndWaterJetCutting, pc_vcs:bucketMillingBoringDrillingAndTapping, pc_vcs:bucketSawing, pc_vcs:bucketTurningScrewMachiningAndThreadManufacturing .
+
+pc_vcs:bucketTooling a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Tooling" ;
+    amtmeta:groups pc_vcs:codeAbrasiveCompoundSlurry, pc_vcs:codeBoringToolBarHead, pc_vcs:codeCarbideToolingCoating, pc_vcs:codeCutterArbor, pc_vcs:codeDiamondTooling, pc_vcs:codeDrill, pc_vcs:codeEndMill, pc_vcs:codeFacingTool, pc_vcs:codeFormTool, pc_vcs:codeSawBlade, pc_vcs:codeSolidMasterCollet, pc_vcs:codeToolHolderAdapter .
+
+pc_vcs:bucketToolingAndWorkholding a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Tooling and Workholding" ;
+    amtmeta:groups pc_vcs:bucketTooling, pc_vcs:bucketWorkholding .
+
+pc_vcs:bucketTurningScrewMachiningAndThreadManufacturing a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Turning, Screw Machining and Thread Manufacturing" ;
+    amtmeta:groups pc_vcs:codeCutOffLathe, pc_vcs:codeHorizontalCNCLathe, pc_vcs:codeHorizontalCNCTurningCenter, pc_vcs:codeInvertedVerticalCNCTurningCenter, pc_vcs:codeManualLathe, pc_vcs:codeMultiSpindleHorizontalCNCLathe, pc_vcs:codeSwissStyleLathe, pc_vcs:codeTwinSpindleHorizontalCNCLathe, pc_vcs:codeTwinSpindleTurningCenter, pc_vcs:codeVerticalCNCLathe, pc_vcs:codeVerticalCNCTurningCenter .
+
+pc_vcs:bucketWelding a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Welding" ;
+    amtmeta:groups pc_vcs:codeElectricWeldingMachine, pc_vcs:codeFrictionWeldingMachine, pc_vcs:codeGasWeldingMachine, pc_vcs:codeLaserWeldingMachine, pc_vcs:codeRoboticWeldingSystem .
+
+pc_vcs:bucketWorkholding a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label     "Workholding" ;
+    amtmeta:groups pc_vcs:codeChuckJawCollet, pc_vcs:codeClampFixturingDevice, pc_vcs:codeCustomWorkholding, pc_vcs:codeExpandableWorkholdingArbor, pc_vcs:codeFixturingSystem, pc_vcs:codeHydraulicPneumaticActuator, pc_vcs:codeMandrel, pc_vcs:codeViseViseJaw .
+
+#------------------------------------------------------------------------------
+# Sub buckets
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+# CodeElements (156 leaves; placeholder notations)
+#------------------------------------------------------------------------------
+
+pc_vcs:codeAbrasiveCompoundSlurry
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:AbrasiveCompoundSlurry ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V001"^^xsd:token .
+
+pc_vcs:codeAbrasiveCutOffMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:AbrasiveCutOffMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V002"^^xsd:token .
+
+pc_vcs:codeAdministrativeSoftware
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:AdministrativeSoftware ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V003"^^xsd:token .
+
+pc_vcs:codeAssemblyTestCell
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:AssemblyTestCell ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V004"^^xsd:token .
+
+pc_vcs:codeAutomaticStorageRetrievalSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:AutomaticStorageRetrievalSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V005"^^xsd:token .
+
+pc_vcs:codeAutomationService
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:AutomationService ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V006"^^xsd:token .
+
+pc_vcs:codeAutonomousAI
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:AutonomousAI ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V007"^^xsd:token .
+
+pc_vcs:codeBallLeadScrew
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:BallLeadScrew ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V008"^^xsd:token .
+
+pc_vcs:codeBandsaw
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:Bandsaw ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V009"^^xsd:token .
+
+pc_vcs:codeBarFeedMechanism
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:BarFeedMechanism ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V010"^^xsd:token .
+
+pc_vcs:codeBevelGearGenerationMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:BevelGearGenerationMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V011"^^xsd:token .
+
+pc_vcs:codeBinderJetting
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:BinderJetting ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V012"^^xsd:token .
+
+pc_vcs:codeBoringMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:BoringMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V013"^^xsd:token .
+
+pc_vcs:codeBoringToolBarHead
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:BoringToolBarHead ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V014"^^xsd:token .
+
+pc_vcs:codeBuffingPolishingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:BuffingPolishingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V015"^^xsd:token .
+
+pc_vcs:codeCNCDrillingTappingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CNCDrillingTappingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V016"^^xsd:token .
+
+pc_vcs:codeCNCUnit
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CNCUnit ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V017"^^xsd:token .
+
+pc_vcs:codeCarbideToolingCoating
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CarbideToolingCoating ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V018"^^xsd:token .
+
+pc_vcs:codeCenterlessGrinder
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CenterlessGrinder ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V019"^^xsd:token .
+
+pc_vcs:codeChuckJawCollet
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ChuckJawCollet ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V020"^^xsd:token .
+
+pc_vcs:codeCircularCutOffSawingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CircularCutOffSawingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V021"^^xsd:token .
+
+pc_vcs:codeClampFixturingDevice
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ClampFixturingDevice ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V022"^^xsd:token .
+
+pc_vcs:codeCleaningDegreasingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CleaningDegreasingEquipment ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V023"^^xsd:token .
+
+pc_vcs:codeCoilHandling
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CoilHandling ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V024"^^xsd:token .
+
+pc_vcs:codeCommunicationNetworkFieldBusSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CommunicationNetworkFieldBusSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V025"^^xsd:token .
+
+pc_vcs:codeCompressor
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:Compressor ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V026"^^xsd:token .
+
+pc_vcs:codeContractManufacturingMachiningService
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ContractManufacturingMachiningService ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V027"^^xsd:token .
+
+pc_vcs:codeConveyorPartHandlingAutomation
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ConveyorPartHandlingAutomation ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V028"^^xsd:token .
+
+pc_vcs:codeCoolantCuttingFluidOil
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CoolantCuttingFluidOil ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V029"^^xsd:token .
+
+pc_vcs:codeCoolantPump
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CoolantPump ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V030"^^xsd:token .
+
+pc_vcs:codeCoordinateMeasuringMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CoordinateMeasuringMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V031"^^xsd:token .
+
+pc_vcs:codeCustomWorkholding
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CustomWorkholding ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V032"^^xsd:token .
+
+pc_vcs:codeCutOffLathe
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CutOffLathe ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V033"^^xsd:token .
+
+pc_vcs:codeCutterArbor
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CutterArbor ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V034"^^xsd:token .
+
+pc_vcs:codeCylindricalODGrinder
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:CylindricalODGrinder ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V035"^^xsd:token .
+
+pc_vcs:codeDNCSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:DNCSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V036"^^xsd:token .
+
+pc_vcs:codeDROUnit
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:DROUnit ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V037"^^xsd:token .
+
+pc_vcs:codeDeburringEtchingCleaningPeening
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:DeburringEtchingCleaningPeening ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V038"^^xsd:token .
+
+pc_vcs:codeDiamondTooling
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:DiamondTooling ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V039"^^xsd:token .
+
+pc_vcs:codeDirectedEnergyDeposition
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:DirectedEnergyDeposition ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V040"^^xsd:token .
+
+pc_vcs:codeDrill
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:Drill ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V041"^^xsd:token .
+
+pc_vcs:codeDustCollectorAirFiltrationEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:DustCollectorAirFiltrationEquipment ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V042"^^xsd:token .
+
+pc_vcs:codeElectricWeldingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ElectricWeldingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V043"^^xsd:token .
+
+pc_vcs:codeElectricalSwitchgearEnclosureComponent
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ElectricalSwitchgearEnclosureComponent ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V044"^^xsd:token .
+
+pc_vcs:codeElectroChemicalMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ElectroChemicalMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V045"^^xsd:token .
+
+pc_vcs:codeEmbeddedSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:EmbeddedSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V046"^^xsd:token .
+
+pc_vcs:codeEndMill
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:EndMill ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V047"^^xsd:token .
+
+pc_vcs:codeEngineeringAnalysisSimulationSoftware
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:EngineeringAnalysisSimulationSoftware ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V048"^^xsd:token .
+
+pc_vcs:codeExpandableWorkholdingArbor
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ExpandableWorkholdingArbor ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V049"^^xsd:token .
+
+pc_vcs:codeFacingTool
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:FacingTool ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V050"^^xsd:token .
+
+pc_vcs:codeFerrousMaterial
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:FerrousMaterial ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V051"^^xsd:token .
+
+pc_vcs:codeFixturingSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:FixturingSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V052"^^xsd:token .
+
+pc_vcs:codeFlatnessMeasuringEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:FlatnessMeasuringEquipment ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V053"^^xsd:token .
+
+pc_vcs:codeFlawDetectionEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:FlawDetectionEquipment ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V054"^^xsd:token .
+
+pc_vcs:codeFormTool
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:FormTool ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V055"^^xsd:token .
+
+pc_vcs:codeFormedPart
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:FormedPart ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V056"^^xsd:token .
+
+pc_vcs:codeFormingEquipmentLoadingPositioning
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:FormingEquipmentLoadingPositioning ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V057"^^xsd:token .
+
+pc_vcs:codeFrictionWeldingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:FrictionWeldingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V058"^^xsd:token .
+
+pc_vcs:codeGantryLoader
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:GantryLoader ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V059"^^xsd:token .
+
+pc_vcs:codeGasWeldingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:GasWeldingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V060"^^xsd:token .
+
+pc_vcs:codeGearHobbingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:GearHobbingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V061"^^xsd:token .
+
+pc_vcs:codeGearRollingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:GearRollingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V062"^^xsd:token .
+
+pc_vcs:codeGearShapingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:GearShapingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V063"^^xsd:token .
+
+pc_vcs:codeGearShavingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:GearShavingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V064"^^xsd:token .
+
+pc_vcs:codeGenerativeAI
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:GenerativeAI ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V065"^^xsd:token .
+
+pc_vcs:codeGrindingAttachmentAccessory
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:GrindingAttachmentAccessory ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V066"^^xsd:token .
+
+pc_vcs:codeHardnessTestingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:HardnessTestingEquipment ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V067"^^xsd:token .
+
+pc_vcs:codeHoningMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:HoningMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V068"^^xsd:token .
+
+pc_vcs:codeHorizontalCNCLathe
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:HorizontalCNCLathe ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V069"^^xsd:token .
+
+pc_vcs:codeHorizontalCNCTurningCenter
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:HorizontalCNCTurningCenter ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V070"^^xsd:token .
+
+pc_vcs:codeHorizontalMachiningCenter
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:HorizontalMachiningCenter ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V071"^^xsd:token .
+
+pc_vcs:codeHybridAdditiveManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:HybridAdditiveManufacturing ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V072"^^xsd:token .
+
+pc_vcs:codeHydraulicPneumaticActuator
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:HydraulicPneumaticActuator ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V073"^^xsd:token .
+
+pc_vcs:codeHydraulicPress
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:HydraulicPress ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V074"^^xsd:token .
+
+pc_vcs:codeIndexerRotaryTable
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:IndexerRotaryTable ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V075"^^xsd:token .
+
+pc_vcs:codeIndustrialAutoIDSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:IndustrialAutoIDSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V076"^^xsd:token .
+
+pc_vcs:codeIndustrialBuildingAutomationSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:IndustrialBuildingAutomationSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V077"^^xsd:token .
+
+pc_vcs:codeIndustrialITOtherSoftware
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:IndustrialITOtherSoftware ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V078"^^xsd:token .
+
+pc_vcs:codeIndustrialImageProcessingSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:IndustrialImageProcessingSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V079"^^xsd:token .
+
+pc_vcs:codeIndustrialPC
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:IndustrialPC ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V080"^^xsd:token .
+
+pc_vcs:codeInsuranceFinancialHRService
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:InsuranceFinancialHRService ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V081"^^xsd:token .
+
+pc_vcs:codeInternalCylindricalGrinder
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:InternalCylindricalGrinder ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V082"^^xsd:token .
+
+pc_vcs:codeInvertedVerticalCNCTurningCenter
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:InvertedVerticalCNCTurningCenter ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V083"^^xsd:token .
+
+pc_vcs:codeJigBoringMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:JigBoringMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V084"^^xsd:token .
+
+pc_vcs:codeLappingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:LappingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V085"^^xsd:token .
+
+pc_vcs:codeLaserCuttingSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:LaserCuttingSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V086"^^xsd:token .
+
+pc_vcs:codeLaserMarkingSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:LaserMarkingSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V087"^^xsd:token .
+
+pc_vcs:codeLaserTechnologyCollection
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:LaserTechnologyCollection ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V088"^^xsd:token .
+
+pc_vcs:codeLaserWeldingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:LaserWeldingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V089"^^xsd:token .
+
+pc_vcs:codeMandrel
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:Mandrel ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V090"^^xsd:token .
+
+pc_vcs:codeManualLathe
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ManualLathe ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V091"^^xsd:token .
+
+pc_vcs:codeMaterialExtrusion
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:MaterialExtrusion ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V092"^^xsd:token .
+
+pc_vcs:codeMaterialFormingCell
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:MaterialFormingCell ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V093"^^xsd:token .
+
+pc_vcs:codeMaterialJetting
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:MaterialJetting ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V094"^^xsd:token .
+
+pc_vcs:codeMaterialJoiningCell
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:MaterialJoiningCell ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V095"^^xsd:token .
+
+pc_vcs:codeMaterialRemovalCell
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:MaterialRemovalCell ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V096"^^xsd:token .
+
+pc_vcs:codeMeasuringTestSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:MeasuringTestSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V097"^^xsd:token .
+
+pc_vcs:codeMechanicalPress
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:MechanicalPress ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V098"^^xsd:token .
+
+pc_vcs:codeMobileRobot
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:MobileRobot ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V099"^^xsd:token .
+
+pc_vcs:codeMoldEnabledAdditiveManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:MoldEnabledAdditiveManufacturing ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V100"^^xsd:token .
+
+pc_vcs:codeMultiMachineToolStorageSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:MultiMachineToolStorageSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V101"^^xsd:token .
+
+pc_vcs:codeMultiSpindleHorizontalCNCLathe
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:MultiSpindleHorizontalCNCLathe ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V102"^^xsd:token .
+
+pc_vcs:codeNonFerrousMaterial
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:NonFerrousMaterial ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V103"^^xsd:token .
+
+pc_vcs:codeOpticalComparator
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:OpticalComparator ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V104"^^xsd:token .
+
+pc_vcs:codePLC
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:PLC ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V105"^^xsd:token .
+
+pc_vcs:codePLCSCADAControlSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:PLCSCADAControlSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V106"^^xsd:token .
+
+pc_vcs:codePalletChangerShuttleTransferDevice
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:PalletChangerShuttleTransferDevice ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V107"^^xsd:token .
+
+pc_vcs:codePlantMaintenanceRepairEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:PlantMaintenanceRepairEquipment ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V108"^^xsd:token .
+
+pc_vcs:codePowderBedFusion
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:PowderBedFusion ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V109"^^xsd:token .
+
+pc_vcs:codePredictiveAI
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:PredictiveAI ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V110"^^xsd:token .
+
+pc_vcs:codePressBrake
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:PressBrake ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V111"^^xsd:token .
+
+pc_vcs:codeProductionFloorSoftware
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ProductionFloorSoftware ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V112"^^xsd:token .
+
+pc_vcs:codeProfileDuplicatingMillingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ProfileDuplicatingMillingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V113"^^xsd:token .
+
+pc_vcs:codePrototypingDesignService
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:PrototypingDesignService ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V114"^^xsd:token .
+
+pc_vcs:codePunchPress
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:PunchPress ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V115"^^xsd:token .
+
+pc_vcs:codeRamEDM
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:RamEDM ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V116"^^xsd:token .
+
+pc_vcs:codeRobotController
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:RobotController ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V117"^^xsd:token .
+
+pc_vcs:codeRobotToolingGripper
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:RobotToolingGripper ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V118"^^xsd:token .
+
+pc_vcs:codeRoboticWeldingSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:RoboticWeldingSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V119"^^xsd:token .
+
+pc_vcs:codeRollFormingBendingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:RollFormingBendingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V120"^^xsd:token .
+
+pc_vcs:codeRoundnessMeasuringEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:RoundnessMeasuringEquipment ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V121"^^xsd:token .
+
+pc_vcs:codeSafetyRelatedProduct
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SafetyRelatedProduct ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V122"^^xsd:token .
+
+pc_vcs:codeSafetySecuritySystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SafetySecuritySystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V123"^^xsd:token .
+
+pc_vcs:codeSawBlade
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SawBlade ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V124"^^xsd:token .
+
+pc_vcs:codeSawingMachineOtherCollection
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SawingMachineOtherCollection ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V125"^^xsd:token .
+
+pc_vcs:codeSensorActuatorCollection
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SensorActuatorCollection ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V126"^^xsd:token .
+
+pc_vcs:codeShearing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:Shearing ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V127"^^xsd:token .
+
+pc_vcs:codeSheetLamination
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SheetLamination ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V128"^^xsd:token .
+
+pc_vcs:codeSlideWayLinearGuide
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SlideWayLinearGuide ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V129"^^xsd:token .
+
+pc_vcs:codeSmallHoleEDM
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SmallHoleEDM ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V130"^^xsd:token .
+
+pc_vcs:codeSmartMaterial
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SmartMaterial ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V131"^^xsd:token .
+
+pc_vcs:codeSolidMasterCollet
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SolidMasterCollet ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V132"^^xsd:token .
+
+pc_vcs:codeSpeedReducerGearBox
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SpeedReducerGearBox ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V133"^^xsd:token .
+
+pc_vcs:codeSpindle
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:Spindle ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V134"^^xsd:token .
+
+pc_vcs:codeStationaryRobot
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:StationaryRobot ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V135"^^xsd:token .
+
+pc_vcs:codeSurfaceGrindingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SurfaceGrindingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V136"^^xsd:token .
+
+pc_vcs:codeSwissStyleLathe
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:SwissStyleLathe ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V137"^^xsd:token .
+
+pc_vcs:codeToolCutterDrillPointGrinder
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ToolCutterDrillPointGrinder ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V138"^^xsd:token .
+
+pc_vcs:codeToolHolderAdapter
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ToolHolderAdapter ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V139"^^xsd:token .
+
+pc_vcs:codeTwinSpindleHorizontalCNCLathe
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:TwinSpindleHorizontalCNCLathe ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V140"^^xsd:token .
+
+pc_vcs:codeTwinSpindleTurningCenter
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:TwinSpindleTurningCenter ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V141"^^xsd:token .
+
+pc_vcs:codeUniversalMachiningCenter
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:UniversalMachiningCenter ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V142"^^xsd:token .
+
+pc_vcs:codeVacuumPump
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:VacuumPump ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V143"^^xsd:token .
+
+pc_vcs:codeVatPhotopolymerization
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:VatPhotopolymerization ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V144"^^xsd:token .
+
+pc_vcs:codeVerticalBridgeGantryMachiningCenter
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:VerticalBridgeGantryMachiningCenter ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V145"^^xsd:token .
+
+pc_vcs:codeVerticalCNCLathe
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:VerticalCNCLathe ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V146"^^xsd:token .
+
+pc_vcs:codeVerticalCNCTurningCenter
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:VerticalCNCTurningCenter ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V147"^^xsd:token .
+
+pc_vcs:codeVerticalColumnMachiningCenter
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:VerticalColumnMachiningCenter ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V148"^^xsd:token .
+
+pc_vcs:codeVerticalTiltFrameBandsaw
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:VerticalTiltFrameBandsaw ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V149"^^xsd:token .
+
+pc_vcs:codeViseViseJaw
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:ViseViseJaw ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V150"^^xsd:token .
+
+pc_vcs:codeVisionAI
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:VisionAI ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V151"^^xsd:token .
+
+pc_vcs:codeVisionSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:VisionSystem ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V152"^^xsd:token .
+
+pc_vcs:codeWaterJetCuttingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:WaterJetCuttingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V153"^^xsd:token .
+
+pc_vcs:codeWireEDM
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:WireEDM ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V154"^^xsd:token .
+
+pc_vcs:codeWireFormingMachine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:WireFormingMachine ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V155"^^xsd:token .
+
+pc_vcs:codeWorkpieceHandlingLoadingFeedingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    cmns-dsg:designates pc:WorkpieceHandlingLoadingFeedingEquipment ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "V156"^^xsd:token .
+
+#------------------------------------------------------------------------------
+# Special CodeElements
+#------------------------------------------------------------------------------
+
+# Free-text sentinel: "Other (Please specify)". Does not designate any
+# canonical pc class (no pc:Other Classifier -- "Other" is a form-
+# interaction concept, not a taxonomy concept). Typed as
+# amtmeta:SentinelCodeElement with amtmeta:promptsFreeText "true" to
+# distinguish from absence-of-answer sentinels.
+pc_vcs:codeOther
+    a cmns-cds:CodeElement, amtmeta:SentinelCodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf      pc_vcs:VisitorCodeSet ;
+    pc_vcs:demoId            2 ;
+    skos:notation            "VTBDOther"^^xsd:token ;
+    skos:prefLabel           "Other (Please specify)" ;
+    amtmeta:promptsFreeText  "true"^^xsd:boolean .
+
+# Absence-of-answer sentinel: "No Response".
+pc_vcs:codeNoResponse
+    a cmns-cds:CodeElement, amtmeta:SentinelCodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf pc_vcs:VisitorCodeSet ;
+    pc_vcs:demoId       2 ;
+    skos:notation       "VTBDNoResponse"^^xsd:token ;
+    skos:prefLabel      "No Response" .

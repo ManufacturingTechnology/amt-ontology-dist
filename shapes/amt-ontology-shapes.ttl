@@ -1,0 +1,216 @@
+@prefix sh:        <http://www.w3.org/ns/shacl#> .
+@prefix rdf:       <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:      <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:       <http://www.w3.org/2002/07/owl#> .
+@prefix skos:      <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:       <http://www.w3.org/2001/XMLSchema#> .
+@prefix amtmeta:   <http://ontology.amt.org/meta#> .
+@prefix amt-codes: <http://ontology.amt.org/shapes/codes#> .
+@prefix imShape:   <http://ontology.amt.org/shapes/im#> .
+@prefix im:        <http://ontology.amt.org/im#> .
+@prefix pc_vcs:    <http://ontology.amt.org/codes/visitor-product-categories#> .
+@prefix pc_ecs:    <http://ontology.amt.org/codes/exhibitor-product-categories#> .
+@prefix cmns-cds:  <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+@prefix cmns-col:  <https://www.omg.org/spec/Commons/Collections/> .
+@prefix cmns-dsg:  <https://www.omg.org/spec/Commons/Designators/> .
+
+##
+## SHACL shapes for AMT CodeSet vocabularies.
+##
+## Loaded by tests/test_shacl_shapes.py against the union of any
+## CodeSet vocabulary (e.g. ontology/codes/ind_codeset.ttl) and the
+## taxonomy it provides codes for (e.g. ontology/ind.ttl), so that
+## cmns-dsg:designates targets resolve to declared individuals.
+##
+## Shapes here are independent of the legacy Collection / amtmeta:groups
+## machinery in view-shapes.ttl.
+##
+
+##
+## Within a single cmns-cds:CodeSet, no two CodeElements may share a
+## skos:notation. (The CodeSet itself is the uniqueness scope -- demoId
+## is allowed to vary across elements and is intentionally NOT part of
+## the key. Cross-CodeSet collisions are permitted: different consumers
+## may legitimately reuse the same notation string.)
+##
+amt-codes:NotationUniqueInCodeSet
+    a sh:NodeShape ;
+    rdfs:label     "Notation must be unique within a CodeSet" ;
+    sh:targetClass cmns-cds:CodeSet ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Two cmns-cds:CodeElement instances in this CodeSet share the same skos:notation -- the CodeSet is meant to be the uniqueness scope for the form's Answer ID." ;
+        sh:prefixes [
+            sh:declare [ sh:prefix "cmns-col" ; sh:namespace "https://www.omg.org/spec/Commons/Collections/"^^xsd:anyURI ] ;
+            sh:declare [ sh:prefix "skos"     ; sh:namespace "http://www.w3.org/2004/02/skos/core#"^^xsd:anyURI ] ;
+        ] ;
+        sh:select """
+            SELECT $this ?notation WHERE {
+                ?e1 cmns-col:isMemberOf $this ;
+                    skos:notation       ?notation .
+                ?e2 cmns-col:isMemberOf $this ;
+                    skos:notation       ?notation .
+                FILTER (?e1 != ?e2)
+            }
+        """ ;
+    ] .
+
+
+##
+## Every cmns-cds:CodeElement must carry the two always-required
+## load-bearing properties:
+##
+##   * exactly one cmns-col:isMemberOf pointing at a cmns-cds:CodeSet
+##     (the CodeSet that scopes this code's notation),
+##   * exactly one skos:notation typed xsd:token
+##     (the form-side Answer ID).
+##
+## cmns-dsg:designates is required conditionally -- enforced by the
+## DesignatesRequiredForNonSentinelShape below, which exempts
+## amtmeta:SentinelCodeElement instances (e.g. "No Response", which
+## records the absence of an answer rather than a canonical concept).
+##
+amt-codes:CodeElementBasicsShape
+    a sh:NodeShape ;
+    rdfs:label     "CodeElement structural basics" ;
+    sh:targetClass cmns-cds:CodeElement ;
+
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:class    cmns-cds:CodeSet ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message  "Every cmns-cds:CodeElement must be cmns-col:isMemberOf exactly one cmns-cds:CodeSet." ;
+    ] ;
+
+    sh:property [
+        sh:path     skos:notation ;
+        sh:datatype xsd:token ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message  "Every cmns-cds:CodeElement must have exactly one xsd:token-typed skos:notation." ;
+    ] .
+
+
+##
+## Regular (non-sentinel) cmns-cds:CodeElement instances must carry at
+## least one cmns-dsg:designates IRI -- otherwise the code resolves to
+## no canonical concept and downstream consumers can't act on it. The
+## constraint is expressed as a SPARQL filter rather than a sh:property
+## on CodeElementBasicsShape so that amtmeta:SentinelCodeElement
+## instances (which are intentionally undesignated) are exempt.
+##
+## 1..* (no maxCount) allows a legacy "lumped" answer such as
+## "Aerospace & Defense" to designate both ind:Aerospace and ind:Defense.
+##
+amt-codes:DesignatesRequiredForNonSentinelShape
+    a sh:NodeShape ;
+    rdfs:label     "Non-sentinel CodeElement must designate" ;
+    sh:targetClass cmns-cds:CodeElement ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Non-sentinel cmns-cds:CodeElement must have at least one cmns-dsg:designates IRI." ;
+        sh:prefixes [
+            sh:declare [ sh:prefix "amtmeta"  ; sh:namespace "http://ontology.amt.org/meta#"^^xsd:anyURI ] ;
+            sh:declare [ sh:prefix "cmns-dsg" ; sh:namespace "https://www.omg.org/spec/Commons/Designators/"^^xsd:anyURI ] ;
+        ] ;
+        sh:select """
+            SELECT $this WHERE {
+                FILTER NOT EXISTS { $this a amtmeta:SentinelCodeElement }
+                FILTER NOT EXISTS { $this cmns-dsg:designates ?target }
+            }
+        """ ;
+    ] .
+
+
+##
+## Sentinel CodeElements must NOT carry cmns-dsg:designates targets --
+## a sentinel that points at a canonical concept contradicts its own
+## purpose (the whole point of a sentinel is to record absence of a
+## designation).
+##
+amt-codes:SentinelNoDesignatesShape
+    a sh:NodeShape ;
+    rdfs:label     "Sentinel CodeElement must not designate" ;
+    sh:targetClass amtmeta:SentinelCodeElement ;
+    sh:property [
+        sh:path     cmns-dsg:designates ;
+        sh:maxCount 0 ;
+        sh:message  "amtmeta:SentinelCodeElement instances must NOT carry cmns-dsg:designates targets -- sentinels record the absence of a designation." ;
+    ] .
+
+
+##
+## Every cmns-cds:CodeSet must carry exactly one amtmeta:codesFor target
+## (the canonical taxonomy individual the codes designate).
+##
+amt-codes:CodeSetCodesForShape
+    a sh:NodeShape ;
+    rdfs:label     "CodeSet must declare codesFor" ;
+    sh:targetClass cmns-cds:CodeSet ;
+    sh:property [
+        sh:path     amtmeta:codesFor ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message  "Every cmns-cds:CodeSet must carry exactly one amtmeta:codesFor pointing at the canonical taxonomy individual the codes designate." ;
+    ] .
+
+
+##
+## IM-side validation shapes (im.ttl D33).
+##
+## VisitorRecord.im:hasInterest values must be CodeElements in
+## pc_vcs:VisitorCodeSet; ExhibitorRecord.im:hasProductCategory values
+## must be CodeElements in pc_ecs:ExhibitorCodeSet. This is the bucket-
+## membership half of the constraint inherited from the retired
+## visitor_view:VisitorInterestShape / exhibitor_view:ExhibitorOfferingShape
+## -- one hop shorter than before (the materialized im:Interest /
+## im:ProductCategory aspect Kinds were dropped in im.ttl v0.3.0).
+##
+## Catalog-grade (amtmeta:CatalogValueShape: target carries skos:prefLabel)
+## should be applied to the designated pc class one hop further via
+## cmns-dsg:designates. That second half is not encoded here because the
+## existing per-CodeElement basics (DesignatesRequiredForNonSentinelShape)
+## already guarantees non-sentinel codes designate at least one pc class;
+## and that pc class is itself in pc.ttl which carries skos:prefLabel on
+## every entity that should be selectable. Sentinel CodeElements
+## (Other / NoResponse) carry skos:prefLabel locally and are valid form
+## answers despite having no designation.
+##
+
+imShape:VisitorInterestShape
+    a sh:NodeShape ;
+    rdfs:label     "Visitor Interest Constraint" ;
+    sh:targetClass im:VisitorRecord ;
+    sh:property [
+        sh:path im:hasInterest ;
+        sh:node imShape:VisitorCodeSetMember ;
+        sh:message "Every im:hasInterest target on an im:VisitorRecord must be a cmns-cds:CodeElement that is cmns-col:isMemberOf pc_vcs:VisitorCodeSet." ;
+    ] .
+
+imShape:VisitorCodeSetMember
+    a sh:NodeShape ;
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:hasValue pc_vcs:VisitorCodeSet ;
+        sh:minCount 1 ;
+    ] .
+
+imShape:ExhibitorOfferingShape
+    a sh:NodeShape ;
+    rdfs:label     "Exhibitor Product Category Constraint" ;
+    sh:targetClass im:ExhibitorRecord ;
+    sh:property [
+        sh:path im:hasProductCategory ;
+        sh:node imShape:ExhibitorCodeSetMember ;
+        sh:message "Every im:hasProductCategory target on an im:ExhibitorRecord must be a cmns-cds:CodeElement that is cmns-col:isMemberOf pc_ecs:ExhibitorCodeSet." ;
+    ] .
+
+imShape:ExhibitorCodeSetMember
+    a sh:NodeShape ;
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:hasValue pc_ecs:ExhibitorCodeSet ;
+        sh:minCount 1 ;
+    ] .
