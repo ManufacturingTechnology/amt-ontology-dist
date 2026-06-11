@@ -171,7 +171,7 @@ amt-codes:CodeSetCodesForShape
 
 
 ##
-## IM-side validation shapes (im.ttl D33).
+## IM-side validation shapes.
 ##
 ## VisitorRecord.im:hasInterest values must be CodeElements in
 ## pc_vcs:VisitorCodeSet; ExhibitorRecord.im:hasProductCategory values
