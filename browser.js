@@ -14,6 +14,10 @@
     "imts-visitor-tree",
     "imts-exhibitor-tree",
     "imts-industry-tree",
+    "imts-regclass-tree",
+    "imts-jobfn-tree",
+    "imts-acqrole-tree",
+    "imts-empcount-tree",
   ];
 
   /* -- Outer tab switching -- */
@@ -153,6 +157,10 @@
     ["search-imts-visitor",  "imts-visitor-tree"],
     ["search-imts-exhibitor","imts-exhibitor-tree"],
     ["search-imts-industry", "imts-industry-tree"],
+    ["search-imts-regclass", "imts-regclass-tree"],
+    ["search-imts-jobfn",    "imts-jobfn-tree"],
+    ["search-imts-acqrole",  "imts-acqrole-tree"],
+    ["search-imts-empcount", "imts-empcount-tree"],
   ].forEach(function (pair) {
     const input = document.getElementById(pair[0]);
     const treeId = pair[1];
@@ -177,6 +185,10 @@
     ["imts-visitor-total-count",   "imts-visitor-tree"],
     ["imts-exhibitor-total-count", "imts-exhibitor-tree"],
     ["imts-industry-total-count",  "imts-industry-tree"],
+    ["imts-regclass-total-count",  "imts-regclass-tree"],
+    ["imts-jobfn-total-count",     "imts-jobfn-tree"],
+    ["imts-acqrole-total-count",   "imts-acqrole-tree"],
+    ["imts-empcount-total-count",  "imts-empcount-tree"],
   ].forEach(function (pair) {
     setBadge(pair[0], countNodes(pair[1]) + " total nodes");
   });

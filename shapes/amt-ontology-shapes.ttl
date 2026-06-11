@@ -93,15 +93,26 @@ amt-codes:CodeElementBasicsShape
 
 
 ##
-## Regular (non-sentinel) cmns-cds:CodeElement instances must carry at
-## least one cmns-dsg:designates IRI -- otherwise the code resolves to
-## no canonical concept and downstream consumers can't act on it. The
-## constraint is expressed as a SPARQL filter rather than a sh:property
-## on CodeElementBasicsShape so that amtmeta:SentinelCodeElement
-## instances (which are intentionally undesignated) are exempt.
+## Every cmns-cds:CodeElement must be display-label-resolvable. That
+## resolves in one of two ways:
 ##
-## 1..* (no maxCount) allows a legacy "lumped" answer such as
-## "Aerospace & Defense" to designate both ind:Aerospace and ind:Defense.
+##   1. via cmns-dsg:designates to a target carrying skos:prefLabel
+##      (the Industry / Visitor / Exhibitor PC pattern -- CodeElement
+##      points at a canonical Classifier or pc class which holds the
+##      label),
+##   2. via skos:prefLabel asserted directly on the CodeElement
+##      (the IMTS RegClass / JobFn / AcqRole / EmpCount pattern --
+##      controlled vocabularies with no underlying Classifier layer).
+##
+## This shape fails a CodeElement that has neither. Sentinel
+## CodeElements (amtmeta:SentinelCodeElement) are exempt: they carry
+## their own skos:prefLabel (so they actually satisfy form 2 above) and
+## are not required to designate (the sh:hasValue requirement on
+## designates is dropped by SentinelNoDesignatesShape).
+##
+## 1..* (no maxCount) on designates allows a legacy "lumped" answer
+## such as "Aerospace & Defense" to designate both ind:Aerospace and
+## ind:Defense.
 ##
 amt-codes:DesignatesRequiredForNonSentinelShape
     a sh:NodeShape ;
@@ -113,11 +124,13 @@ amt-codes:DesignatesRequiredForNonSentinelShape
         sh:prefixes [
             sh:declare [ sh:prefix "amtmeta"  ; sh:namespace "http://ontology.amt.org/meta#"^^xsd:anyURI ] ;
             sh:declare [ sh:prefix "cmns-dsg" ; sh:namespace "https://www.omg.org/spec/Commons/Designators/"^^xsd:anyURI ] ;
+            sh:declare [ sh:prefix "skos"     ; sh:namespace "http://www.w3.org/2004/02/skos/core#"^^xsd:anyURI ] ;
         ] ;
         sh:select """
             SELECT $this WHERE {
                 FILTER NOT EXISTS { $this a amtmeta:SentinelCodeElement }
                 FILTER NOT EXISTS { $this cmns-dsg:designates ?target }
+                FILTER NOT EXISTS { $this skos:prefLabel ?label }
             }
         """ ;
     ] .
@@ -212,5 +225,113 @@ imShape:ExhibitorCodeSetMember
     sh:property [
         sh:path     cmns-col:isMemberOf ;
         sh:hasValue pc_ecs:ExhibitorCodeSet ;
+        sh:minCount 1 ;
+    ] .
+
+
+##
+## v0.4.0 additions -- per-property scoping for the four new codesets
+## introduced for visitor-ingestion data: im:registrationClass,
+## im:hasIndustry, im:jobFunction, im:acquisitionRole,
+## im:plantEmployeeCount. Each property's target must be a CodeElement
+## isMemberOf the right consumer's root CodeSet.
+##
+
+imShape:VisitorRegistrationClassShape
+    a sh:NodeShape ;
+    rdfs:label     "Visitor Registration Class Constraint" ;
+    sh:targetClass im:VisitorRecord ;
+    sh:property [
+        sh:path     im:registrationClass ;
+        sh:node     imShape:IMTSRegClassCodeSetMember ;
+        sh:maxCount 1 ;
+        sh:message  "im:registrationClass target on a VisitorRecord must be a CodeElement isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet." ;
+    ] .
+
+imShape:IMTSRegClassCodeSetMember
+    a sh:NodeShape ;
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:hasValue <http://ontology.amt.org/codes/imts-registration-category#IMTSRegistrationCategoryCodeSet> ;
+        sh:minCount 1 ;
+    ] .
+
+
+imShape:VisitorIndustryShape
+    a sh:NodeShape ;
+    rdfs:label     "Visitor Industry Constraint" ;
+    sh:targetClass im:VisitorRecord ;
+    sh:property [
+        sh:path     im:hasIndustry ;
+        sh:node     imShape:IndustryCodeSetMember ;
+        sh:maxCount 1 ;
+        sh:message  "im:hasIndustry target on a VisitorRecord must be a CodeElement isMemberOf ind_cs:VisitorCodeSet." ;
+    ] .
+
+imShape:IndustryCodeSetMember
+    a sh:NodeShape ;
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:hasValue <http://ontology.amt.org/codes/industries#VisitorCodeSet> ;
+        sh:minCount 1 ;
+    ] .
+
+
+imShape:VisitorJobFunctionShape
+    a sh:NodeShape ;
+    rdfs:label     "Visitor Job Function Constraint" ;
+    sh:targetClass im:VisitorRecord ;
+    sh:property [
+        sh:path     im:jobFunction ;
+        sh:node     imShape:JobFunctionCodeSetMember ;
+        sh:maxCount 1 ;
+        sh:message  "im:jobFunction target on a VisitorRecord must be a CodeElement isMemberOf jobfn_cs:JobFunctionCodeSet." ;
+    ] .
+
+imShape:JobFunctionCodeSetMember
+    a sh:NodeShape ;
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:hasValue <http://ontology.amt.org/codes/job-function#JobFunctionCodeSet> ;
+        sh:minCount 1 ;
+    ] .
+
+
+imShape:VisitorAcquisitionRoleShape
+    a sh:NodeShape ;
+    rdfs:label     "Visitor Acquisition Role Constraint" ;
+    sh:targetClass im:VisitorRecord ;
+    sh:property [
+        sh:path     im:acquisitionRole ;
+        sh:node     imShape:AcquisitionRoleCodeSetMember ;
+        sh:maxCount 1 ;
+        sh:message  "im:acquisitionRole target on a VisitorRecord must be a CodeElement isMemberOf acqrole_cs:AcquisitionRoleCodeSet." ;
+    ] .
+
+imShape:AcquisitionRoleCodeSetMember
+    a sh:NodeShape ;
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:hasValue <http://ontology.amt.org/codes/acquisition-role#AcquisitionRoleCodeSet> ;
+        sh:minCount 1 ;
+    ] .
+
+
+imShape:VisitorPlantEmployeeCountShape
+    a sh:NodeShape ;
+    rdfs:label     "Visitor Plant Employee Count Constraint" ;
+    sh:targetClass im:VisitorRecord ;
+    sh:property [
+        sh:path     im:plantEmployeeCount ;
+        sh:node     imShape:PlantEmployeeCountCodeSetMember ;
+        sh:maxCount 1 ;
+        sh:message  "im:plantEmployeeCount target on a VisitorRecord must be a CodeElement isMemberOf empcount_cs:PlantEmployeeCountCodeSet." ;
+    ] .
+
+imShape:PlantEmployeeCountCodeSetMember
+    a sh:NodeShape ;
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:hasValue <http://ontology.amt.org/codes/plant-employee-count#PlantEmployeeCountCodeSet> ;
         sh:minCount 1 ;
     ] .

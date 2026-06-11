@@ -144,6 +144,24 @@
               <span class="prop-range">Booth Staff</span>
             </div>
           
+            <div class="prop-row" title="http://ontology.amt.org/im#eventCode">
+              <span class="prop-name">event code</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#leadFrom">
+              <span class="prop-name">lead from</span>
+              
+              <span class="prop-range">Visitor Record</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#leadOf">
+              <span class="prop-name">lead of</span>
+              
+              <span class="prop-range">Exhibitor Record</span>
+            </div>
+          
             <div class="prop-row" title="http://ontology.amt.org/im#leadOfExhibitor">
               <span class="prop-name">lead of exhibitor</span>
               <span class="prop-card">1..1</span>
@@ -154,6 +172,36 @@
               <span class="prop-name">lead of visitor</span>
               <span class="prop-card">1..1</span>
               <span class="prop-range">Visitor</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#scanBooth">
+              <span class="prop-name">scan booth</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#scanDateTime">
+              <span class="prop-name">scan date-time</span>
+              
+              <span class="prop-range">dateTime</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#scanHall">
+              <span class="prop-name">scan hall</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#scanPavilion">
+              <span class="prop-name">scan pavilion</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#terminalID">
+              <span class="prop-name">terminal ID</span>
+              
+              <span class="prop-range">string</span>
             </div>
           
         </div>
@@ -352,6 +400,12 @@
               <span class="prop-range">integer</span>
             </div>
           
+            <div class="prop-row" title="http://ontology.amt.org/im#categorizationDate">
+              <span class="prop-name">categorization date</span>
+              
+              <span class="prop-range">dateTime</span>
+            </div>
+          
             <div class="prop-row" title="http://ontology.amt.org/im#hasProductCategory">
               <span class="prop-name">has product category</span>
               <span class="prop-card">1..*</span>
@@ -375,16 +429,70 @@
       
         <div class="prop-list">
           
+            <div class="prop-row" title="http://ontology.amt.org/im#acquisitionRole">
+              <span class="prop-name">acquisition role</span>
+              
+              <span class="prop-range">CodeElement</span>
+            </div>
+          
             <div class="prop-row" title="http://ontology.amt.org/im#badge">
               <span class="prop-name">badge</span>
               <span class="prop-card">1..1</span>
               <span class="prop-range">integer</span>
             </div>
           
+            <div class="prop-row" title="http://ontology.amt.org/im#city">
+              <span class="prop-name">city</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#country">
+              <span class="prop-name">country</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#email">
+              <span class="prop-name">email</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#emailOptIn">
+              <span class="prop-name">email opt-in</span>
+              
+              <span class="prop-range">boolean</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#firstName">
+              <span class="prop-name">first name</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#hasIndustry">
+              <span class="prop-name">has industry</span>
+              
+              <span class="prop-range">CodeElement</span>
+            </div>
+          
             <div class="prop-row" title="http://ontology.amt.org/im#hasInterest">
               <span class="prop-name">has interest</span>
               <span class="prop-card">1..*</span>
               <span class="prop-range">CodeElement</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#jobFunction">
+              <span class="prop-name">job function</span>
+              
+              <span class="prop-range">CodeElement</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#lastName">
+              <span class="prop-name">last name</span>
+              
+              <span class="prop-range">string</span>
             </div>
           
             <div class="prop-row" title="http://ontology.amt.org/im#mediatesEmployer">
@@ -397,6 +505,60 @@
               <span class="prop-name">mediates visitor</span>
               <span class="prop-card">1..1</span>
               <span class="prop-range">Visitor</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#plantEmployeeCount">
+              <span class="prop-name">plant employee count</span>
+              
+              <span class="prop-range">CodeElement</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#postalCode">
+              <span class="prop-name">postal code</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#registeredForShow">
+              <span class="prop-name">registered for show</span>
+              
+              <span class="prop-range">IMTS Show</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#registrationClass">
+              <span class="prop-name">registration class</span>
+              
+              <span class="prop-range">CodeElement</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#registrationDay">
+              <span class="prop-name">registration day</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#sourceProvenance">
+              <span class="prop-name">source provenance</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#stateProvince">
+              <span class="prop-name">state or province</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#streetAddress">
+              <span class="prop-name">street address</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#title">
+              <span class="prop-name">title</span>
+              
+              <span class="prop-range">string</span>
             </div>
           
         </div>
@@ -3834,6 +3996,22 @@
       <button class="sub-tab-btn "
               role="tab" data-outer="imts" data-sub="industry" data-target="sub-imts-industry">
         <span class="sub-dot sub-dot-imts-industry"></span>Industry Sector
+      </button>
+      <button class="sub-tab-btn "
+              role="tab" data-outer="imts" data-sub="regclass" data-target="sub-imts-regclass">
+        <span class="sub-dot sub-dot-imts-regclass"></span>Registration Category
+      </button>
+      <button class="sub-tab-btn "
+              role="tab" data-outer="imts" data-sub="jobfn" data-target="sub-imts-jobfn">
+        <span class="sub-dot sub-dot-imts-jobfn"></span>Job Function
+      </button>
+      <button class="sub-tab-btn "
+              role="tab" data-outer="imts" data-sub="acqrole" data-target="sub-imts-acqrole">
+        <span class="sub-dot sub-dot-imts-acqrole"></span>Acquisition Role
+      </button>
+      <button class="sub-tab-btn "
+              role="tab" data-outer="imts" data-sub="empcount" data-target="sub-imts-empcount">
+        <span class="sub-dot sub-dot-imts-empcount"></span>Plant Employee Count
       </button>
     </div>
 
@@ -11165,12 +11343,861 @@
         </div>
       </div>
     </div>
+
+    <!-- IMTS Registration Category CodeSet -->
+    <div id="sub-imts-regclass" class="sub-panel ">
+      <div class="card card-imts">
+        <div class="card-header">
+          <div class="card-header-text">
+            <h2 class="imts-title">IMTS Registration Category CodeSet</h2>
+            <p>Maritz registration platform's 48-code vocabulary that classifies every IMTS registrant by role (visitor, exhibitor, press, staff, distributor, etc.). Used as the range of <code>im:registrationClass</code> on VisitorRecord. Each CodeElement carries <code>skos:prefLabel</code> directly; no underlying Classifier layer.</p>
+          </div>
+          <div class="stats-badge">
+            <span class="badge imts-badge" id="imts-regclass-total-count">Loading...</span>
+          </div>
+        </div>
+        <div class="search-row">
+          <input class="search-box" type="search" placeholder="Filter codes..."
+                 id="search-imts-regclass" autocomplete="off">
+          <button class="expand-all-btn"   data-tree="imts-regclass-tree">Expand All</button>
+          <button class="collapse-all-btn" data-tree="imts-regclass-tree">Collapse All</button>
+        </div>
+        <div class="tree-container imts" id="imts-regclass-tree">
+          
+            <ul class="tree-root">
+              <li class="tree-node" data-label="alternate mailer 1" title="http://ontology.amt.org/codes/imts-registration-category#codeALT1">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Alternate Mailer 1</span>
+          
+            <span class="notation-badge" title="skos:notation">ALT1</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="alternate mailer 2" title="http://ontology.amt.org/codes/imts-registration-category#codeALT2">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Alternate Mailer 2</span>
+          
+            <span class="notation-badge" title="skos:notation">ALT2</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="amt staff" title="http://ontology.amt.org/codes/imts-registration-category#codeAMTSF">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">AMT Staff</span>
+          
+            <span class="notation-badge" title="skos:notation">AMTSF</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="amt staff guests" title="http://ontology.amt.org/codes/imts-registration-category#codeAMT">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">AMT Staff Guests</span>
+          
+            <span class="notation-badge" title="skos:notation">AMT</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="approved eac" title="http://ontology.amt.org/codes/imts-registration-category#codeEAC">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Approved EAC</span>
+          
+            <span class="notation-badge" title="skos:notation">EAC</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="association main contact" title="http://ontology.amt.org/codes/imts-registration-category#codeAM">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Association Main Contact</span>
+          
+            <span class="notation-badge" title="skos:notation">AM</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="cancelled association" title="http://ontology.amt.org/codes/imts-registration-category#codeCXAA">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Cancelled Association</span>
+          
+            <span class="notation-badge" title="skos:notation">CXAA</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="cancelled distributor" title="http://ontology.amt.org/codes/imts-registration-category#codeCXDT">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Cancelled Distributor</span>
+          
+            <span class="notation-badge" title="skos:notation">CXDT</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="cancelled eac company" title="http://ontology.amt.org/codes/imts-registration-category#codeCXEAC">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Cancelled EAC Company</span>
+          
+            <span class="notation-badge" title="skos:notation">CXEAC</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="cancelled exhibitor" title="http://ontology.amt.org/codes/imts-registration-category#codeCXEX">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Cancelled Exhibitor</span>
+          
+            <span class="notation-badge" title="skos:notation">CXEX</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="cancelled mm" title="http://ontology.amt.org/codes/imts-registration-category#codeCXMM">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Cancelled MM</span>
+          
+            <span class="notation-badge" title="skos:notation">CXMM</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="cancelled registration" title="http://ontology.amt.org/codes/imts-registration-category#codeCX">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Cancelled Registration</span>
+          
+            <span class="notation-badge" title="skos:notation">CX</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="cancelled vendor" title="http://ontology.amt.org/codes/imts-registration-category#codeCXVN">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Cancelled Vendor</span>
+          
+            <span class="notation-badge" title="skos:notation">CXVN</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="certificate attendee" title="http://ontology.amt.org/codes/imts-registration-category#codeXG">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Certificate Attendee</span>
+          
+            <span class="notation-badge" title="skos:notation">XG</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="chaperone" title="http://ontology.amt.org/codes/imts-registration-category#codeCHAP">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Chaperone</span>
+          
+            <span class="notation-badge" title="skos:notation">CHAP</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="child" title="http://ontology.amt.org/codes/imts-registration-category#codeKD">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Child</span>
+          
+            <span class="notation-badge" title="skos:notation">KD</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="college/university student" title="http://ontology.amt.org/codes/imts-registration-category#codeCLG">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">College/University Student</span>
+          
+            <span class="notation-badge" title="skos:notation">CLG</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="denied media" title="http://ontology.amt.org/codes/imts-registration-category#codeDPR">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Denied Media</span>
+          
+            <span class="notation-badge" title="skos:notation">DPR</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="denied not attending media" title="http://ontology.amt.org/codes/imts-registration-category#codeDNAP">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Denied Not Attending Media</span>
+          
+            <span class="notation-badge" title="skos:notation">DNAP</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="distributor main contact" title="http://ontology.amt.org/codes/imts-registration-category#codeDM">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Distributor Main Contact</span>
+          
+            <span class="notation-badge" title="skos:notation">DM</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="distributor staff" title="http://ontology.amt.org/codes/imts-registration-category#codeDT">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Distributor Staff</span>
+          
+            <span class="notation-badge" title="skos:notation">DT</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="duplicate record" title="http://ontology.amt.org/codes/imts-registration-category#codeDU">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Duplicate Record</span>
+          
+            <span class="notation-badge" title="skos:notation">DU</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="eac list from mcormick" title="http://ontology.amt.org/codes/imts-registration-category#codeEACLIST">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">EAC List From Mcormick</span>
+          
+            <span class="notation-badge" title="skos:notation">EACLIST</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="eac staff" title="http://ontology.amt.org/codes/imts-registration-category#codeEACSTAFF">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">EAC Staff</span>
+          
+            <span class="notation-badge" title="skos:notation">EACSTAFF</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="educator" title="http://ontology.amt.org/codes/imts-registration-category#codeED">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Educator</span>
+          
+            <span class="notation-badge" title="skos:notation">ED</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="exhibitor" title="http://ontology.amt.org/codes/imts-registration-category#codeEX">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Exhibitor</span>
+          
+            <span class="notation-badge" title="skos:notation">EX</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="group registration" title="http://ontology.amt.org/codes/imts-registration-category#codeGP">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Group Registration</span>
+          
+            <span class="notation-badge" title="skos:notation">GP</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="international" title="http://ontology.amt.org/codes/imts-registration-category#codeIN">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">International</span>
+          
+            <span class="notation-badge" title="skos:notation">IN</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="international group visitor" title="http://ontology.amt.org/codes/imts-registration-category#codeIG">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">International Group Visitor</span>
+          
+            <span class="notation-badge" title="skos:notation">IG</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="internet record" title="http://ontology.amt.org/codes/imts-registration-category#codeIX">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Internet Record</span>
+          
+            <span class="notation-badge" title="skos:notation">IX</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="interntl association staff" title="http://ontology.amt.org/codes/imts-registration-category#codeAA">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Interntl Association Staff</span>
+          
+            <span class="notation-badge" title="skos:notation">AA</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="intl association pending" title="http://ontology.amt.org/codes/imts-registration-category#codeAMPEND">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Intl Association Pending</span>
+          
+            <span class="notation-badge" title="skos:notation">AMPEND</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="labor onsite badge" title="http://ontology.amt.org/codes/imts-registration-category#codeLABOR">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Labor Onsite Badge</span>
+          
+            <span class="notation-badge" title="skos:notation">LABOR</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="main contact" title="http://ontology.amt.org/codes/imts-registration-category#codeMM">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Main Contact</span>
+          
+            <span class="notation-badge" title="skos:notation">MM</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="more info n/a pending media" title="http://ontology.amt.org/codes/imts-registration-category#codeMINAP">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">More Info N/A Pending Media</span>
+          
+            <span class="notation-badge" title="skos:notation">MINAP</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="more info pending media" title="http://ontology.amt.org/codes/imts-registration-category#codeMIP">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">More Info Pending Media</span>
+          
+            <span class="notation-badge" title="skos:notation">MIP</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="pending eac" title="http://ontology.amt.org/codes/imts-registration-category#codeEACPEND">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Pending EAC</span>
+          
+            <span class="notation-badge" title="skos:notation">EACPEND</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="pending not attending press" title="http://ontology.amt.org/codes/imts-registration-category#codePNAP">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Pending Not Attending Press</span>
+          
+            <span class="notation-badge" title="skos:notation">PNAP</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="post-secondary educator" title="http://ontology.amt.org/codes/imts-registration-category#codePSE">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Post-Secondary Educator</span>
+          
+            <span class="notation-badge" title="skos:notation">PSE</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="press" title="http://ontology.amt.org/codes/imts-registration-category#codePR">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Press</span>
+          
+            <span class="notation-badge" title="skos:notation">PR</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="problem payment" title="http://ontology.amt.org/codes/imts-registration-category#codePROBPAY">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Problem Payment</span>
+          
+            <span class="notation-badge" title="skos:notation">PROBPAY</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="problem resolution" title="http://ontology.amt.org/codes/imts-registration-category#codePROB">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Problem Resolution</span>
+          
+            <span class="notation-badge" title="skos:notation">PROB</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="smartforce exhibitor" title="http://ontology.amt.org/codes/imts-registration-category#codeSFE">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Smartforce Exhibitor</span>
+          
+            <span class="notation-badge" title="skos:notation">SFE</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="speaker" title="http://ontology.amt.org/codes/imts-registration-category#codeSP">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Speaker</span>
+          
+            <span class="notation-badge" title="skos:notation">SP</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="student" title="http://ontology.amt.org/codes/imts-registration-category#codeSTU">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Student</span>
+          
+            <span class="notation-badge" title="skos:notation">STU</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="vendor partner" title="http://ontology.amt.org/codes/imts-registration-category#codeVN">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Vendor Partner</span>
+          
+            <span class="notation-badge" title="skos:notation">VN</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="vendor partner main contact" title="http://ontology.amt.org/codes/imts-registration-category#codeVM">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Vendor Partner Main Contact</span>
+          
+            <span class="notation-badge" title="skos:notation">VM</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="visitor" title="http://ontology.amt.org/codes/imts-registration-category#codeAV">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Visitor</span>
+          
+            <span class="notation-badge" title="skos:notation">AV</span>
+          
+        </span>
+      
+    </li>
+            </ul>
+          
+        </div>
+      </div>
+    </div>
+    <!-- IMTS Job Function CodeSet -->
+    <div id="sub-imts-jobfn" class="sub-panel ">
+      <div class="card card-imts">
+        <div class="card-header">
+          <div class="card-header-text">
+            <h2 class="imts-title">IMTS Job Function CodeSet</h2>
+            <p>Lead-scan questionnaire field <em>'What is your primary job function?'</em>. 10 substantive categories + 'Other (Please specify)' + 'No Response' sentinels. Placeholder Entry IDs (JF01..JF12) pending the form-side ID schema.</p>
+          </div>
+          <div class="stats-badge">
+            <span class="badge imts-badge" id="imts-jobfn-total-count">Loading...</span>
+          </div>
+        </div>
+        <div class="search-row">
+          <input class="search-box" type="search" placeholder="Filter codes..."
+                 id="search-imts-jobfn" autocomplete="off">
+          <button class="expand-all-btn"   data-tree="imts-jobfn-tree">Expand All</button>
+          <button class="collapse-all-btn" data-tree="imts-jobfn-tree">Collapse All</button>
+        </div>
+        <div class="tree-container imts" id="imts-jobfn-tree">
+          
+            <ul class="tree-root">
+              <li class="tree-node" data-label="department, design or r&amp;d" title="http://ontology.amt.org/codes/job-function#codeDeptDesignRD">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Department, Design or R&amp;D</span>
+          
+            <span class="notation-badge" title="skos:notation">JF01</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="department, information technology" title="http://ontology.amt.org/codes/job-function#codeDeptIT">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Department, Information Technology</span>
+          
+            <span class="notation-badge" title="skos:notation">JF02</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="department, manufacturing engineering" title="http://ontology.amt.org/codes/job-function#codeDeptMfgEngineering">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Department, Manufacturing Engineering</span>
+          
+            <span class="notation-badge" title="skos:notation">JF03</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="department, manufacturing production" title="http://ontology.amt.org/codes/job-function#codeDeptMfgProduction">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Department, Manufacturing Production</span>
+          
+            <span class="notation-badge" title="skos:notation">JF04</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="department, purchasing" title="http://ontology.amt.org/codes/job-function#codeDeptPurchasing">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Department, Purchasing</span>
+          
+            <span class="notation-badge" title="skos:notation">JF05</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="department, sales &amp; marketing" title="http://ontology.amt.org/codes/job-function#codeDeptSalesMarketing">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Department, Sales &amp; Marketing</span>
+          
+            <span class="notation-badge" title="skos:notation">JF06</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="management, corporate and executive" title="http://ontology.amt.org/codes/job-function#codeMgmtCorporateExecutive">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Management, Corporate and Executive</span>
+          
+            <span class="notation-badge" title="skos:notation">JF07</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="management, design or r&amp;d" title="http://ontology.amt.org/codes/job-function#codeMgmtDesignRD">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Management, Design or R&amp;D</span>
+          
+            <span class="notation-badge" title="skos:notation">JF08</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="management, manufacturing engineering" title="http://ontology.amt.org/codes/job-function#codeMgmtMfgEngineering">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Management, Manufacturing Engineering</span>
+          
+            <span class="notation-badge" title="skos:notation">JF09</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="management, manufacturing production" title="http://ontology.amt.org/codes/job-function#codeMgmtMfgProduction">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Management, Manufacturing Production</span>
+          
+            <span class="notation-badge" title="skos:notation">JF10</span>
+          
+        </span>
+      
+    </li><li class="tree-node sentinel" data-label="other (please specify)" title="http://ontology.amt.org/codes/job-function#codeOther">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Other (Please specify)</span>
+          
+            <span class="notation-badge" title="skos:notation">JF11</span>
+          
+        </span>
+      
+    </li><li class="tree-node sentinel" data-label="no response" title="http://ontology.amt.org/codes/job-function#codeNoResponse">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">No Response</span>
+          
+            <span class="notation-badge" title="skos:notation">JF12</span>
+          
+        </span>
+      
+    </li>
+            </ul>
+          
+        </div>
+      </div>
+    </div>
+    <!-- IMTS Acquisition Role CodeSet -->
+    <div id="sub-imts-acqrole" class="sub-panel ">
+      <div class="card card-imts">
+        <div class="card-header">
+          <div class="card-header-text">
+            <h2 class="imts-title">IMTS Acquisition Role CodeSet</h2>
+            <p>Lead-scan questionnaire field <em>'What roles do you play in the acquisition process?'</em>. 6 substantive roles + 'No Response' sentinel. Placeholder Entry IDs (AR01..AR07).</p>
+          </div>
+          <div class="stats-badge">
+            <span class="badge imts-badge" id="imts-acqrole-total-count">Loading...</span>
+          </div>
+        </div>
+        <div class="search-row">
+          <input class="search-box" type="search" placeholder="Filter codes..."
+                 id="search-imts-acqrole" autocomplete="off">
+          <button class="expand-all-btn"   data-tree="imts-acqrole-tree">Expand All</button>
+          <button class="collapse-all-btn" data-tree="imts-acqrole-tree">Collapse All</button>
+        </div>
+        <div class="tree-container imts" id="imts-acqrole-tree">
+          
+            <ul class="tree-root">
+              <li class="tree-node" data-label="gather information to evaluate alternative products" title="http://ontology.amt.org/codes/acquisition-role#codeGatherInfo">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Gather information to evaluate alternative products</span>
+          
+            <span class="notation-badge" title="skos:notation">AR01</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="have no role in buying the products shown" title="http://ontology.amt.org/codes/acquisition-role#codeNoRole">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Have no role in buying the products shown</span>
+          
+            <span class="notation-badge" title="skos:notation">AR02</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="identify the need for new products or equipment" title="http://ontology.amt.org/codes/acquisition-role#codeIdentifyNeed">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Identify the need for new products or equipment</span>
+          
+            <span class="notation-badge" title="skos:notation">AR03</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="jointly make a buying decision with others" title="http://ontology.amt.org/codes/acquisition-role#codeJointDecision">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Jointly make a buying decision with others</span>
+          
+            <span class="notation-badge" title="skos:notation">AR04</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="justify the purchase and/or select a specific brand" title="http://ontology.amt.org/codes/acquisition-role#codeJustifyOrSelect">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Justify the purchase and/or select a specific brand</span>
+          
+            <span class="notation-badge" title="skos:notation">AR05</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="make the final decision or give the final approval" title="http://ontology.amt.org/codes/acquisition-role#codeFinalDecision">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Make the final decision or give the final approval</span>
+          
+            <span class="notation-badge" title="skos:notation">AR06</span>
+          
+        </span>
+      
+    </li><li class="tree-node sentinel" data-label="no response" title="http://ontology.amt.org/codes/acquisition-role#codeNoResponse">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">No Response</span>
+          
+            <span class="notation-badge" title="skos:notation">AR07</span>
+          
+        </span>
+      
+    </li>
+            </ul>
+          
+        </div>
+      </div>
+    </div>
+    <!-- IMTS Plant Employee Count CodeSet -->
+    <div id="sub-imts-empcount" class="sub-panel ">
+      <div class="card card-imts">
+        <div class="card-header">
+          <div class="card-header-text">
+            <h2 class="imts-title">IMTS Plant Employee Count CodeSet</h2>
+            <p>Lead-scan questionnaire field <em>'What is the total number of employees at your plant?'</em>. 6 ordered brackets + 'No Response' sentinel. Placeholder Entry IDs (EC01..EC07) ordered low to high.</p>
+          </div>
+          <div class="stats-badge">
+            <span class="badge imts-badge" id="imts-empcount-total-count">Loading...</span>
+          </div>
+        </div>
+        <div class="search-row">
+          <input class="search-box" type="search" placeholder="Filter codes..."
+                 id="search-imts-empcount" autocomplete="off">
+          <button class="expand-all-btn"   data-tree="imts-empcount-tree">Expand All</button>
+          <button class="collapse-all-btn" data-tree="imts-empcount-tree">Collapse All</button>
+        </div>
+        <div class="tree-container imts" id="imts-empcount-tree">
+          
+            <ul class="tree-root">
+              <li class="tree-node" data-label="1,000 or more" title="http://ontology.amt.org/codes/plant-employee-count#code1000OrMore">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">1,000 or more</span>
+          
+            <span class="notation-badge" title="skos:notation">EC06</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="100-499" title="http://ontology.amt.org/codes/plant-employee-count#code100to499">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">100-499</span>
+          
+            <span class="notation-badge" title="skos:notation">EC04</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="20-49" title="http://ontology.amt.org/codes/plant-employee-count#code20to49">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">20-49</span>
+          
+            <span class="notation-badge" title="skos:notation">EC02</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="50-99" title="http://ontology.amt.org/codes/plant-employee-count#code50to99">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">50-99</span>
+          
+            <span class="notation-badge" title="skos:notation">EC03</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="500-999" title="http://ontology.amt.org/codes/plant-employee-count#code500to999">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">500-999</span>
+          
+            <span class="notation-badge" title="skos:notation">EC05</span>
+          
+        </span>
+      
+    </li><li class="tree-node" data-label="less than 20" title="http://ontology.amt.org/codes/plant-employee-count#codeLessThan20">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Less than 20</span>
+          
+            <span class="notation-badge" title="skos:notation">EC01</span>
+          
+        </span>
+      
+    </li><li class="tree-node sentinel" data-label="no response" title="http://ontology.amt.org/codes/plant-employee-count#codeNoResponse">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">No Response</span>
+          
+            <span class="notation-badge" title="skos:notation">EC07</span>
+          
+        </span>
+      
+    </li>
+            </ul>
+          
+        </div>
+      </div>
+    </div>
   </div><!-- /panel-imts -->
 
 </div><!-- .page -->
 
 <!-- Cytoscape.js elements for the IM Interactive sub-tab. -->
-<script type="application/json" id="im-cytoscape-data">{"edges": [{"data": {"id": "e1", "kind": "subClassOf", "label": "subClassOf", "source": "Association", "target": "Organization"}}, {"data": {"id": "e2", "kind": "subClassOf", "label": "subClassOf", "source": "BoothStaff", "target": "Visitor"}}, {"data": {"id": "e3", "kind": "subClassOf", "label": "subClassOf", "source": "Company", "target": "Organization"}}, {"data": {"id": "e4", "kind": "subClassOf", "label": "subClassOf", "source": "ExhibitionDepartment", "target": "Department"}}, {"data": {"id": "e5", "kind": "subClassOf", "label": "subClassOf", "source": "Exhibitor", "target": "Company"}}, {"data": {"id": "e6", "kind": "subClassOf", "label": "subClassOf", "source": "ExhibitorRecord", "target": "Registration"}}, {"data": {"id": "e7", "kind": "subClassOf", "label": "subClassOf", "source": "Visitor", "target": "Person"}}, {"data": {"id": "e8", "kind": "subClassOf", "label": "subClassOf", "source": "VisitorRecord", "target": "Registration"}}, {"data": {"id": "e9", "kind": "instanceOf", "label": "instanceOf", "source": "AMT", "target": "Association"}}, {"data": {"id": "e10", "kind": "instanceOf", "label": "instanceOf", "source": "AMTExhibitionDepartment", "target": "ExhibitionDepartment"}}, {"data": {"cardinality": "1..*", "id": "e11", "kind": "association", "label": "hasInterest", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "1..*", "id": "e12", "kind": "association", "label": "hasProductCategory", "source": "ExhibitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "0..1", "id": "e13", "kind": "association", "label": "leadCapturedBy", "source": "Lead", "target": "BoothStaff"}}, {"data": {"cardinality": "1", "id": "e14", "kind": "association", "label": "leadOfExhibitor", "source": "Lead", "target": "Exhibitor"}}, {"data": {"cardinality": "1", "id": "e15", "kind": "association", "label": "leadOfVisitor", "source": "Lead", "target": "Visitor"}}, {"data": {"cardinality": "1", "id": "e16", "kind": "association", "label": "manifestedInShow", "source": "Registration", "target": "IMTS"}}, {"data": {"cardinality": "1", "id": "e17", "kind": "association", "label": "mediatesAssociation", "source": "Registration", "target": "Association"}}, {"data": {"cardinality": "0..1", "id": "e18", "kind": "association", "label": "mediatesEmployer", "source": "VisitorRecord", "target": "Company"}}, {"data": {"cardinality": "1", "id": "e19", "kind": "association", "label": "mediatesExhibitor", "source": "ExhibitorRecord", "target": "Exhibitor"}}, {"data": {"cardinality": "1", "id": "e20", "kind": "association", "label": "mediatesVisitor", "source": "VisitorRecord", "target": "Visitor"}}, {"data": {"cardinality": "1", "id": "e21", "kind": "association", "label": "organizedBy", "source": "Organizing", "target": "ExhibitionDepartment"}}, {"data": {"cardinality": "1", "id": "e22", "kind": "association", "label": "organizesEvent", "source": "Organizing", "target": "IMTS"}}, {"data": {"cardinality": "1", "id": "e23", "kind": "association", "label": "staffsFor", "source": "BoothStaff", "target": "Exhibitor"}}, {"data": {"id": "e24", "kind": "assertion", "label": "isComponentOf", "source": "AMTExhibitionDepartment", "target": "AMT"}}], "nodes": [{"data": {"attrs": [], "id": "Association", "kind": "class", "label": "Association", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "BoothStaff", "kind": "class", "label": "BoothStaff", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "1", "name": "name", "range": "string"}], "id": "Company", "kind": "class", "label": "Company", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "Department", "kind": "class", "label": "Department", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "ExhibitionDepartment", "kind": "class", "label": "ExhibitionDepartment", "stereotype": "SubKind"}}, {"data": {"attrs": [], "id": "Exhibitor", "kind": "class", "label": "Exhibitor", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "1", "name": "booth", "range": "integer"}], "id": "ExhibitorRecord", "kind": "class", "label": "ExhibitorRecord", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "IMTS", "kind": "class", "label": "IMTS", "stereotype": "EventType"}}, {"data": {"attrs": [], "id": "Lead", "kind": "class", "label": "Lead", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "Organization", "kind": "class", "label": "Organization", "stereotype": "Category"}}, {"data": {"attrs": [], "id": "Organizing", "kind": "class", "label": "Organizing", "stereotype": "Kind"}}, {"data": {"attrs": [{"card": "1", "name": "name", "range": "string"}], "id": "Person", "kind": "class", "label": "Person", "stereotype": "Kind"}}, {"data": {"attrs": [{"card": "1", "name": "registrationDate", "range": "date"}, {"card": "1", "name": "uuid", "range": "string"}], "id": "Registration", "kind": "class", "label": "Registration", "stereotype": "Category"}}, {"data": {"attrs": [], "id": "Visitor", "kind": "class", "label": "Visitor", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "1", "name": "badge", "range": "integer"}], "id": "VisitorRecord", "kind": "class", "label": "VisitorRecord", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "AMT", "kind": "individual", "label": "AMT", "stereotype": "NamedIndividual"}}, {"data": {"attrs": [], "id": "AMTExhibitionDepartment", "kind": "individual", "label": "AMTExhibitionDepartment", "stereotype": "NamedIndividual"}}, {"data": {"attrs": [], "id": "CodeElement", "kind": "external", "label": "CodeElement", "stereotype": "external"}}]}</script>
+<script type="application/json" id="im-cytoscape-data">{"edges": [{"data": {"id": "e1", "kind": "subClassOf", "label": "subClassOf", "source": "Association", "target": "Organization"}}, {"data": {"id": "e2", "kind": "subClassOf", "label": "subClassOf", "source": "BoothStaff", "target": "Visitor"}}, {"data": {"id": "e3", "kind": "subClassOf", "label": "subClassOf", "source": "Company", "target": "Organization"}}, {"data": {"id": "e4", "kind": "subClassOf", "label": "subClassOf", "source": "ExhibitionDepartment", "target": "Department"}}, {"data": {"id": "e5", "kind": "subClassOf", "label": "subClassOf", "source": "Exhibitor", "target": "Company"}}, {"data": {"id": "e6", "kind": "subClassOf", "label": "subClassOf", "source": "ExhibitorRecord", "target": "Registration"}}, {"data": {"id": "e7", "kind": "subClassOf", "label": "subClassOf", "source": "Visitor", "target": "Person"}}, {"data": {"id": "e8", "kind": "subClassOf", "label": "subClassOf", "source": "VisitorRecord", "target": "Registration"}}, {"data": {"id": "e9", "kind": "instanceOf", "label": "instanceOf", "source": "AMT", "target": "Association"}}, {"data": {"id": "e10", "kind": "instanceOf", "label": "instanceOf", "source": "AMTExhibitionDepartment", "target": "ExhibitionDepartment"}}, {"data": {"cardinality": "", "id": "e11", "kind": "association", "label": "acquisitionRole", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e12", "kind": "association", "label": "hasIndustry", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "1..*", "id": "e13", "kind": "association", "label": "hasInterest", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "1..*", "id": "e14", "kind": "association", "label": "hasProductCategory", "source": "ExhibitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e15", "kind": "association", "label": "jobFunction", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "0..1", "id": "e16", "kind": "association", "label": "leadCapturedBy", "source": "Lead", "target": "BoothStaff"}}, {"data": {"cardinality": "", "id": "e17", "kind": "association", "label": "leadFrom", "source": "Lead", "target": "VisitorRecord"}}, {"data": {"cardinality": "", "id": "e18", "kind": "association", "label": "leadOf", "source": "Lead", "target": "ExhibitorRecord"}}, {"data": {"cardinality": "1", "id": "e19", "kind": "association", "label": "leadOfExhibitor", "source": "Lead", "target": "Exhibitor"}}, {"data": {"cardinality": "1", "id": "e20", "kind": "association", "label": "leadOfVisitor", "source": "Lead", "target": "Visitor"}}, {"data": {"cardinality": "1", "id": "e21", "kind": "association", "label": "manifestedInShow", "source": "Registration", "target": "IMTS"}}, {"data": {"cardinality": "1", "id": "e22", "kind": "association", "label": "mediatesAssociation", "source": "Registration", "target": "Association"}}, {"data": {"cardinality": "0..1", "id": "e23", "kind": "association", "label": "mediatesEmployer", "source": "VisitorRecord", "target": "Company"}}, {"data": {"cardinality": "1", "id": "e24", "kind": "association", "label": "mediatesExhibitor", "source": "ExhibitorRecord", "target": "Exhibitor"}}, {"data": {"cardinality": "1", "id": "e25", "kind": "association", "label": "mediatesVisitor", "source": "VisitorRecord", "target": "Visitor"}}, {"data": {"cardinality": "1", "id": "e26", "kind": "association", "label": "organizedBy", "source": "Organizing", "target": "ExhibitionDepartment"}}, {"data": {"cardinality": "1", "id": "e27", "kind": "association", "label": "organizesEvent", "source": "Organizing", "target": "IMTS"}}, {"data": {"cardinality": "", "id": "e28", "kind": "association", "label": "plantEmployeeCount", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e29", "kind": "association", "label": "registeredForShow", "source": "VisitorRecord", "target": "IMTS"}}, {"data": {"cardinality": "", "id": "e30", "kind": "association", "label": "registrationClass", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "1", "id": "e31", "kind": "association", "label": "staffsFor", "source": "BoothStaff", "target": "Exhibitor"}}, {"data": {"id": "e32", "kind": "assertion", "label": "isComponentOf", "source": "AMTExhibitionDepartment", "target": "AMT"}}], "nodes": [{"data": {"attrs": [], "id": "Association", "kind": "class", "label": "Association", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "BoothStaff", "kind": "class", "label": "BoothStaff", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "1", "name": "name", "range": "string"}], "id": "Company", "kind": "class", "label": "Company", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "Department", "kind": "class", "label": "Department", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "ExhibitionDepartment", "kind": "class", "label": "ExhibitionDepartment", "stereotype": "SubKind"}}, {"data": {"attrs": [], "id": "Exhibitor", "kind": "class", "label": "Exhibitor", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "1", "name": "booth", "range": "integer"}, {"card": "", "name": "categorizationDate", "range": "dateTime"}], "id": "ExhibitorRecord", "kind": "class", "label": "ExhibitorRecord", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "IMTS", "kind": "class", "label": "IMTS", "stereotype": "EventType"}}, {"data": {"attrs": [{"card": "", "name": "eventCode", "range": "string"}, {"card": "", "name": "scanBooth", "range": "string"}, {"card": "", "name": "scanDateTime", "range": "dateTime"}, {"card": "", "name": "scanHall", "range": "string"}, {"card": "", "name": "scanPavilion", "range": "string"}, {"card": "", "name": "terminalID", "range": "string"}], "id": "Lead", "kind": "class", "label": "Lead", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "Organization", "kind": "class", "label": "Organization", "stereotype": "Category"}}, {"data": {"attrs": [], "id": "Organizing", "kind": "class", "label": "Organizing", "stereotype": "Kind"}}, {"data": {"attrs": [{"card": "1", "name": "name", "range": "string"}], "id": "Person", "kind": "class", "label": "Person", "stereotype": "Kind"}}, {"data": {"attrs": [{"card": "1", "name": "registrationDate", "range": "date"}, {"card": "1", "name": "uuid", "range": "string"}], "id": "Registration", "kind": "class", "label": "Registration", "stereotype": "Category"}}, {"data": {"attrs": [], "id": "Visitor", "kind": "class", "label": "Visitor", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "1", "name": "badge", "range": "integer"}, {"card": "", "name": "city", "range": "string"}, {"card": "", "name": "country", "range": "string"}, {"card": "", "name": "email", "range": "string"}, {"card": "", "name": "emailOptIn", "range": "boolean"}, {"card": "", "name": "firstName", "range": "string"}, {"card": "", "name": "lastName", "range": "string"}, {"card": "", "name": "postalCode", "range": "string"}, {"card": "", "name": "registrationDay", "range": "string"}, {"card": "", "name": "sourceProvenance", "range": "string"}, {"card": "", "name": "stateProvince", "range": "string"}, {"card": "", "name": "streetAddress", "range": "string"}, {"card": "", "name": "title", "range": "string"}], "id": "VisitorRecord", "kind": "class", "label": "VisitorRecord", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "AMT", "kind": "individual", "label": "AMT", "stereotype": "NamedIndividual"}}, {"data": {"attrs": [], "id": "AMTExhibitionDepartment", "kind": "individual", "label": "AMTExhibitionDepartment", "stereotype": "NamedIndividual"}}, {"data": {"attrs": [], "id": "CodeElement", "kind": "external", "label": "CodeElement", "stereotype": "external"}}]}</script>
 
 <!-- Cytoscape.js + Dagre layout (UMD globals: cytoscape, dagre, cytoscapeDagre). -->
 <script src="https://cdn.jsdelivr.net/npm/cytoscape@3.30.2/dist/cytoscape.min.js"></script>

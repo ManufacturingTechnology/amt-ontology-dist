@@ -135,6 +135,10 @@ header a { color: #fffbcc; text-decoration: underline; font-weight: 600; }
 .sub-dot-imts-visitor   { background: #b36000; }
 .sub-dot-imts-exhibitor { background: #0a7e45; }
 .sub-dot-imts-industry  { background: var(--industry-color); }
+.sub-dot-imts-regclass  { background: #6d28d9; }
+.sub-dot-imts-jobfn     { background: #be185d; }
+.sub-dot-imts-acqrole   { background: #047857; }
+.sub-dot-imts-empcount  { background: #b45309; }
 /* When the parent panel is "ind", colour the active sub-tab to match */
 .panel-ind  .sub-tab-btn.active { color: var(--industry-color); border-bottom-color: var(--industry-color); }
 .panel-im   .sub-tab-btn.active { color: var(--im-color);       border-bottom-color: var(--im-color); }

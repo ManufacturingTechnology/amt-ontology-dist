@@ -1,0 +1,157 @@
+@prefix jobfn_cs:   <http://ontology.amt.org/codes/job-function#> .
+@prefix amtmeta:    <http://ontology.amt.org/meta#> .
+@prefix cmns-cds:   <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+@prefix cmns-col:   <https://www.omg.org/spec/Commons/Collections/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:       <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:    <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# Job Function CodeSet
+# ============================================================================
+# Controlled vocabulary for the IMTS lead-scan questionnaire field
+# "What is your primary job function?". 10 substantive categories + 2
+# sentinels (Other / No Response). Captured once per visitor on first
+# scan; denormalized into every Lead row in the source data but
+# semantically a VisitorRecord attribute.
+#
+# PLACEHOLDER METADATA -- governance owner/consumers/use-cases TBD.
+# Entry IDs (JF01..JF12) are placeholder; replace with form-side IDs
+# once available.
+# ============================================================================
+
+<http://ontology.amt.org/codes/job-function>
+    a owl:Ontology, amtmeta:CodeSetVocabulary ;
+    owl:imports <http://ontology.amt.org/meta>,
+                <https://www.omg.org/spec/Commons/CodesAndCodeSets/>,
+                <https://www.omg.org/spec/Commons/Collections/> ;
+
+    dcterms:title    "Job Function CodeSet" ;
+    owl:versionInfo  "0.1.0" ;
+    owl:versionIRI   <http://ontology.amt.org/codes/job-function/0.1.0> ;
+
+    amtmeta:status              amtmeta:Draft ;
+    amtmeta:taxonomyOwner       "TBD" ;
+    amtmeta:governedBy          "TBD" ;
+    amtmeta:consumedBy          "TBD" ;
+    amtmeta:technicalSteward    "TBD" ;
+
+    amtmeta:relatedProduct      "IMTS Lead Retrieval" ;
+    amtmeta:relatedSystem       "Maritz Reg Platform (Primary Source)" ;
+
+    amtmeta:nextReviewDate      "2026-10-01"^^xsd:date ;
+
+    amtmeta:releaseDate     "2026-06-11"^^xsd:date ;
+    amtmeta:scopeSummary    "v0.1.0 -- PLACEHOLDER. Job-function categories derived from observed values in the IMTS lead-scan questionnaire. 10 substantive codes (JF01..JF10) + 'Other (Please specify)' sentinel + 'No Response' sentinel. Entry IDs and metadata are placeholders pending the taxonomy owner's confirmation of the form-side ID schema." ;
+    amtmeta:releaseOwner    "Shaurabh" ;
+    amtmeta:approvalStatus  amtmeta:Draft ;
+    amtmeta:gitTag          "v0.1.0" ;
+    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.0> ;
+    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.0> ;
+
+    amtmeta:useCase         "TBD" .
+
+#-------------------------------------------------------------------------------
+# Anchor individual (amtmeta:codesFor target)
+#-------------------------------------------------------------------------------
+# Identifies what this codeset is a code set OF. Required by the SHACL
+# CodeSetCodesForShape ({Every cmns-cds:CodeSet must carry exactly one
+# amtmeta:codesFor}). For CodeElement-direct codesets like this one,
+# the anchor has no further structure -- it's just a stable identifier
+# for the concept the codes collectively express.
+
+jobfn_cs:JobFunctionConcept
+    a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label   "Job Function" ;
+    rdfs:comment "Anchor individual for amtmeta:codesFor on jobfn_cs:JobFunctionCodeSet. Has no internal structure: CodeElements in this codeset carry their own skos:prefLabel directly, so no underlying Classifier hierarchy is asserted." .
+
+#-------------------------------------------------------------------------------
+# CodeSet
+#-------------------------------------------------------------------------------
+
+jobfn_cs:JobFunctionCodeSet
+    a cmns-cds:CodeSet, owl:NamedIndividual ;
+    amtmeta:codesFor    jobfn_cs:JobFunctionConcept ;
+    rdfs:label          "Job Function CodeSet" ;
+    amtmeta:consumerFor "IMTS Lead-Scan Questionnaire (primary job function)" ;
+    rdfs:comment        "Answer set for the lead-scan primary-job-function question. Used as the range of im:jobFunction on VisitorRecord." .
+
+#-------------------------------------------------------------------------------
+# 12 Job Function CodeElements (10 substantive + 2 sentinels)
+#-------------------------------------------------------------------------------
+
+jobfn_cs:codeDeptDesignRD
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
+    skos:notation       "JF01"^^xsd:token ;
+    skos:prefLabel      "Department, Design or R&D" .
+
+jobfn_cs:codeDeptIT
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
+    skos:notation       "JF02"^^xsd:token ;
+    skos:prefLabel      "Department, Information Technology" .
+
+jobfn_cs:codeDeptMfgEngineering
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
+    skos:notation       "JF03"^^xsd:token ;
+    skos:prefLabel      "Department, Manufacturing Engineering" .
+
+jobfn_cs:codeDeptMfgProduction
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
+    skos:notation       "JF04"^^xsd:token ;
+    skos:prefLabel      "Department, Manufacturing Production" .
+
+jobfn_cs:codeDeptPurchasing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
+    skos:notation       "JF05"^^xsd:token ;
+    skos:prefLabel      "Department, Purchasing" .
+
+jobfn_cs:codeDeptSalesMarketing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
+    skos:notation       "JF06"^^xsd:token ;
+    skos:prefLabel      "Department, Sales & Marketing" .
+
+jobfn_cs:codeMgmtCorporateExecutive
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
+    skos:notation       "JF07"^^xsd:token ;
+    skos:prefLabel      "Management, Corporate and Executive" .
+
+jobfn_cs:codeMgmtDesignRD
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
+    skos:notation       "JF08"^^xsd:token ;
+    skos:prefLabel      "Management, Design or R&D" .
+
+jobfn_cs:codeMgmtMfgEngineering
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
+    skos:notation       "JF09"^^xsd:token ;
+    skos:prefLabel      "Management, Manufacturing Engineering" .
+
+jobfn_cs:codeMgmtMfgProduction
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
+    skos:notation       "JF10"^^xsd:token ;
+    skos:prefLabel      "Management, Manufacturing Production" .
+
+jobfn_cs:codeOther
+    a cmns-cds:CodeElement, amtmeta:SentinelCodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf      jobfn_cs:JobFunctionCodeSet ;
+    skos:notation            "JF11"^^xsd:token ;
+    skos:prefLabel           "Other (Please specify)" ;
+    amtmeta:promptsFreeText  "true"^^xsd:boolean .
+
+jobfn_cs:codeNoResponse
+    a cmns-cds:CodeElement, amtmeta:SentinelCodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
+    skos:notation       "JF12"^^xsd:token ;
+    skos:prefLabel      "No Response" .

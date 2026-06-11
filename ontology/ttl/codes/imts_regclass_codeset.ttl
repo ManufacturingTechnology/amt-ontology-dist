@@ -1,0 +1,387 @@
+@prefix imts_rc_cs: <http://ontology.amt.org/codes/imts-registration-category#> .
+@prefix amtmeta:    <http://ontology.amt.org/meta#> .
+@prefix cmns-cds:   <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+@prefix cmns-col:   <https://www.omg.org/spec/Commons/Collections/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:       <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:    <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# IMTS Registration Category CodeSet
+# ============================================================================
+# Controlled vocabulary used by the Maritz registration platform to classify
+# every IMTS registrant by role (visitor, exhibitor, press, staff, etc.).
+# Drives downstream segmentation in Hubspot, Passport, MYS, and the AMT
+# data warehouse.
+#
+# Pattern: CodeElement-only (no underlying Classifier layer like
+# ind_codeset has). Each code carries skos:prefLabel directly because
+# the codes ARE the categories -- there's no separate "thing being
+# classified" to point at.
+# ============================================================================
+
+<http://ontology.amt.org/codes/imts-registration-category>
+    a owl:Ontology, amtmeta:CodeSetVocabulary ;
+    owl:imports <http://ontology.amt.org/meta>,
+                <https://www.omg.org/spec/Commons/CodesAndCodeSets/>,
+                <https://www.omg.org/spec/Commons/Collections/> ;
+
+    dcterms:title    "IMTS Registration Category CodeSet" ;
+    owl:versionInfo  "0.1.0" ;
+    owl:versionIRI   <http://ontology.amt.org/codes/imts-registration-category/0.1.0> ;
+
+    amtmeta:status              amtmeta:Active ;
+    amtmeta:taxonomyOwner       "Holly Pope" ;
+    amtmeta:governedBy          "Michelle" ;
+    amtmeta:consumedBy          "Marketing", "Passport", "Allison", "Tiffany", "Kevin", "MYS" ;
+    amtmeta:technicalSteward    "Dev Ops" ;
+
+    amtmeta:relatedProduct
+        "Exhibitor Passport" ;
+
+    amtmeta:relatedSystem
+        "Maritz Reg Platform (Primary Source)",
+        "Hubspot",
+        "Data warehouse",
+        "MYS" ;
+
+    amtmeta:nextReviewDate      "2026-10-01"^^xsd:date ;
+
+    amtmeta:releaseDate     "2026-06-11"^^xsd:date ;
+    amtmeta:scopeSummary    "v0.1.0 -- initial CodeSet for the Maritz registration platform's RegClass / Registration Type field. 48 codes covering visitor sub-types, exhibitor sub-types, press, staff (AMT/Association/EAC/Distributor/Vendor), cancellation/duplicate/problem states, and lifecycle states (pending/approved). CodeElement-only model (no Classifier layer) because the codes are themselves the categories." ;
+    amtmeta:releaseOwner    "Shaurabh" ;
+    amtmeta:approvalStatus  amtmeta:Draft ;
+    amtmeta:gitTag          "v0.1.0" ;
+    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.0> ;
+    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.0> ;
+
+    amtmeta:useCase
+        "IMTS Registration (Primary Source) - Registration category classifies registrants by role (attendee, exhibitor, press, staff, etc.)",
+        "Marketing - HubSpot uses registration categories to segment attendees and exhibitors for targeted campaigns.",
+        "Passport - Lead API - Exhibitor lead scans are imported into Passport accounts via API every 15 minutes.",
+        "Passport Visitor Lists - Registration categories determine what attendee data appears in exhibitor visitor lists.",
+        "Exhibitor Services - Registration data supports exhibitor performance analysis and communications with exhibitors.",
+        "Research / Analytics - Registration data is integrated into the AMT Data Warehouse and used for Power BI reporting. Internal staff also use Maritz XPress Reports and Maritz DataSense Platform.",
+        "MapYourShow (MYS) - Booth assignments create the Maritz exhibitor primary contact record via nightly API integration.",
+        "Exhibitor Lead Portal - Registration categories determine which exhibitor staff can access the Maritz lead retrieval ordering site and exhibitor lead management portal." .
+
+#-------------------------------------------------------------------------------
+# Anchor individual (amtmeta:codesFor target)
+#-------------------------------------------------------------------------------
+# Identifies what this codeset is a code set OF. Required by the SHACL
+# CodeSetCodesForShape ({Every cmns-cds:CodeSet must carry exactly one
+# amtmeta:codesFor}). For CodeElement-direct codesets like this one,
+# the anchor has no further structure -- it's just a stable identifier
+# for the concept the codes collectively express.
+
+imts_rc_cs:RegistrationCategory
+    a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label   "IMTS Registration Category" ;
+    rdfs:comment "Anchor individual for amtmeta:codesFor on imts_rc_cs:IMTSRegistrationCategoryCodeSet. Has no internal structure: CodeElements in this codeset carry their own skos:prefLabel directly, so no underlying Classifier hierarchy is asserted." .
+
+#-------------------------------------------------------------------------------
+# CodeSet
+#-------------------------------------------------------------------------------
+
+imts_rc_cs:IMTSRegistrationCategoryCodeSet
+    a cmns-cds:CodeSet, owl:NamedIndividual ;
+    amtmeta:codesFor    imts_rc_cs:RegistrationCategory ;
+    rdfs:label          "IMTS Registration Category CodeSet" ;
+    amtmeta:consumerFor "IMTS Registration (Maritz)" ;
+    rdfs:comment        "All 49 registration category codes used by the Maritz IMTS registration platform. Each CodeElement carries skos:prefLabel directly (no underlying Classifier). Used as the range of im:registrationClass on VisitorRecord." .
+
+#-------------------------------------------------------------------------------
+# 49 Registration Category CodeElements
+# (Ordered as provided by the taxonomy owner.)
+#-------------------------------------------------------------------------------
+
+imts_rc_cs:codeAA
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "AA"^^xsd:token ;
+    skos:prefLabel      "Interntl Association Staff" .
+
+imts_rc_cs:codeALT1
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "ALT1"^^xsd:token ;
+    skos:prefLabel      "Alternate Mailer 1" .
+
+imts_rc_cs:codeALT2
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "ALT2"^^xsd:token ;
+    skos:prefLabel      "Alternate Mailer 2" .
+
+imts_rc_cs:codeAM
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "AM"^^xsd:token ;
+    skos:prefLabel      "Association Main Contact" .
+
+imts_rc_cs:codeAMPEND
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "AMPEND"^^xsd:token ;
+    skos:prefLabel      "Intl Association Pending" .
+
+imts_rc_cs:codeAMT
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "AMT"^^xsd:token ;
+    skos:prefLabel      "AMT Staff Guests" .
+
+imts_rc_cs:codeAMTSF
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "AMTSF"^^xsd:token ;
+    skos:prefLabel      "AMT Staff" .
+
+imts_rc_cs:codeAV
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "AV"^^xsd:token ;
+    skos:prefLabel      "Visitor" .
+
+imts_rc_cs:codeCHAP
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "CHAP"^^xsd:token ;
+    skos:prefLabel      "Chaperone" .
+
+imts_rc_cs:codeCLG
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "CLG"^^xsd:token ;
+    skos:prefLabel      "College/University Student" .
+
+imts_rc_cs:codeCX
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "CX"^^xsd:token ;
+    skos:prefLabel      "Cancelled Registration" .
+
+imts_rc_cs:codeCXAA
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "CXAA"^^xsd:token ;
+    skos:prefLabel      "Cancelled Association" .
+
+imts_rc_cs:codeCXDT
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "CXDT"^^xsd:token ;
+    skos:prefLabel      "Cancelled Distributor" .
+
+imts_rc_cs:codeCXEAC
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "CXEAC"^^xsd:token ;
+    skos:prefLabel      "Cancelled EAC Company" .
+
+imts_rc_cs:codeCXEX
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "CXEX"^^xsd:token ;
+    skos:prefLabel      "Cancelled Exhibitor" .
+
+imts_rc_cs:codeCXMM
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "CXMM"^^xsd:token ;
+    skos:prefLabel      "Cancelled MM" .
+
+imts_rc_cs:codeCXVN
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "CXVN"^^xsd:token ;
+    skos:prefLabel      "Cancelled Vendor" .
+
+imts_rc_cs:codeDM
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "DM"^^xsd:token ;
+    skos:prefLabel      "Distributor Main Contact" .
+
+imts_rc_cs:codeDNAP
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "DNAP"^^xsd:token ;
+    skos:prefLabel      "Denied Not Attending Media" .
+
+imts_rc_cs:codeDPR
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "DPR"^^xsd:token ;
+    skos:prefLabel      "Denied Media" .
+
+imts_rc_cs:codeDT
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "DT"^^xsd:token ;
+    skos:prefLabel      "Distributor Staff" .
+
+imts_rc_cs:codeDU
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "DU"^^xsd:token ;
+    skos:prefLabel      "Duplicate Record" .
+
+imts_rc_cs:codeEAC
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "EAC"^^xsd:token ;
+    skos:prefLabel      "Approved EAC" .
+
+imts_rc_cs:codeEACLIST
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "EACLIST"^^xsd:token ;
+    skos:prefLabel      "EAC List From Mcormick" .
+
+imts_rc_cs:codeEACPEND
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "EACPEND"^^xsd:token ;
+    skos:prefLabel      "Pending EAC" .
+
+imts_rc_cs:codeEACSTAFF
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "EACSTAFF"^^xsd:token ;
+    skos:prefLabel      "EAC Staff" .
+
+imts_rc_cs:codeED
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "ED"^^xsd:token ;
+    skos:prefLabel      "Educator" .
+
+imts_rc_cs:codeEX
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "EX"^^xsd:token ;
+    skos:prefLabel      "Exhibitor" .
+
+imts_rc_cs:codeGP
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "GP"^^xsd:token ;
+    skos:prefLabel      "Group Registration" .
+
+imts_rc_cs:codeIG
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "IG"^^xsd:token ;
+    skos:prefLabel      "International Group Visitor" .
+
+imts_rc_cs:codeIN
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "IN"^^xsd:token ;
+    skos:prefLabel      "International" .
+
+imts_rc_cs:codeIX
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "IX"^^xsd:token ;
+    skos:prefLabel      "Internet Record" .
+
+imts_rc_cs:codeKD
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "KD"^^xsd:token ;
+    skos:prefLabel      "Child" .
+
+imts_rc_cs:codeLABOR
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "LABOR"^^xsd:token ;
+    skos:prefLabel      "Labor Onsite Badge" .
+
+imts_rc_cs:codeMINAP
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "MINAP"^^xsd:token ;
+    skos:prefLabel      "More Info N/A Pending Media" .
+
+imts_rc_cs:codeMIP
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "MIP"^^xsd:token ;
+    skos:prefLabel      "More Info Pending Media" .
+
+imts_rc_cs:codeMM
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "MM"^^xsd:token ;
+    skos:prefLabel      "Main Contact" .
+
+imts_rc_cs:codePNAP
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "PNAP"^^xsd:token ;
+    skos:prefLabel      "Pending Not Attending Press" .
+
+imts_rc_cs:codePR
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "PR"^^xsd:token ;
+    skos:prefLabel      "Press" .
+
+imts_rc_cs:codePROB
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "PROB"^^xsd:token ;
+    skos:prefLabel      "Problem Resolution" .
+
+imts_rc_cs:codePROBPAY
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "PROBPAY"^^xsd:token ;
+    skos:prefLabel      "Problem Payment" .
+
+imts_rc_cs:codePSE
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "PSE"^^xsd:token ;
+    skos:prefLabel      "Post-Secondary Educator" .
+
+imts_rc_cs:codeSFE
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "SFE"^^xsd:token ;
+    skos:prefLabel      "Smartforce Exhibitor" .
+
+imts_rc_cs:codeSP
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "SP"^^xsd:token ;
+    skos:prefLabel      "Speaker" .
+
+imts_rc_cs:codeSTU
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "STU"^^xsd:token ;
+    skos:prefLabel      "Student" .
+
+imts_rc_cs:codeVM
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "VM"^^xsd:token ;
+    skos:prefLabel      "Vendor Partner Main Contact" .
+
+imts_rc_cs:codeVN
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "VN"^^xsd:token ;
+    skos:prefLabel      "Vendor Partner" .
+
+imts_rc_cs:codeXG
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf imts_rc_cs:IMTSRegistrationCategoryCodeSet ;
+    skos:notation       "XG"^^xsd:token ;
+    skos:prefLabel      "Certificate Attendee" .

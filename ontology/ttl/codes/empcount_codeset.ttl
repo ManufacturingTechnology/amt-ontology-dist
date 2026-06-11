@@ -1,0 +1,127 @@
+@prefix empcount_cs: <http://ontology.amt.org/codes/plant-employee-count#> .
+@prefix amtmeta:     <http://ontology.amt.org/meta#> .
+@prefix cmns-cds:    <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+@prefix cmns-col:    <https://www.omg.org/spec/Commons/Collections/> .
+@prefix owl:         <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:         <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:        <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:         <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:        <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:     <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# Plant Employee Count CodeSet
+# ============================================================================
+# Controlled vocabulary for the IMTS lead-scan questionnaire field
+# "What is the total number of employees at your plant?". 6 ordered
+# bracket categories + 1 sentinel (No Response).
+#
+# Captured per visitor (denormalized into every Lead row). Attached to
+# VisitorRecord -- not Company -- because we don't trust individual
+# visitors to consistently report company-level attributes correctly.
+#
+# PLACEHOLDER METADATA -- governance owner/consumers/use-cases TBD.
+# Entry IDs (EC01..EC07) ordered low-to-high by bracket.
+# ============================================================================
+
+<http://ontology.amt.org/codes/plant-employee-count>
+    a owl:Ontology, amtmeta:CodeSetVocabulary ;
+    owl:imports <http://ontology.amt.org/meta>,
+                <https://www.omg.org/spec/Commons/CodesAndCodeSets/>,
+                <https://www.omg.org/spec/Commons/Collections/> ;
+
+    dcterms:title    "Plant Employee Count CodeSet" ;
+    owl:versionInfo  "0.1.0" ;
+    owl:versionIRI   <http://ontology.amt.org/codes/plant-employee-count/0.1.0> ;
+
+    amtmeta:status              amtmeta:Draft ;
+    amtmeta:taxonomyOwner       "TBD" ;
+    amtmeta:governedBy          "TBD" ;
+    amtmeta:consumedBy          "TBD" ;
+    amtmeta:technicalSteward    "TBD" ;
+
+    amtmeta:relatedProduct      "IMTS Lead Retrieval" ;
+    amtmeta:relatedSystem       "Maritz Reg Platform (Primary Source)" ;
+
+    amtmeta:nextReviewDate      "2026-10-01"^^xsd:date ;
+
+    amtmeta:releaseDate     "2026-06-11"^^xsd:date ;
+    amtmeta:scopeSummary    "v0.1.0 -- PLACEHOLDER. Plant-employee-count bracket categories derived from observed values in the IMTS lead-scan questionnaire. 6 substantive brackets (EC01..EC06, ordered low to high) + 'No Response' sentinel. Entry IDs and metadata are placeholders pending the taxonomy owner's confirmation." ;
+    amtmeta:releaseOwner    "Shaurabh" ;
+    amtmeta:approvalStatus  amtmeta:Draft ;
+    amtmeta:gitTag          "v0.1.0" ;
+    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.0> ;
+    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.0> ;
+
+    amtmeta:useCase         "TBD" .
+
+#-------------------------------------------------------------------------------
+# Anchor individual (amtmeta:codesFor target)
+#-------------------------------------------------------------------------------
+# Identifies what this codeset is a code set OF. Required by the SHACL
+# CodeSetCodesForShape ({Every cmns-cds:CodeSet must carry exactly one
+# amtmeta:codesFor}). For CodeElement-direct codesets like this one,
+# the anchor has no further structure -- it's just a stable identifier
+# for the concept the codes collectively express.
+
+empcount_cs:PlantEmployeeCountConcept
+    a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label   "Plant Employee Count" ;
+    rdfs:comment "Anchor individual for amtmeta:codesFor on empcount_cs:PlantEmployeeCountCodeSet. Has no internal structure: CodeElements in this codeset carry their own skos:prefLabel directly, so no underlying Classifier hierarchy is asserted." .
+
+#-------------------------------------------------------------------------------
+# CodeSet
+#-------------------------------------------------------------------------------
+
+empcount_cs:PlantEmployeeCountCodeSet
+    a cmns-cds:CodeSet, owl:NamedIndividual ;
+    amtmeta:codesFor    empcount_cs:PlantEmployeeCountConcept ;
+    rdfs:label          "Plant Employee Count CodeSet" ;
+    amtmeta:consumerFor "IMTS Lead-Scan Questionnaire (plant employee count)" ;
+    rdfs:comment        "Answer set for the lead-scan plant-employee-count question. Used as the range of im:plantEmployeeCount on VisitorRecord. Brackets are ordered low to high; sentinel last." .
+
+#-------------------------------------------------------------------------------
+# 7 Plant Employee Count CodeElements (6 brackets + 1 sentinel)
+#-------------------------------------------------------------------------------
+
+empcount_cs:codeLessThan20
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf empcount_cs:PlantEmployeeCountCodeSet ;
+    skos:notation       "EC01"^^xsd:token ;
+    skos:prefLabel      "Less than 20" .
+
+empcount_cs:code20to49
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf empcount_cs:PlantEmployeeCountCodeSet ;
+    skos:notation       "EC02"^^xsd:token ;
+    skos:prefLabel      "20-49" .
+
+empcount_cs:code50to99
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf empcount_cs:PlantEmployeeCountCodeSet ;
+    skos:notation       "EC03"^^xsd:token ;
+    skos:prefLabel      "50-99" .
+
+empcount_cs:code100to499
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf empcount_cs:PlantEmployeeCountCodeSet ;
+    skos:notation       "EC04"^^xsd:token ;
+    skos:prefLabel      "100-499" .
+
+empcount_cs:code500to999
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf empcount_cs:PlantEmployeeCountCodeSet ;
+    skos:notation       "EC05"^^xsd:token ;
+    skos:prefLabel      "500-999" .
+
+empcount_cs:code1000OrMore
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf empcount_cs:PlantEmployeeCountCodeSet ;
+    skos:notation       "EC06"^^xsd:token ;
+    skos:prefLabel      "1,000 or more" .
+
+empcount_cs:codeNoResponse
+    a cmns-cds:CodeElement, amtmeta:SentinelCodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf empcount_cs:PlantEmployeeCountCodeSet ;
+    skos:notation       "EC07"^^xsd:token ;
+    skos:prefLabel      "No Response" .
