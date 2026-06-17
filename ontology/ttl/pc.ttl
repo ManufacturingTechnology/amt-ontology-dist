@@ -14,8 +14,8 @@
                 <http://purl.org/nemo/gufo> ;
 
     dcterms:title    "Manufacturing Product Categories Ontology" ;
-    owl:versionInfo  "0.1.1" ;
-    owl:versionIRI   <http://ontology.amt.org/product-categories/0.1.1> ;
+    owl:versionInfo  "0.1.2" ;
+    owl:versionIRI   <http://ontology.amt.org/product-categories/0.1.2> ;
 
     amtmeta:status              amtmeta:Active ;
     amtmeta:taxonomyOwner       "Chris Downs" ;
@@ -45,9 +45,9 @@
     amtmeta:scopeSummary    "v0.1.1 -- add pc:ProductCategory marker individual as the amtmeta:codesFor target for visitor_pc_codeset and exhibitor_pc_codeset. No taxonomy content change; just an anchor for the CodeSet vocabularies introduced alongside this release. Initial release (v0.1.0) was the manufacturing product categories class taxonomy." ;
     amtmeta:releaseOwner    "Shaurabh" ;
     amtmeta:approvalStatus  amtmeta:Draft ;
-    amtmeta:gitTag          "v0.1.1" ;
-    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.1> ;
-    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.1> ;
+    amtmeta:gitTag          "v0.1.2" ;
+    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.2> ;
+    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.1.2> ;
 
     amtmeta:useCase
         "Marketing uses this for targeted marketing",
@@ -101,12 +101,14 @@ pc:ProductionCell a owl:Class, gufo:Category ;
     rdfs:label "Production Cell" .
 
 pc:SoftwareArtifact a owl:Class, gufo:Category ;
-    rdfs:subClassOf gufo:FunctionalComplex ;
-    rdfs:label "Software Artifact" .
+    rdfs:subClassOf gufo:Object ;
+    rdfs:label "Software Artifact" ;
+    rdfs:comment "Software is an information artifact -- an Object with identity but not a physical role-bearing assembly. Routed directly under gufo:Object rather than gufo:FunctionalComplex so the reasoner doesn't claim software has role-playing physical parts." .
 
 pc:ProcessAuxiliary a owl:Class, gufo:Category ;
-    rdfs:subClassOf gufo:FunctionalComplex ;
-    rdfs:label "Process Auxiliary" .
+    rdfs:subClassOf gufo:Object ;
+    rdfs:label "Process Auxiliary" ;
+    rdfs:comment "Container for Tooling + MachineAccessory + Workholding. Routed under gufo:Object (not gufo:FunctionalComplex) because its three children diverge: Tooling covers single-piece artifacts (drills, inserts, blades) that are Objects but not FunctionalComplexes, while Workholding + MachineAccessory carry the FunctionalComplex commitment explicitly via their own second-parent declaration." .
 
 pc:ServiceOffering a owl:Class, gufo:Category ;
     rdfs:subClassOf gufo:EventType ;
@@ -1950,8 +1952,9 @@ pc:CNCSoftware a owl:Class, gufo:Kind ;
     skos:prefLabel "Computer Numerical Control (CNC) Software (sold independent of hardware)" .
 
 pc:MachineAccessory a owl:Class, gufo:Category ;
-    rdfs:subClassOf pc:ProcessAuxiliary ;
-    rdfs:label "Machine Accessory" .
+    rdfs:subClassOf pc:ProcessAuxiliary, gufo:FunctionalComplex ;
+    rdfs:label "Machine Accessory" ;
+    rdfs:comment "Machine accessories (chucks, indexers, ATCs, etc.) are role-bearing assemblies attached to machines, so they retain gufo:FunctionalComplex membership directly. The pc:ProcessAuxiliary parent only contributes the gufo:Object placement." .
 
 pc:EDMFiltrationEquipment a owl:Class, gufo:Kind ;
     rdfs:subClassOf pc:MachineAccessory ;
@@ -2504,8 +2507,9 @@ pc:EDMTooling a owl:Class, gufo:Kind ;
     skos:prefLabel "EDM Tooling" .
 
 pc:Workholding a owl:Class, gufo:Category ;
-    rdfs:subClassOf pc:ProcessAuxiliary ;
-    rdfs:label "Workholding" .
+    rdfs:subClassOf pc:ProcessAuxiliary, gufo:FunctionalComplex ;
+    rdfs:label "Workholding" ;
+    rdfs:comment "Workholding devices (vises, chucks, fixtures, pallet systems) are multi-part assemblies with role-bearing components (jaws, screws, locating pins, clamping bodies), so they retain gufo:FunctionalComplex membership directly. The pc:ProcessAuxiliary parent only contributes the gufo:Object placement." .
 
 pc:RobotToolingGripper a owl:Class, gufo:Kind ;
     rdfs:subClassOf pc:Workholding ;

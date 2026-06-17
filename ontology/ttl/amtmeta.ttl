@@ -1,6 +1,5 @@
 @prefix amtmeta:  <http://ontology.amt.org/meta#> .
 @prefix gufo:     <http://purl.org/nemo/gufo#> .
-@prefix sh:       <http://www.w3.org/ns/shacl#> .
 @prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
 @prefix owl:      <http://www.w3.org/2002/07/owl#> .
 @prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -82,10 +81,6 @@ amtmeta:releaseNotes   a owl:AnnotationProperty ; rdfs:label "release notes" .
 amtmeta:githubRelease  a owl:AnnotationProperty ; rdfs:label "GitHub release" .
 amtmeta:gitTag         a owl:AnnotationProperty ; rdfs:label "git tag" .
 
-amtmeta:CatalogValueShape a sh:NodeShape ;
+amtmeta:CatalogValueShape a owl:Class ;
     rdfs:label "Catalog Value Constraint" ;
-    sh:property [
-        sh:path skos:prefLabel ;
-        sh:minCount 1 ;
-        sh:message "Value is abstract (lacks skos:prefLabel) and cannot be used as a catalog value."
-    ] .
+    rdfs:comment "Marker class for the catalog-value constraint. The SHACL NodeShape definition lives in shapes/codeset-shapes.ttl (kept out of amtmeta to avoid pulling http://www.w3.org/ns/shacl into the merged amt-ontology.owl)." .

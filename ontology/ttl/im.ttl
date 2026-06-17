@@ -17,8 +17,8 @@
                 <http://purl.org/nemo/gufo> ;
 
     dcterms:title    "AMT/IMTS Information Model" ;
-    owl:versionInfo  "0.4.0" ;
-    owl:versionIRI   <http://ontology.amt.org/im/0.4.0> ;
+    owl:versionInfo  "0.5.3" ;
+    owl:versionIRI   <http://ontology.amt.org/im/0.5.3> ;
 
     amtmeta:status              amtmeta:Active ;
     amtmeta:taxonomyOwner       "Chris Downs" ;
@@ -44,13 +44,13 @@
 
     amtmeta:relatedDocumentation <https://amtonline.sharepoint.com/sites/governance/Shared%20Documents/Taxonomy%20Change%20Process.docx> ;
 
-    amtmeta:releaseDate     "2026-06-11"^^xsd:date ;
-    amtmeta:scopeSummary    "AMT Information Model: registration / lead / organizing relator patterns plus the per-VisitorRecord, ExhibitorRecord, and Lead ingestion-data property surface. Cross-ontology classification of Industry / Interest / Product Category is mediated through OMG Commons CodeSets in ontology/codes/." ;
+    amtmeta:releaseDate     "2026-06-12"^^xsd:date ;
+    amtmeta:scopeSummary    "AMT Information Model: registration / lead / organizing relator patterns plus the per-record ingestion-data property surface. Cross-ontology classification of Industry / Interest / Product Category is mediated through OMG Commons CodeSets in ontology/codes/. Trade-show class hierarchy (im:TradeShow) supports both IMTS and external shows." ;
     amtmeta:releaseOwner    "Shaurabh" ;
     amtmeta:approvalStatus  amtmeta:Draft ;
-    amtmeta:gitTag          "v0.4.0" ;
-    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.4.0> ;
-    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.4.0> ;
+    amtmeta:gitTag          "v0.5.3" ;
+    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.5.3> ;
+    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.5.3> ;
 
     amtmeta:useCase
         "Encodes registration data captured at IMTS shows",
@@ -87,11 +87,18 @@ im:ExhibitionDepartment a owl:Class, gufo:SubKind ;
     rdfs:label "Exhibition Department" .
 
 #-------------------------------------------------------------------------------
-# Event type — IMTS shows
+# Trade shows
 #-------------------------------------------------------------------------------
+# im:TradeShow is the superclass for any trade-show event. AMT-managed IMTS
+# is one specialisation; external shows (e.g. pc_jimtof_cs:JIMTOF) plug in
+# as further subclasses without modifying this file.
+
+im:TradeShow a owl:Class, gufo:EventType ;
+    rdfs:subClassOf gufo:Event ;
+    rdfs:label "Trade Show" .
 
 im:IMTS a owl:Class, gufo:EventType ;
-    rdfs:subClassOf gufo:Event ;
+    rdfs:subClassOf im:TradeShow ;
     rdfs:label "IMTS Show" .
 
 #-------------------------------------------------------------------------------
@@ -179,13 +186,15 @@ im:registrationDate a owl:DatatypeProperty ;
 
 im:badge a owl:DatatypeProperty ;
     rdfs:domain im:VisitorRecord ;
-    rdfs:range  xsd:integer ;
-    rdfs:label  "badge" .
+    rdfs:range  xsd:string ;
+    rdfs:label  "badge" ;
+    rdfs:comment "Badge identifier. Stored as xsd:string because badge IDs are formally opaque -- the IMTS 2024 set happens to be all numeric, but new shows or future Maritz allocations may include alphanumeric prefixes, and visitor_raw treats them as strings throughout." .
 
 im:booth a owl:DatatypeProperty ;
     rdfs:domain im:ExhibitorRecord ;
-    rdfs:range  xsd:integer ;
-    rdfs:label  "booth" .
+    rdfs:range  xsd:string ;
+    rdfs:label  "booth" ;
+    rdfs:comment "Booth number assigned to the exhibitor for a show edition. Stored as xsd:string (mirrors im:scanBooth) because booth IDs may include letter prefixes even though IMTS 2024 booths are all numeric." .
 
 im:name a owl:DatatypeProperty ;
     rdfs:domain [ a owl:Class ;
@@ -256,14 +265,16 @@ im:manifestedInShow a owl:ObjectProperty ;
 im:leadOfExhibitor a owl:ObjectProperty ;
     rdfs:subPropertyOf gufo:inheresIn ;
     rdfs:domain im:Lead ;
-    rdfs:range  im:Exhibitor ;
-    rdfs:label  "lead of exhibitor" .
+    rdfs:range  im:ExhibitorRecord ;
+    rdfs:label  "lead of exhibitor" ;
+    rdfs:comment "Links a Lead (booth-scan event) to the im:ExhibitorRecord whose booth captured it. Range is the Relator (ExhibitorRecord), not the im:Exhibitor Role -- the booth is registered by the show-edition record, not abstractly by the company-as-exhibitor." .
 
 im:leadOfVisitor a owl:ObjectProperty ;
     rdfs:subPropertyOf gufo:externallyDependsOn ;
     rdfs:domain im:Lead ;
-    rdfs:range  im:Visitor ;
-    rdfs:label  "lead of visitor" .
+    rdfs:range  im:VisitorRecord ;
+    rdfs:label  "lead of visitor" ;
+    rdfs:comment "Links a Lead to the im:VisitorRecord (registration) whose badge was scanned. Range is the Relator (VisitorRecord), not the im:Visitor Role -- the scan identifies a registration, not the underlying person abstractly." .
 
 im:leadCapturedBy a owl:ObjectProperty ;
     rdfs:domain im:Lead ;
@@ -310,11 +321,16 @@ im:hasInterest a owl:ObjectProperty ;
     rdfs:label   "has interest" ;
     rdfs:comment "Connects a VisitorRecord to one or more cmns-cds:CodeElement instances representing the visitor's selected Product Category answers on the registration form. Membership scope (must be in pc_vcs:VisitorCodeSet) is enforced by imShape:VisitorInterestShape." .
 
+im:hasLeadFormInterest a owl:ObjectProperty ;
+    rdfs:domain  im:VisitorRecord ;
+    rdfs:range   cmns-cds:CodeElement ;
+    rdfs:label   "has lead-form interest" ;
+    rdfs:comment "Visitor's selected product-interest answers on the lead-scan form (a pre-harmonization vocabulary distinct from the registration-form pc_vcs question). Membership scope enforced by imShape:VisitorLeadFormInterestShape against lead_pc_cs:LeadProductInterestCodeSet." .
+
 im:hasProductCategory a owl:ObjectProperty ;
-    rdfs:domain  im:ExhibitorRecord ;
     rdfs:range   cmns-cds:CodeElement ;
     rdfs:label   "has product category" ;
-    rdfs:comment "ExhibitorRecord counterpart of im:hasInterest. Membership scope enforced by imShape:ExhibitorOfferingShape." .
+    rdfs:comment "Self-classification of an exhibitor's offering against a product-category vocabulary. Domain deliberately unset so im:ExhibitorRecord and external exhibitor classes (e.g. pc_jimtof_cs:Exhibitor) can both use it. Membership scope enforced per consumer by shapes in shapes/codeset-shapes.ttl." .
 
 #-------------------------------------------------------------------------------
 # v0.4.0 additions -- ingestion-data properties (added for individuals build)
@@ -423,10 +439,9 @@ im:representsCompany a owl:ObjectProperty ;
     rdfs:comment "Links a record to its corporate entity. Domain deliberately unset so both VisitorRecord and ExhibitorRecord can use it. Target Company IRI is hash-derived from the normalized company name so identical companies across record types collapse to one entity." .
 
 im:registeredForShow a owl:ObjectProperty ;
-    rdfs:domain im:VisitorRecord ;
-    rdfs:range  im:IMTS ;
+    rdfs:range  im:TradeShow ;
     rdfs:label  "registered for show" ;
-    rdfs:comment "Which IMTS edition this VisitorRecord belongs to. One IMTS event individual per edition." .
+    rdfs:comment "Which trade-show edition this record belongs to. Domain deliberately unset so VisitorRecord, ExhibitorRecord, and external exhibitor classes (e.g. pc_jimtof_cs:Exhibitor) can all use it. One event individual per edition." .
 
 im:hasIndustry a owl:ObjectProperty ;
     rdfs:domain im:VisitorRecord ;
@@ -457,6 +472,31 @@ im:plantEmployeeCount a owl:ObjectProperty ;
     rdfs:range  cmns-cds:CodeElement ;
     rdfs:label  "plant employee count" ;
     rdfs:comment "Bracketed total employees at the visitor\u2019s plant. Captured per visitor and stored on VisitorRecord (denormalized, same rationale as im:hasIndustry). Range scoped to empcount_cs:PlantEmployeeCountCodeSet members via SHACL." .
+
+# --- Exhibitor-side: products + industry coverage --------------------------
+
+im:exhibits a owl:DatatypeProperty ;
+    rdfs:range  xsd:string ;
+    rdfs:label  "exhibits" ;
+    rdfs:comment "Specific product line(s) an exhibitor brings to a show. Free text, multi-valued. Distinct from im:hasProductCategory (vocabulary-level self-categorization). Domain deliberately unset so im:ExhibitorRecord and external exhibitor classes can both use it." .
+
+im:servesIndustry a owl:ObjectProperty ;
+    rdfs:range  cmns-cds:CodeElement ;
+    rdfs:label  "serves industry" ;
+    rdfs:comment "Industries an exhibitor targets or serves with its products. Multi-valued, codeset-mediated (each show's codeset scope enforced via SHACL). Distinct from im:hasIndustry, which is the visitor-side question (the visitor's own company industry)." .
+
+im:recordCreatedAt a owl:DatatypeProperty ;
+    rdfs:domain im:VisitorRecord ;
+    rdfs:range  xsd:dateTime ;
+    rdfs:label  "record created at" ;
+    rdfs:comment "Database timestamp when the registration record was created. Distinct from im:registrationDate (the visitor's actual registration moment) and from im:scanDateTime (per-Lead scan time)." .
+
+im:companyURL a owl:DatatypeProperty ;
+    rdfs:domain im:Company ;
+    rdfs:range  xsd:anyURI ;
+    rdfs:label  "company URL" ;
+    rdfs:comment "Company's primary web URL. Captured from lead-scan data when available." .
+
 
 # --- ExhibitorRecord: additions ---------------------------------------------
 
@@ -556,15 +596,15 @@ im:Registration  owl:disjointWith im:Lead .
 
 # Person identity
 im:Person rdfs:subClassOf
-    [ a owl:Restriction ; owl:onProperty im:name ; owl:cardinality "1"^^xsd:nonNegativeInteger ] .
+    [ a owl:Restriction ; owl:onProperty im:name ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] .
 
 # Company identity
 im:Company rdfs:subClassOf
-    [ a owl:Restriction ; owl:onProperty im:name ; owl:cardinality "1"^^xsd:nonNegativeInteger ] .
+    [ a owl:Restriction ; owl:onProperty im:name ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] .
 
 # BoothStaff sub-role anchors to a specific Exhibitor
 im:BoothStaff rdfs:subClassOf
-    [ a owl:Restriction ; owl:onProperty im:staffsFor ; owl:cardinality "1"^^xsd:nonNegativeInteger ] .
+    [ a owl:Restriction ; owl:onProperty im:staffsFor ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] .
 
 # Department is a component of exactly one Organization — every department
 # (Exhibition or otherwise) is part of one parent organization. The parent
@@ -580,34 +620,33 @@ im:Department rdfs:subClassOf
 
 # Registration identity (inherited by VisitorRecord and ExhibitorRecord)
 im:Registration rdfs:subClassOf
-    [ a owl:Restriction ; owl:onProperty im:uuid                ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
-    [ a owl:Restriction ; owl:onProperty im:registrationDate    ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
-    [ a owl:Restriction ; owl:onProperty im:manifestedInShow    ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
-    [ a owl:Restriction ; owl:onProperty im:mediatesAssociation ; owl:cardinality "1"^^xsd:nonNegativeInteger ] .
+    [ a owl:Restriction ; owl:onProperty im:uuid                ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:registrationDate    ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:manifestedInShow    ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:mediatesAssociation ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] .
 
 # VisitorRecord constraints
 im:VisitorRecord rdfs:subClassOf
-    [ a owl:Restriction ; owl:onProperty im:badge            ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
-    [ a owl:Restriction ; owl:onProperty im:mediatesVisitor  ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:badge            ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:mediatesVisitor  ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
     [ a owl:Restriction ; owl:onProperty im:mediatesEmployer ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ,
     [ a owl:Restriction ; owl:onProperty im:hasInterest      ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] .
 
 # ExhibitorRecord constraints
 im:ExhibitorRecord rdfs:subClassOf
-    [ a owl:Restriction ; owl:onProperty im:booth              ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
-    [ a owl:Restriction ; owl:onProperty im:mediatesExhibitor  ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:booth              ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:mediatesExhibitor  ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
     [ a owl:Restriction ; owl:onProperty im:hasProductCategory ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] .
 
 # Lead constraints
 im:Lead rdfs:subClassOf
-    [ a owl:Restriction ; owl:onProperty im:leadOfVisitor   ; owl:cardinality    "1"^^xsd:nonNegativeInteger ] ,
-    [ a owl:Restriction ; owl:onProperty im:leadOfExhibitor ; owl:cardinality    "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:leadOfVisitor   ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:leadOfExhibitor ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
     [ a owl:Restriction ; owl:onProperty im:leadCapturedBy  ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] .
 
 # Organizing: every Organizing instance inheres in exactly one
 # ExhibitionDepartment (its bearer) and is manifested in exactly one IMTS
 # edition.
 im:Organizing rdfs:subClassOf
-    [ a owl:Restriction ; owl:onProperty im:organizedBy        ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ,
-    [ a owl:Restriction ; owl:onProperty im:organizesEvent ; owl:cardinality "1"^^xsd:nonNegativeInteger ] .
-
+    [ a owl:Restriction ; owl:onProperty im:organizedBy     ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:organizesEvent  ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] .

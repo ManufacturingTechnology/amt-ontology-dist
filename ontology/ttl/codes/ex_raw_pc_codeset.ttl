@@ -1,0 +1,3086 @@
+@prefix ex_raw_pc_cs:<http://ontology.amt.org/codes/exhibitor-raw-product-categories#> .
+@prefix amtmeta:     <http://ontology.amt.org/meta#> .
+@prefix pc_ecs:      <http://ontology.amt.org/codes/exhibitor-product-categories#> .
+@prefix cmns-cds:    <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+@prefix cmns-col:    <https://www.omg.org/spec/Commons/Collections/> .
+@prefix cmns-dsg:    <https://www.omg.org/spec/Commons/Designators/> .
+@prefix owl:         <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:         <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:        <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:         <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:        <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:     <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# IMTS 2024 Raw Exhibitor Product-Category CodeSet
+# ============================================================================
+# Full snapshot of the 2024 IMTS exhibitor catalog vocabulary
+# (pre-harmonization). Each distinct Maritz Category ID gets one CodeElement
+# with notation = Maritz ID and prefLabel = the verbatim 2024 catalog text.
+#
+# cmns-dsg:designates targets pc_ecs CodeElements (the harmonized exhibitor
+# codeset), giving a same-context old->new mapping. The pc: class anchor is
+# reached transitively via pc_ecs's own designates.
+#
+# Entries marked owl:deprecated true are retired in the harmonized model
+# (Action = removed in old_exhibitor_categories_mapped.xlsx); their
+# notations remain so historical 2024 exhibitor data still resolves.
+# ============================================================================
+
+<http://ontology.amt.org/codes/exhibitor-raw-product-categories>
+    a owl:Ontology, amtmeta:CodeSetVocabulary ;
+    owl:imports <http://ontology.amt.org/meta>,
+                <http://ontology.amt.org/product-categories>,
+                <https://www.omg.org/spec/Commons/CodesAndCodeSets/>,
+                <https://www.omg.org/spec/Commons/Collections/>,
+                <https://www.omg.org/spec/Commons/Designators/> ;
+
+    dcterms:title    "IMTS 2024 Raw Exhibitor Product-Category CodeSet" ;
+    owl:versionInfo  "0.3.0" ;
+    owl:versionIRI   <http://ontology.amt.org/codes/exhibitor-raw-product-categories/0.3.0> ;
+
+    amtmeta:status              amtmeta:Active ;
+    amtmeta:taxonomyOwner       "Chris Downs" ;
+    amtmeta:technicalSteward    "Shaurabh" ;
+    amtmeta:relatedProduct      "IMTS Exhibitor Catalog (raw)" ;
+    amtmeta:nextReviewDate      "2027-01-01"^^xsd:date ;
+
+    amtmeta:releaseDate     "2026-06-12"^^xsd:date ;
+    amtmeta:scopeSummary    "Full 2024 IMTS exhibitor catalog vocabulary, pre-harmonization. cmns-dsg:designates targets pc_ecs CodeElements (same-context old->new mapping); pc: anchors reach via pc_ecs's own designates. Retired entries marked owl:deprecated true." ;
+    amtmeta:releaseOwner    "Shaurabh" ;
+    amtmeta:approvalStatus  amtmeta:Draft ;
+    amtmeta:gitTag          "v0.3.0" ;
+    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.3.0> ;
+    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.3.0> ;
+
+    amtmeta:useCase
+        "Capture 2024 exhibitor catalog vocabulary; trace to the harmonized pc_ecs / pc: model via cmns-dsg:designates" .
+
+ex_raw_pc_cs:ExhibitorRawProductCategoryConcept
+    a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label   "Exhibitor Raw Product Category (IMTS 2024)" ;
+    rdfs:comment "Anchor for amtmeta:codesFor on ex_raw_pc_cs:ExhibitorRawCodeSet." .
+
+ex_raw_pc_cs:ExhibitorRawCodeSet
+    a cmns-cds:CodeSet, owl:NamedIndividual ;
+    amtmeta:codesFor    ex_raw_pc_cs:ExhibitorRawProductCategoryConcept ;
+    rdfs:label          "Exhibitor Raw Product-Category CodeSet (IMTS 2024)" ;
+    amtmeta:consumerFor "IMTS Exhibitor Application: 2024 catalog product categories" ;
+    rdfs:comment        "2024 IMTS exhibitor catalog vocabulary." .
+
+#-------------------------------------------------------------------------------
+# CodeElements (ordered by Maritz Category ID)
+#-------------------------------------------------------------------------------
+
+ex_raw_pc_cs:codeBroachingMachinesHorizontal
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "210"^^xsd:token ;
+    skos:prefLabel      "Broaching Machines, Horizontal" ;
+    cmns-dsg:designates pc_ecs:codeHorizontalBroachingMachine .
+ex_raw_pc_cs:codeBroachingMachinesInternal
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "220"^^xsd:token ;
+    skos:prefLabel      "Broaching Machines, Internal" ;
+    cmns-dsg:designates pc_ecs:codeInternalBroachingMachine .
+ex_raw_pc_cs:codeBroachingMachinesVertical
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "230"^^xsd:token ;
+    skos:prefLabel      "Broaching Machines, Vertical" ;
+    cmns-dsg:designates pc_ecs:codeVerticalBroachingMachine .
+ex_raw_pc_cs:codeBroachingMachinesContinuous
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "240"^^xsd:token ;
+    skos:prefLabel      "Broaching Machines, Continuous" ;
+    cmns-dsg:designates pc_ecs:codeContinuousBroachingMachine .
+ex_raw_pc_cs:codeKeySeaters
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "250"^^xsd:token ;
+    skos:prefLabel      "Key Seaters" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeShapingAndSlottingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "260"^^xsd:token ;
+    skos:prefLabel      "Shaping and Slotting Machines" ;
+    cmns-dsg:designates pc_ecs:codeShapingSlottingMachine .
+ex_raw_pc_cs:codeFerrousMaterials
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "360"^^xsd:token ;
+    skos:prefLabel      "Ferrous Materials" ;
+    cmns-dsg:designates pc_ecs:codeFerrousMaterial .
+ex_raw_pc_cs:codeDrillingMachinesBenchAndColumn
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "370"^^xsd:token ;
+    skos:prefLabel      "Drilling Machines, Bench and Column" ;
+    cmns-dsg:designates pc_ecs:codeBenchColumnDrillingMachine .
+ex_raw_pc_cs:codeNonFerrousMaterials
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "371"^^xsd:token ;
+    skos:prefLabel      "Non-Ferrous Materials" ;
+    cmns-dsg:designates pc_ecs:codeNonFerrousMaterial .
+ex_raw_pc_cs:codeDrillingAndTappingMachinesCnc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "380"^^xsd:token ;
+    skos:prefLabel      "Drilling and Tapping Machines, CNC" ;
+    cmns-dsg:designates pc_ecs:codeCNCDrillingTappingMachine .
+ex_raw_pc_cs:codeDrillingMachinesDeepHoleGundrilling
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "390"^^xsd:token ;
+    skos:prefLabel      "Drilling Machines, Deep Hole (Gundrilling)" ;
+    cmns-dsg:designates pc_ecs:codeDeepHoleDrillingMachine .
+ex_raw_pc_cs:codeDrillingAndTappingUnitsFixtured
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "395"^^xsd:token ;
+    skos:prefLabel      "Drilling and Tapping Units, Fixtured" ;
+    cmns-dsg:designates pc_ecs:codeFixturedDrillingTappingUnit .
+ex_raw_pc_cs:codeDrillingMachinesMultiSpindle
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "400"^^xsd:token ;
+    skos:prefLabel      "Drilling Machines, Multi-Spindle" ;
+    cmns-dsg:designates pc_ecs:codeMultiSpindleDrillingMachine .
+ex_raw_pc_cs:codeDrillingMachinesRadialArm
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "410"^^xsd:token ;
+    skos:prefLabel      "Drilling Machines, Radial Arm" ;
+    cmns-dsg:designates pc_ecs:codeRadialArmDrillingMachine .
+ex_raw_pc_cs:codeEdmFiltrationEquipmentAndSupplies
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "530"^^xsd:token ;
+    skos:prefLabel      "EDM Filtration Equipment and Supplies" ;
+    cmns-dsg:designates pc_ecs:codeEDMFiltrationEquipment .
+ex_raw_pc_cs:codeEdmTooling
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "535"^^xsd:token ;
+    skos:prefLabel      "EDM Tooling" ;
+    cmns-dsg:designates pc_ecs:codeEDMTooling .
+ex_raw_pc_cs:codeElectrodeMaterialsEdmWireAndSupplies
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "550"^^xsd:token ;
+    skos:prefLabel      "Electrode Materials, EDM Wire, and Supplies" ;
+    cmns-dsg:designates pc_ecs:codeElectrodeEDMSupplyCollection .
+ex_raw_pc_cs:codeEdmRamTypeDieSinkingCnc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "560"^^xsd:token ;
+    skos:prefLabel      "EDM, Ram Type (Die-Sinking) CNC" ;
+    cmns-dsg:designates pc_ecs:codeCNCDieSinkingRamEDM .
+ex_raw_pc_cs:codeEdmRamTypeDieSinkingManual
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "565"^^xsd:token ;
+    skos:prefLabel      "EDM, Ram Type (Die-Sinking) Manual" ;
+    cmns-dsg:designates pc_ecs:codeManualDieSinkingRamEDM .
+ex_raw_pc_cs:codeEdmSmallHole
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "570"^^xsd:token ;
+    skos:prefLabel      "EDM, Small Hole" ;
+    cmns-dsg:designates pc_ecs:codeSmallHoleEDM .
+ex_raw_pc_cs:codeEdmWireType
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "580"^^xsd:token ;
+    skos:prefLabel      "EDM, Wire Type" ;
+    cmns-dsg:designates pc_ecs:codeWireEDM .
+ex_raw_pc_cs:codeGearDeburringMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "683"^^xsd:token ;
+    skos:prefLabel      "Gear Deburring Machines" ;
+    cmns-dsg:designates pc_ecs:codeGearDeburringMachine .
+ex_raw_pc_cs:codeGearGenerationBevelMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "685"^^xsd:token ;
+    skos:prefLabel      "Gear Generation (Bevel) Machines" ;
+    cmns-dsg:designates pc_ecs:codeBevelGearGenerationMachine .
+ex_raw_pc_cs:codeGearGrindingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "690"^^xsd:token ;
+    skos:prefLabel      "Gear Grinding Machines" ;
+    cmns-dsg:designates pc_ecs:codeGearGrindingMachine .
+ex_raw_pc_cs:codeGearHobbingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "700"^^xsd:token ;
+    skos:prefLabel      "Gear Hobbing Machines" ;
+    cmns-dsg:designates pc_ecs:codeGearHobbingMachine .
+ex_raw_pc_cs:codeGearHoningMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "703"^^xsd:token ;
+    skos:prefLabel      "Gear Honing Machines" ;
+    cmns-dsg:designates pc_ecs:codeGearHoningMachine .
+ex_raw_pc_cs:codeGearInspectionMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "705"^^xsd:token ;
+    skos:prefLabel      "Gear Inspection Machines" ;
+    cmns-dsg:designates pc_ecs:codeGearInspectionMachine .
+ex_raw_pc_cs:codeGearLappingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "707"^^xsd:token ;
+    skos:prefLabel      "Gear Lapping Machines" ;
+    cmns-dsg:designates pc_ecs:codeGearLappingMachine .
+ex_raw_pc_cs:codeGearRollingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "710"^^xsd:token ;
+    skos:prefLabel      "Gear Rolling Machines" ;
+    cmns-dsg:designates pc_ecs:codeGearRollingMachine .
+ex_raw_pc_cs:codeGearShapingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "720"^^xsd:token ;
+    skos:prefLabel      "Gear Shaping Machines" ;
+    cmns-dsg:designates pc_ecs:codeGearShapingMachine .
+ex_raw_pc_cs:codeGearShavingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "730"^^xsd:token ;
+    skos:prefLabel      "Gear Shaving Machines" ;
+    cmns-dsg:designates pc_ecs:codeGearShavingMachine .
+ex_raw_pc_cs:codeGrindingMachinesAbrasiveBelt
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "840"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Abrasive Belt" ;
+    cmns-dsg:designates pc_ecs:codeAbrasiveBeltGrinder .
+ex_raw_pc_cs:codeGrindingMachinesCenterless
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "850"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Centerless" ;
+    cmns-dsg:designates pc_ecs:codeCenterlessGrinder .
+ex_raw_pc_cs:codeGrindingMachinesCreepFeed
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "860"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Creep Feed" ;
+    cmns-dsg:designates pc_ecs:codeCreepFeedGrinder .
+ex_raw_pc_cs:codeGrindingMachinesCylindricalOd
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "870"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Cylindrical OD" ;
+    cmns-dsg:designates pc_ecs:codeCylindricalODGrinder .
+ex_raw_pc_cs:codeGrindingMachinesDiscSingleOrDouble
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "880"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Disc, Single or Double" ;
+    cmns-dsg:designates pc_ecs:codeDiscGrinder .
+ex_raw_pc_cs:codeGrindingMachinesInternalCylindrical
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "890"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Internal Cylindrical" ;
+    cmns-dsg:designates pc_ecs:codeInternalCylindricalGrinder .
+ex_raw_pc_cs:codeGrindingMachinesJig
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "900"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Jig" ;
+    cmns-dsg:designates pc_ecs:codeJigGrinder .
+ex_raw_pc_cs:codeGrindingMachinesProfile
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "910"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Profile" ;
+    cmns-dsg:designates pc_ecs:codeProfileGrinder .
+ex_raw_pc_cs:codeSuperabrasiveMachiningSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "915"^^xsd:token ;
+    skos:prefLabel      "Superabrasive Machining Systems" ;
+    cmns-dsg:designates pc_ecs:codeSuperabrasiveMachiningSystem .
+ex_raw_pc_cs:codeGrindingMachinesSurfaceReciprocalTable
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "920"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Surface, Reciprocal Table" ;
+    cmns-dsg:designates pc_ecs:codeReciprocalTableSurfaceGrinder .
+ex_raw_pc_cs:codeGrindingMachinesSurfaceRotaryTable
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "925"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Surface, Rotary Table" ;
+    cmns-dsg:designates pc_ecs:codeRotaryTableSurfaceGrinder .
+ex_raw_pc_cs:codeGrindingMachinesThread
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "930"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Thread" ;
+    cmns-dsg:designates pc_ecs:codeThreadGrinder .
+ex_raw_pc_cs:codeGrindingMachinesToolCutterAndDrillPoint
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "940"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Tool, Cutter and Drill Point" ;
+    cmns-dsg:designates pc_ecs:codeToolCutterDrillPointGrinder .
+ex_raw_pc_cs:codeGrindingMachinesUniversalIdOd
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "950"^^xsd:token ;
+    skos:prefLabel      "Grinding Machines, Universal (ID/OD)" ;
+    cmns-dsg:designates pc_ecs:codeUniversalGrinder .
+ex_raw_pc_cs:codeAbrasiveFlowFinishingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1055"^^xsd:token ;
+    skos:prefLabel      "Abrasive Flow Finishing Machines" ;
+    cmns-dsg:designates pc_ecs:codeAbrasiveFlowFinishingMachine .
+ex_raw_pc_cs:codeBuffingAndPolishingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1060"^^xsd:token ;
+    skos:prefLabel      "Buffing and Polishing Machines" ;
+    cmns-dsg:designates pc_ecs:codeBuffingPolishingMachine .
+ex_raw_pc_cs:codeDeburringEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1065"^^xsd:token ;
+    skos:prefLabel      "Deburring Equipment" ;
+    cmns-dsg:designates pc_ecs:codeDeburringEquipment .
+ex_raw_pc_cs:codeHoningMachinesHorizontalSpindle
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1070"^^xsd:token ;
+    skos:prefLabel      "Honing Machines, Horizontal Spindle" ;
+    cmns-dsg:designates pc_ecs:codeHorizontalSpindleHoningMachine .
+ex_raw_pc_cs:codeHoningMachinesMultipleSpindle
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1080"^^xsd:token ;
+    skos:prefLabel      "Honing Machines, Multiple Spindle" ;
+    cmns-dsg:designates pc_ecs:codeMultipleSpindleHoningMachine .
+ex_raw_pc_cs:codeHoningMachinesVerticalSpindle
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1090"^^xsd:token ;
+    skos:prefLabel      "Honing Machines, Vertical Spindle" ;
+    cmns-dsg:designates pc_ecs:codeVerticalSpindleHoningMachine .
+ex_raw_pc_cs:codeLappingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1100"^^xsd:token ;
+    skos:prefLabel      "Lapping Machines" ;
+    cmns-dsg:designates pc_ecs:codeLappingMachine .
+ex_raw_pc_cs:codeRollFinishingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1120"^^xsd:token ;
+    skos:prefLabel      "Roll Finishing Machines" ;
+    cmns-dsg:designates pc_ecs:codeRollFinishingMachine .
+ex_raw_pc_cs:codeSuperMicroFinishingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1130"^^xsd:token ;
+    skos:prefLabel      "Super (Micro) Finishing Machines" ;
+    cmns-dsg:designates pc_ecs:codeSuperFinishingMachine .
+ex_raw_pc_cs:codeAutomatedSystemCellsForMaterialRemoval
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1250"^^xsd:token ;
+    skos:prefLabel      "Automated System & Cells for Material Removal" ;
+    cmns-dsg:designates pc_ecs:codeMaterialRemovalCell .
+ex_raw_pc_cs:codeMillingMachinesBedType
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1430"^^xsd:token ;
+    skos:prefLabel      "Milling Machines, Bed-Type" ;
+    cmns-dsg:designates pc_ecs:codeBedTypeMillingMachine .
+ex_raw_pc_cs:codeBoringMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1440"^^xsd:token ;
+    skos:prefLabel      "Boring Machines" ;
+    cmns-dsg:designates pc_ecs:codeBoringMachine .
+ex_raw_pc_cs:codeMillingMachinesGraphite
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1445"^^xsd:token ;
+    skos:prefLabel      "Milling Machines, Graphite" ;
+    cmns-dsg:designates pc_ecs:codeGraphiteMillingMachine .
+ex_raw_pc_cs:codeBoringMachinesJig
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1450"^^xsd:token ;
+    skos:prefLabel      "Boring Machines, Jig" ;
+    cmns-dsg:designates pc_ecs:codeJigBoringMachine .
+ex_raw_pc_cs:codeMillingMachinesKneeAndColumnNonAtc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1460"^^xsd:token ;
+    skos:prefLabel      "Milling Machines, Knee and Column, Non-ATC" ;
+    cmns-dsg:designates pc_ecs:codeKneeColumnMillingMachine .
+ex_raw_pc_cs:codeMachiningCentersHorizontalSpindleUpToFourAxis
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1480"^^xsd:token ;
+    skos:prefLabel      "Machining Centers, Horizontal Spindle (Up to Four-Axis)" ;
+    cmns-dsg:designates pc_ecs:codeHorizontalSpindleMachiningCenter4Axis .
+ex_raw_pc_cs:codeMachiningCentersHorizontalSpindleFiveAxis
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1485"^^xsd:token ;
+    skos:prefLabel      "Machining Centers, Horizontal Spindle, Five-Axis" ;
+    cmns-dsg:designates pc_ecs:codeHorizontalSpindleMachiningCenter5Axis .
+ex_raw_pc_cs:codeMachiningCentersUniversal
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1490"^^xsd:token ;
+    skos:prefLabel      "Machining Centers, Universal" ;
+    cmns-dsg:designates pc_ecs:codeUniversalMachiningCenter .
+ex_raw_pc_cs:codeMachiningCentersVerticalSpindleUpToFourAxis
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1500"^^xsd:token ;
+    skos:prefLabel      "Machining Centers, Vertical Spindle (Up to Four-Axis)" ;
+    cmns-dsg:designates pc_ecs:codeVerticalSpindleMachiningCenter4Axis .
+ex_raw_pc_cs:codeMachiningCentersVerticalSpindleFiveAxis
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1505"^^xsd:token ;
+    skos:prefLabel      "Machining Centers, Vertical Spindle, Five-Axis" ;
+    cmns-dsg:designates pc_ecs:codeVerticalSpindleMachiningCenter5Axis .
+ex_raw_pc_cs:codeMillingMachinesPlanerGantryAndBridgeType
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1510"^^xsd:token ;
+    skos:prefLabel      "Milling Machines, Planer, Gantry and Bridge Type" ;
+    cmns-dsg:designates pc_ecs:codePlanerGantryBridgeMillingMachine .
+ex_raw_pc_cs:codeMillingMachinesProfileAndDuplicating
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1520"^^xsd:token ;
+    skos:prefLabel      "Milling Machines, Profile and Duplicating" ;
+    cmns-dsg:designates pc_ecs:codeProfileDuplicatingMillingMachine .
+ex_raw_pc_cs:codeMillingMachinesUniversal
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1530"^^xsd:token ;
+    skos:prefLabel      "Milling Machines, Universal" ;
+    cmns-dsg:designates pc_ecs:codeUniversalMillingMachine .
+ex_raw_pc_cs:codeNanoMicroMachiningEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1535"^^xsd:token ;
+    skos:prefLabel      "Nano & Micro Machining Equipment" ;
+    cmns-dsg:designates pc_ecs:codeNanoMicroMachiningEquipment .
+ex_raw_pc_cs:codeAbrasiveCutOffMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1640"^^xsd:token ;
+    skos:prefLabel      "Abrasive Cut-Off Machines" ;
+    cmns-dsg:designates pc_ecs:codeAbrasiveCutOffMachine .
+ex_raw_pc_cs:codeBandsaws
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1650"^^xsd:token ;
+    skos:prefLabel      "Bandsaws" ;
+    cmns-dsg:designates pc_ecs:codeBandsaw .
+ex_raw_pc_cs:codeBandsawsVerticalTiltFrame
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1655"^^xsd:token ;
+    skos:prefLabel      "Bandsaws, Vertical Tilt Frame" ;
+    cmns-dsg:designates pc_ecs:codeVerticalTiltFrameBandsaw .
+ex_raw_pc_cs:codeSawingMachinesCircularCutOffSawsCold
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1660"^^xsd:token ;
+    skos:prefLabel      "Sawing Machines, Circular Cut-Off Saws (Cold)" ;
+    cmns-dsg:designates pc_ecs:codeCircularCutOffSawingMachine .
+ex_raw_pc_cs:codeSawingMachinesContour
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1665"^^xsd:token ;
+    skos:prefLabel      "Sawing Machines, Contour" ;
+    cmns-dsg:designates pc_ecs:codeContourSawingMachine .
+ex_raw_pc_cs:codeHacksaws
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1670"^^xsd:token ;
+    skos:prefLabel      "Hacksaws" ;
+    cmns-dsg:designates pc_ecs:codeHacksaw .
+ex_raw_pc_cs:codeSawingMachinesOther
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1675"^^xsd:token ;
+    skos:prefLabel      "Sawing Machines, Other" ;
+    cmns-dsg:designates pc_ecs:codeSawingMachineOtherCollection .
+ex_raw_pc_cs:codeThreadingAndCutOffMachinesPipeAndBar
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1780"^^xsd:token ;
+    skos:prefLabel      "Threading and Cut-Off Machines, Pipe and Bar" ;
+    cmns-dsg:designates pc_ecs:codePipeBarThreadingCutOffMachine .
+ex_raw_pc_cs:codeProfileRollingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1790"^^xsd:token ;
+    skos:prefLabel      "Profile Rolling Machines" ;
+    cmns-dsg:designates pc_ecs:codeProfileRollingMachine .
+ex_raw_pc_cs:codeThreadCuttingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1800"^^xsd:token ;
+    skos:prefLabel      "Thread Cutting Machines" ;
+    cmns-dsg:designates pc_ecs:codeThreadCuttingMachine .
+ex_raw_pc_cs:codeThreadRollingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1810"^^xsd:token ;
+    skos:prefLabel      "Thread Rolling Machines" ;
+    cmns-dsg:designates pc_ecs:codeThreadRollingMachine .
+ex_raw_pc_cs:codeScrewMachinesSingleSpindleCamType
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1825"^^xsd:token ;
+    skos:prefLabel      "Screw Machines, Single-Spindle, Cam-Type" ;
+    cmns-dsg:designates pc_ecs:codeSingleSpindleCamScrewMachine .
+ex_raw_pc_cs:codeScrewMachinesSwissCamType
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1835"^^xsd:token ;
+    skos:prefLabel      "Screw Machines, Swiss, Cam-Type" ;
+    cmns-dsg:designates pc_ecs:codeSwissCamScrewMachine .
+ex_raw_pc_cs:codeScrewMachinesSingleSpindleCnc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1840"^^xsd:token ;
+    skos:prefLabel      "Screw Machines, Single-Spindle, CNC" ;
+    cmns-dsg:designates pc_ecs:codeSingleSpindleCNCScrewMachine .
+ex_raw_pc_cs:codeScrewMachinesMultiSpindleCnc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1845"^^xsd:token ;
+    skos:prefLabel      "Screw Machines, Multi-Spindle, CNC" ;
+    cmns-dsg:designates pc_ecs:codeMultiSpindleCNCScrewMachine .
+ex_raw_pc_cs:codeScrewMachinesSwissCnc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1850"^^xsd:token ;
+    skos:prefLabel      "Screw Machines, Swiss, CNC" ;
+    cmns-dsg:designates pc_ecs:codeSwissCNCScrewMachine .
+ex_raw_pc_cs:codeTransferMachinesDialIndex
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1920"^^xsd:token ;
+    skos:prefLabel      "Transfer Machines, Dial Index" ;
+    cmns-dsg:designates pc_ecs:codeDialIndexTransferMachine .
+ex_raw_pc_cs:codeTransferMachinesInLine
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1930"^^xsd:token ;
+    skos:prefLabel      "Transfer Machines, In-line" ;
+    cmns-dsg:designates pc_ecs:codeInLineTransferMachine .
+ex_raw_pc_cs:codeTransferMachinesRotary
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1940"^^xsd:token ;
+    skos:prefLabel      "Transfer Machines, Rotary" ;
+    cmns-dsg:designates pc_ecs:codeRotaryTransferMachine .
+ex_raw_pc_cs:codeTransferMachinesShuttleType
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1950"^^xsd:token ;
+    skos:prefLabel      "Transfer Machines, Shuttle-type" ;
+    cmns-dsg:designates pc_ecs:codeShuttleTransferMachine .
+ex_raw_pc_cs:codeTransferMachinesTrunnion
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1960"^^xsd:token ;
+    skos:prefLabel      "Transfer Machines, Trunnion" ;
+    cmns-dsg:designates pc_ecs:codeTrunnionTransferMachine .
+ex_raw_pc_cs:codeLathesCutOff
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2055"^^xsd:token ;
+    skos:prefLabel      "Lathes, Cut-Off" ;
+    cmns-dsg:designates pc_ecs:codeCutOffLathe .
+ex_raw_pc_cs:codeEndTurningMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2060"^^xsd:token ;
+    skos:prefLabel      "End Turning Machines" ;
+    cmns-dsg:designates pc_ecs:codeEndTurningMachine .
+ex_raw_pc_cs:codeLathesManual
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2070"^^xsd:token ;
+    skos:prefLabel      "Lathes, Manual" ;
+    cmns-dsg:designates pc_ecs:codeManualLathe .
+ex_raw_pc_cs:codeTurnMillMachinesCnc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2120"^^xsd:token ;
+    skos:prefLabel      "Turn/Mill Machines, CNC" ;
+    cmns-dsg:designates pc_ecs:codeCNCTurnMillMachine .
+ex_raw_pc_cs:codeTurningCentersHorizontalCnc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2130"^^xsd:token ;
+    skos:prefLabel      "Turning Centers, Horizontal, CNC" ;
+    cmns-dsg:designates pc_ecs:codeHorizontalCNCTurningCenter .
+ex_raw_pc_cs:codeTurningCentersInvertedVerticalCnc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2135"^^xsd:token ;
+    skos:prefLabel      "Turning Centers, Inverted Vertical, CNC" ;
+    cmns-dsg:designates pc_ecs:codeInvertedVerticalCNCTurningCenter .
+ex_raw_pc_cs:codeTurningCentersTwinSpindleTwinTurret
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2137"^^xsd:token ;
+    skos:prefLabel      "Turning Centers, Twin-Spindle/Twin-Turret" ;
+    cmns-dsg:designates pc_ecs:codeTwinSpindleTurningCenter .
+ex_raw_pc_cs:codeTurningCentersVerticalCnc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2140"^^xsd:token ;
+    skos:prefLabel      "Turning Centers, Vertical, CNC" ;
+    cmns-dsg:designates pc_ecs:codeVerticalCNCTurningCenter .
+ex_raw_pc_cs:codePipeAndTubeBendingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2350"^^xsd:token ;
+    skos:prefLabel      "Pipe and Tube Bending Machines" ;
+    cmns-dsg:designates pc_ecs:codePipeTubeBendingMachine .
+ex_raw_pc_cs:codeRollFormingAndBendingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2360"^^xsd:token ;
+    skos:prefLabel      "Roll Forming and Bending Machines" ;
+    cmns-dsg:designates pc_ecs:codeRollFormingBendingMachine .
+ex_raw_pc_cs:codeWireFormingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2380"^^xsd:token ;
+    skos:prefLabel      "Wire Forming Machines" ;
+    cmns-dsg:designates pc_ecs:codeWireFormingMachine .
+ex_raw_pc_cs:codeAutomatedSystemCellsForMaterialFormingFabricating
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2490"^^xsd:token ;
+    skos:prefLabel      "Automated System & Cells for Material Forming & Fabricating" ;
+    cmns-dsg:designates pc_ecs:codeMaterialFormingCell .
+ex_raw_pc_cs:codeColdFormingColdHeadingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2620"^^xsd:token ;
+    skos:prefLabel      "Cold Forming, Cold Heading Machines" ;
+    cmns-dsg:designates pc_ecs:codeColdHeadingMachine .
+ex_raw_pc_cs:codeColdFormingRivetingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2630"^^xsd:token ;
+    skos:prefLabel      "Cold Forming, Riveting Machines" ;
+    cmns-dsg:designates pc_ecs:codeColdFormingRivetingMachine .
+ex_raw_pc_cs:codeColdFormingUpsetters
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2640"^^xsd:token ;
+    skos:prefLabel      "Cold Forming, Upsetters" ;
+    cmns-dsg:designates pc_ecs:codeColdFormingUpsetter .
+ex_raw_pc_cs:codeColdFormingWireFormingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2650"^^xsd:token ;
+    skos:prefLabel      "Cold Forming, Wire Forming Machines" ;
+    cmns-dsg:designates pc_ecs:codeColdFormingWireFormingMachine .
+ex_raw_pc_cs:codeHotFormingForgingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2660"^^xsd:token ;
+    skos:prefLabel      "Hot Forming, Forging Machines" ;
+    cmns-dsg:designates pc_ecs:codeHotForgingMachine .
+ex_raw_pc_cs:codeLasersCo2
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2770"^^xsd:token ;
+    skos:prefLabel      "Lasers, CO2" ;
+    cmns-dsg:designates pc_ecs:codeCO2Laser .
+ex_raw_pc_cs:codeLasersExcimer
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2790"^^xsd:token ;
+    skos:prefLabel      "Lasers, Excimer" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeLaserAccessoriesAndSupplies
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2800"^^xsd:token ;
+    skos:prefLabel      "Laser Accessories and Supplies" ;
+    cmns-dsg:designates pc_ecs:codeLaserAccessory .
+ex_raw_pc_cs:codeLaserCuttingSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2810"^^xsd:token ;
+    skos:prefLabel      "Laser Cutting Systems" ;
+    cmns-dsg:designates pc_ecs:codeLaserCuttingSystem .
+ex_raw_pc_cs:codeLaserMarkingSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2815"^^xsd:token ;
+    skos:prefLabel      "Laser Marking Systems" ;
+    cmns-dsg:designates pc_ecs:codeLaserMarkingSystem .
+ex_raw_pc_cs:codeLaserWeldingAndCladdingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2817"^^xsd:token ;
+    skos:prefLabel      "Laser Welding and Cladding Machines" ;
+    cmns-dsg:designates pc_ecs:codeLaserWeldingCladdingMachine .
+ex_raw_pc_cs:codePlasmaArcPlasmaCuttingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2820"^^xsd:token ;
+    skos:prefLabel      "Plasma-Arc/Plasma Cutting Machines" ;
+    cmns-dsg:designates pc_ecs:codePlasmaArcCuttingMachine .
+ex_raw_pc_cs:codeLasersNdYagContinuousWave
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2822"^^xsd:token ;
+    skos:prefLabel      "Lasers, Nd: YAG, Continuous Wave" ;
+    cmns-dsg:designates pc_ecs:codeContinuousWaveNdYagLaser .
+ex_raw_pc_cs:codeLasersNdYagPulsed
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2824"^^xsd:token ;
+    skos:prefLabel      "Lasers, Nd: YAG, Pulsed" ;
+    cmns-dsg:designates pc_ecs:codePulsedNdYagLaser .
+ex_raw_pc_cs:codeUltrasonicMachiningEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2830"^^xsd:token ;
+    skos:prefLabel      "Ultrasonic Machining Equipment" ;
+    cmns-dsg:designates pc_ecs:codeUltrasonicMachiningEquipment .
+ex_raw_pc_cs:codeWaterJetCuttingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2840"^^xsd:token ;
+    skos:prefLabel      "Water Jet Cutting Machines" ;
+    cmns-dsg:designates pc_ecs:codeWaterJetCuttingMachine .
+ex_raw_pc_cs:codePressesFineBlanking
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2950"^^xsd:token ;
+    skos:prefLabel      "Presses, Fine Blanking" ;
+    cmns-dsg:designates pc_ecs:codeFineBlankingPress .
+ex_raw_pc_cs:codePressesStampingAutomatic
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2960"^^xsd:token ;
+    skos:prefLabel      "Presses, Stamping, Automatic" ;
+    cmns-dsg:designates pc_ecs:codeAutomaticStampingPress .
+ex_raw_pc_cs:codePressesHydraulicGapFrame
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2970"^^xsd:token ;
+    skos:prefLabel      "Presses, Hydraulic, Gap Frame" ;
+    cmns-dsg:designates pc_ecs:codeGapFrameHydraulicPress .
+ex_raw_pc_cs:codePressesStraightening
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2980"^^xsd:token ;
+    skos:prefLabel      "Presses, Straightening" ;
+    cmns-dsg:designates pc_ecs:codeStraighteningPress .
+ex_raw_pc_cs:codePressesHydraulicVerticalStraightSide
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "2990"^^xsd:token ;
+    skos:prefLabel      "Presses, Hydraulic, Vertical Straight Side" ;
+    cmns-dsg:designates pc_ecs:codeVerticalStraightSideHydraulicPress .
+ex_raw_pc_cs:codePressesMechanicalGapFrame
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3000"^^xsd:token ;
+    skos:prefLabel      "Presses, Mechanical, Gap Frame" ;
+    cmns-dsg:designates pc_ecs:codeGapFrameMechanicalPress .
+ex_raw_pc_cs:codePressesMechanicalVerticalStraightSide
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3010"^^xsd:token ;
+    skos:prefLabel      "Presses, Mechanical, Vertical Straight Side" ;
+    cmns-dsg:designates pc_ecs:codeVerticalStraightSideMechanicalPress .
+ex_raw_pc_cs:codePunchPressLaserOrPlasmaCncCombination
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3015"^^xsd:token ;
+    skos:prefLabel      "Punch Press/Laser (or Plasma), CNC Combination" ;
+    cmns-dsg:designates pc_ecs:codeCNCPunchLaserPlasmaPress .
+ex_raw_pc_cs:codePunchPressesCncTurret
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3020"^^xsd:token ;
+    skos:prefLabel      "Punch Presses, CNC Turret" ;
+    cmns-dsg:designates pc_ecs:codeCNCTurretPunchPress .
+ex_raw_pc_cs:codePressesPneumatic
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3040"^^xsd:token ;
+    skos:prefLabel      "Presses, Pneumatic" ;
+    cmns-dsg:designates pc_ecs:codePneumaticPress .
+ex_raw_pc_cs:codeIronWorkers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3160"^^xsd:token ;
+    skos:prefLabel      "Iron Workers" ;
+    cmns-dsg:designates pc_ecs:codeIronWorker .
+ex_raw_pc_cs:codeNotchingAndSlottingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3165"^^xsd:token ;
+    skos:prefLabel      "Notching and Slotting Machines" ;
+    cmns-dsg:designates pc_ecs:codeNotchingSlottingMachine .
+ex_raw_pc_cs:codePressBrakes
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3170"^^xsd:token ;
+    skos:prefLabel      "Press Brakes" ;
+    cmns-dsg:designates pc_ecs:codePressBrake .
+ex_raw_pc_cs:codeShearsBilletBarRodAndAngle
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3180"^^xsd:token ;
+    skos:prefLabel      "Shears, Billet, Bar, Rod and Angle" ;
+    cmns-dsg:designates pc_ecs:codeBilletBarRodAngleShear .
+ex_raw_pc_cs:codeShearsGuillotineSquaring
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3190"^^xsd:token ;
+    skos:prefLabel      "Shears, Guillotine (Squaring)" ;
+    cmns-dsg:designates pc_ecs:codeGuillotineShear .
+ex_raw_pc_cs:codeEndFinishingEquipmentBarAndTube
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3250"^^xsd:token ;
+    skos:prefLabel      "End Finishing Equipment, Bar and Tube" ;
+    cmns-dsg:designates pc_ecs:codeBarTubeEndFinishingEquipment .
+ex_raw_pc_cs:codeHydroFormingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3255"^^xsd:token ;
+    skos:prefLabel      "Hydro-Forming Machines" ;
+    cmns-dsg:designates pc_ecs:codeHydroFormingMachine .
+ex_raw_pc_cs:codeSpinFormingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3260"^^xsd:token ;
+    skos:prefLabel      "Spin-Forming Machines" ;
+    cmns-dsg:designates pc_ecs:codeSpinFormingMachine .
+ex_raw_pc_cs:codeCoilWindingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3270"^^xsd:token ;
+    skos:prefLabel      "Coil Winding Machines" ;
+    cmns-dsg:designates pc_ecs:codeCoilWindingMachine .
+ex_raw_pc_cs:codeStraighteningMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3280"^^xsd:token ;
+    skos:prefLabel      "Straightening Machines" ;
+    cmns-dsg:designates pc_ecs:codeStraighteningMachine .
+ex_raw_pc_cs:codeSwagingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3290"^^xsd:token ;
+    skos:prefLabel      "Swaging Machines" ;
+    cmns-dsg:designates pc_ecs:codeSwagingMachine .
+ex_raw_pc_cs:codePipeFabricatingAndFormingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3300"^^xsd:token ;
+    skos:prefLabel      "Pipe Fabricating and Forming Equipment" ;
+    cmns-dsg:designates pc_ecs:codePipeFabricatingFormingEquipment .
+ex_raw_pc_cs:codeCoolantReclamationEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3410"^^xsd:token ;
+    skos:prefLabel      "Coolant Reclamation Equipment" ;
+    cmns-dsg:designates pc_ecs:codeCoolantReclamationEquipment .
+ex_raw_pc_cs:codeCleaningDegreasingEquipmentAqueous
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3415"^^xsd:token ;
+    skos:prefLabel      "Cleaning & Degreasing Equipment, Aqueous" ;
+    cmns-dsg:designates pc_ecs:codeAqueousCleaningDegreasingEquipment .
+ex_raw_pc_cs:codeChipAndSludgeDragouts
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3420"^^xsd:token ;
+    skos:prefLabel      "Chip and Sludge Dragouts" ;
+    cmns-dsg:designates pc_ecs:codeChipSludgeDragout .
+ex_raw_pc_cs:codeDegreasingEquipmentVapor
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3425"^^xsd:token ;
+    skos:prefLabel      "Degreasing Equipment, Vapor" ;
+    cmns-dsg:designates pc_ecs:codeVaporDegreasingEquipment .
+ex_raw_pc_cs:codeDustCollectorsAirFiltrationAndTreatmentEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3430"^^xsd:token ;
+    skos:prefLabel      "Dust Collectors, Air Filtration and Treatment Equipment" ;
+    cmns-dsg:designates pc_ecs:codeDustCollectorAirFiltrationEquipment .
+ex_raw_pc_cs:codeSafetyRelatedProducts
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3440"^^xsd:token ;
+    skos:prefLabel      "Safety Related Products" ;
+    cmns-dsg:designates pc_ecs:codeSafetyRelatedProduct .
+ex_raw_pc_cs:codeNoiseAbatement
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3445"^^xsd:token ;
+    skos:prefLabel      "Noise Abatement" ;
+    cmns-dsg:designates pc_ecs:codeNoiseAbatement .
+ex_raw_pc_cs:codeOilFiltrationAndTreatmentEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3450"^^xsd:token ;
+    skos:prefLabel      "Oil Filtration and Treatment Equipment" ;
+    cmns-dsg:designates pc_ecs:codeOilFiltrationTreatmentEquipment .
+ex_raw_pc_cs:codePlantMaintenanceAndRepairEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3460"^^xsd:token ;
+    skos:prefLabel      "Plant Maintenance and Repair Equipment" ;
+    cmns-dsg:designates pc_ecs:codePlantMaintenanceRepairEquipment .
+ex_raw_pc_cs:codeEnvironmentalAndPollutionControlEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3470"^^xsd:token ;
+    skos:prefLabel      "Environmental and Pollution Control Equipment" ;
+    cmns-dsg:designates pc_ecs:codeEnvironmentalPollutionControlEquipment .
+ex_raw_pc_cs:codeWaterFiltrationAndTreatmentEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3480"^^xsd:token ;
+    skos:prefLabel      "Water Filtration and Treatment Equipment" ;
+    cmns-dsg:designates pc_ecs:codeWaterFiltrationTreatmentEquipment .
+ex_raw_pc_cs:codeAutocollimators
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3590"^^xsd:token ;
+    skos:prefLabel      "Autocollimators" ;
+    cmns-dsg:designates pc_ecs:codeAutocollimator .
+ex_raw_pc_cs:codeBalancingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3600"^^xsd:token ;
+    skos:prefLabel      "Balancing Machines" ;
+    cmns-dsg:designates pc_ecs:codeBalancingMachine .
+ex_raw_pc_cs:codeBorescopes
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3610"^^xsd:token ;
+    skos:prefLabel      "Borescopes" ;
+    cmns-dsg:designates pc_ecs:codeBorescope .
+ex_raw_pc_cs:codeCalibrationEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3620"^^xsd:token ;
+    skos:prefLabel      "Calibration Equipment" ;
+    cmns-dsg:designates pc_ecs:codeCalibrationEquipment .
+ex_raw_pc_cs:codeComparatorsOpticalAndOther
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3630"^^xsd:token ;
+    skos:prefLabel      "Comparators, Optical and Other" ;
+    cmns-dsg:designates pc_ecs:codeOpticalComparator .
+ex_raw_pc_cs:codeCoordinateMeasuringMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3640"^^xsd:token ;
+    skos:prefLabel      "Coordinate Measuring Machines" ;
+    cmns-dsg:designates pc_ecs:codeCoordinateMeasuringMachine .
+ex_raw_pc_cs:codeCoordinateMeasuringMachinesPortable
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3645"^^xsd:token ;
+    skos:prefLabel      "Coordinate Measuring Machines, Portable" ;
+    cmns-dsg:designates pc_ecs:codePortableCoordinateMeasuringMachine .
+ex_raw_pc_cs:codeDataCollectionDevicesForGagingSpcEtc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3647"^^xsd:token ;
+    skos:prefLabel      "Data Collection Devices for Gaging, SPC, etc." ;
+    cmns-dsg:designates pc_ecs:codeGagingSPCDataCollectionDevice .
+ex_raw_pc_cs:codeFlatnessMeasuringEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3650"^^xsd:token ;
+    skos:prefLabel      "Flatness Measuring Equipment" ;
+    cmns-dsg:designates pc_ecs:codeFlatnessMeasuringEquipment .
+ex_raw_pc_cs:codeFlawDetectionEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3660"^^xsd:token ;
+    skos:prefLabel      "Flaw Detection Equipment" ;
+    cmns-dsg:designates pc_ecs:codeFlawDetectionEquipment .
+ex_raw_pc_cs:codeGagesElectronicDigital
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3662"^^xsd:token ;
+    skos:prefLabel      "Gages, Electronic/Digital" ;
+    cmns-dsg:designates pc_ecs:codeElectronicGage .
+ex_raw_pc_cs:codeGagesMechanical
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3664"^^xsd:token ;
+    skos:prefLabel      "Gages, Mechanical" ;
+    cmns-dsg:designates pc_ecs:codeMechanicalGage .
+ex_raw_pc_cs:codeGearInspectionEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3680"^^xsd:token ;
+    skos:prefLabel      "Gear Inspection Equipment" ;
+    cmns-dsg:designates pc_ecs:codeGearInspectionEquipment .
+ex_raw_pc_cs:codeHardnessTestingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3690"^^xsd:token ;
+    skos:prefLabel      "Hardness Testing Equipment" ;
+    cmns-dsg:designates pc_ecs:codeHardnessTestingEquipment .
+ex_raw_pc_cs:codeInterferometers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3700"^^xsd:token ;
+    skos:prefLabel      "Interferometers" ;
+    cmns-dsg:designates pc_ecs:codeInterferometer .
+ex_raw_pc_cs:codeLaserMeasurementSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3710"^^xsd:token ;
+    skos:prefLabel      "Laser Measurement Systems" ;
+    cmns-dsg:designates pc_ecs:codeLaserMeasurementSystem .
+ex_raw_pc_cs:codeLeakTestingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3711"^^xsd:token ;
+    skos:prefLabel      "Leak Testing Equipment" ;
+    cmns-dsg:designates pc_ecs:codeLeakTestingEquipment .
+ex_raw_pc_cs:codeProbesElectromechanical
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3712"^^xsd:token ;
+    skos:prefLabel      "Probes, Electromechanical" ;
+    cmns-dsg:designates pc_ecs:codeElectromechanicalProbe .
+ex_raw_pc_cs:codeMaterialTestingAnalysisEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3713"^^xsd:token ;
+    skos:prefLabel      "Material Testing & Analysis Equipment" ;
+    cmns-dsg:designates pc_ecs:codeMaterialTestingAnalysisEquipment .
+ex_raw_pc_cs:codeRefractometers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3715"^^xsd:token ;
+    skos:prefLabel      "Refractometers" ;
+    cmns-dsg:designates pc_ecs:codeRefractometer .
+ex_raw_pc_cs:codeRoundnessMeasuringEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3720"^^xsd:token ;
+    skos:prefLabel      "Roundness Measuring Equipment" ;
+    cmns-dsg:designates pc_ecs:codeRoundnessMeasuringEquipment .
+ex_raw_pc_cs:codeSurfaceFinishMeasuringEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3730"^^xsd:token ;
+    skos:prefLabel      "Surface Finish Measuring Equipment" ;
+    cmns-dsg:designates pc_ecs:codeSurfaceFinishMeasuringEquipment .
+ex_raw_pc_cs:codeSurfacePlates
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3740"^^xsd:token ;
+    skos:prefLabel      "Surface Plates" ;
+    cmns-dsg:designates pc_ecs:codeSurfacePlate .
+ex_raw_pc_cs:codeVisionSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3750"^^xsd:token ;
+    skos:prefLabel      "Vision Systems" ;
+    cmns-dsg:designates pc_ecs:codeVisionSystem .
+ex_raw_pc_cs:codeWeightScales
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3760"^^xsd:token ;
+    skos:prefLabel      "Weight Scales" ;
+    cmns-dsg:designates pc_ecs:codeWeightScale .
+ex_raw_pc_cs:codeCentrifugalBarrelAndDiscFinishingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3870"^^xsd:token ;
+    skos:prefLabel      "Centrifugal Barrel and Disc Finishing Machines" ;
+    cmns-dsg:designates pc_ecs:codeCentrifugalBarrelDiscFinishingMachine .
+ex_raw_pc_cs:codeVibratoryTumblingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3880"^^xsd:token ;
+    skos:prefLabel      "Vibratory Tumbling Machines" ;
+    cmns-dsg:designates pc_ecs:codeVibratoryTumblingMachine .
+ex_raw_pc_cs:codeCompositeWorkingMachinesTapeLayingFilamentWindingEtc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4000"^^xsd:token ;
+    skos:prefLabel      "Composite Working Machines (Tape Laying, Filament Winding, etc.)" ;
+    cmns-dsg:designates pc_ecs:codeCompositeWorkingMachine .
+ex_raw_pc_cs:codeAutomatedSystemCellsForAssemblyTest
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4010"^^xsd:token ;
+    skos:prefLabel      "Automated System & Cells for Assembly & Test" ;
+    cmns-dsg:designates pc_ecs:codeAssemblyTestCell .
+ex_raw_pc_cs:codeAutomatedSystemCellsForMaterialJoining
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4020"^^xsd:token ;
+    skos:prefLabel      "Automated System & Cells for Material Joining" ;
+    cmns-dsg:designates pc_ecs:codeMaterialJoiningCell .
+ex_raw_pc_cs:codeDiecastingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4040"^^xsd:token ;
+    skos:prefLabel      "Diecasting Machines" ;
+    cmns-dsg:designates pc_ecs:codeDiecastingMachine .
+ex_raw_pc_cs:codeElectroChemicalMachinesEcm
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4060"^^xsd:token ;
+    skos:prefLabel      "Electro-Chemical Machines (ECM)" ;
+    cmns-dsg:designates pc_ecs:codeElectroChemicalMachine .
+ex_raw_pc_cs:codeWeldingMachinesElectronBeam
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4070"^^xsd:token ;
+    skos:prefLabel      "Welding Machines, Electron-Beam" ;
+    cmns-dsg:designates pc_ecs:codeElectronBeamWeldingMachine .
+ex_raw_pc_cs:codeFoundryEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4080"^^xsd:token ;
+    skos:prefLabel      "Foundry Equipment" ;
+    cmns-dsg:designates pc_ecs:codeFoundryEquipment .
+ex_raw_pc_cs:codeWeldingMachinesFriction
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4090"^^xsd:token ;
+    skos:prefLabel      "Welding Machines, Friction" ;
+    cmns-dsg:designates pc_ecs:codeFrictionWeldingMachine .
+ex_raw_pc_cs:codeHeatTreatingEquipmentAndSuppliesIncludingOvensAndFurnaces
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4100"^^xsd:token ;
+    skos:prefLabel      "Heat Treating Equipment and Supplies, Including Ovens and Furnaces" ;
+    cmns-dsg:designates pc_ecs:codeHeatTreatingEquipment .
+ex_raw_pc_cs:codeMarkingAndEngravingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4120"^^xsd:token ;
+    skos:prefLabel      "Marking and Engraving Machines" ;
+    cmns-dsg:designates pc_ecs:codeMarkingEngravingMachine .
+ex_raw_pc_cs:codeCleaningAndDegreasingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4130"^^xsd:token ;
+    skos:prefLabel      "Cleaning and Degreasing Equipment" ;
+    cmns-dsg:designates pc_ecs:codeCleaningDegreasingEquipment .
+ex_raw_pc_cs:codeMiniatureMachinesForTraining
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4145"^^xsd:token ;
+    skos:prefLabel      "Miniature Machines for Training" ;
+    cmns-dsg:designates pc_ecs:codeMiniatureTrainingMachine .
+ex_raw_pc_cs:codePlasticInjectionMoldingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4150"^^xsd:token ;
+    skos:prefLabel      "Plastic Injection Molding Machines" ;
+    cmns-dsg:designates pc_ecs:codePlasticInjectionMoldingMachine .
+ex_raw_pc_cs:codePlasticMoldingAndFormingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4151"^^xsd:token ;
+    skos:prefLabel      "Plastic Molding and Forming Equipment" ;
+    cmns-dsg:designates pc_ecs:codePlasticMoldingFormingEquipment .
+ex_raw_pc_cs:codePlasticJoiningEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4152"^^xsd:token ;
+    skos:prefLabel      "Plastic Joining Equipment" ;
+    cmns-dsg:designates pc_ecs:codePlasticJoiningEquipment .
+ex_raw_pc_cs:codePlasticCuttingAndSlittingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4154"^^xsd:token ;
+    skos:prefLabel      "Plastic Cutting and Slitting Equipment" ;
+    cmns-dsg:designates pc_ecs:codePlasticCuttingSlittingEquipment .
+ex_raw_pc_cs:codePlasticFilmSealingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4155"^^xsd:token ;
+    skos:prefLabel      "Plastic Film Sealing Equipment" ;
+    cmns-dsg:designates pc_ecs:codePlasticFilmSealingEquipment .
+ex_raw_pc_cs:codePlasticWorkingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4160"^^xsd:token ;
+    skos:prefLabel      "Plastic-Working Equipment" ;
+    cmns-dsg:designates pc_ecs:codePlasticWorkingEquipment .
+ex_raw_pc_cs:codeCoatingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4175"^^xsd:token ;
+    skos:prefLabel      "Coating Equipment" ;
+    cmns-dsg:designates pc_ecs:codeCoatingEquipment .
+ex_raw_pc_cs:codeSplineRollingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4181"^^xsd:token ;
+    skos:prefLabel      "Spline Rolling Machines" ;
+    cmns-dsg:designates pc_ecs:codeSplineRollingMachine .
+ex_raw_pc_cs:codeInsertionEquipmentFastener
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4182"^^xsd:token ;
+    skos:prefLabel      "Insertion Equipment - Fastener" ;
+    cmns-dsg:designates pc_ecs:codeFastenerInsertionEquipment .
+ex_raw_pc_cs:codeStressReliefEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4190"^^xsd:token ;
+    skos:prefLabel      "Stress Relief Equipment" ;
+    cmns-dsg:designates pc_ecs:codeStressReliefEquipment .
+ex_raw_pc_cs:codeSurfaceTreatmentAndCoatingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4200"^^xsd:token ;
+    skos:prefLabel      "Surface Treatment and Coating Equipment" ;
+    cmns-dsg:designates pc_ecs:codeSurfaceTreatmentCoatingEquipment .
+ex_raw_pc_cs:codeVacuumFormingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4210"^^xsd:token ;
+    skos:prefLabel      "Vacuum Forming Machines" ;
+    cmns-dsg:designates pc_ecs:codeVacuumFormingMachine .
+ex_raw_pc_cs:codeWeldingMachinesAndEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4220"^^xsd:token ;
+    skos:prefLabel      "Welding Machines and Equipment" ;
+    cmns-dsg:designates pc_ecs:codeWeldingMachine .
+ex_raw_pc_cs:codeWoodworkingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4230"^^xsd:token ;
+    skos:prefLabel      "Woodworking Equipment" ;
+    cmns-dsg:designates pc_ecs:codeWoodworkingEquipment .
+ex_raw_pc_cs:codeAutomatedGuidedVehicles
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4450"^^xsd:token ;
+    skos:prefLabel      "Automated Guided Vehicles" ;
+    cmns-dsg:designates pc_ecs:codeAutomatedGuidedVehicle .
+ex_raw_pc_cs:codeAutomaticStorageRetrievalSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4460"^^xsd:token ;
+    skos:prefLabel      "Automatic Storage/Retrieval Systems" ;
+    cmns-dsg:designates pc_ecs:codeAutomaticStorageRetrievalSystem .
+ex_raw_pc_cs:codeBarFeedMechanisms
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4470"^^xsd:token ;
+    skos:prefLabel      "Bar Feed Mechanisms" ;
+    cmns-dsg:designates pc_ecs:codeBarFeedMechanism .
+ex_raw_pc_cs:codeBowlFeeders
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4475"^^xsd:token ;
+    skos:prefLabel      "Bowl Feeders" ;
+    cmns-dsg:designates pc_ecs:codeBowlFeeder .
+ex_raw_pc_cs:codeChillers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4480"^^xsd:token ;
+    skos:prefLabel      "Chillers" ;
+    cmns-dsg:designates pc_ecs:codeChiller .
+ex_raw_pc_cs:codeChipConveyorsAndHandlingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4490"^^xsd:token ;
+    skos:prefLabel      "Chip Conveyors and Handling Equipment" ;
+    cmns-dsg:designates pc_ecs:codeChipConveyorHandlingEquipment .
+ex_raw_pc_cs:codeConveyors
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4495"^^xsd:token ;
+    skos:prefLabel      "Conveyors" ;
+    cmns-dsg:designates pc_ecs:codeConveyorPartHandlingAutomation ;
+    skos:editorialNote  "harmonization-action: merged (-> 'Conveyors & Other Part Handling Automation')" .
+ex_raw_pc_cs:codeCoilEquipmentSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4503"^^xsd:token ;
+    skos:prefLabel      "Coil Equipment Systems" ;
+    cmns-dsg:designates pc_ecs:codeCoilEquipmentSystem .
+ex_raw_pc_cs:codeCutToLengthMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4507"^^xsd:token ;
+    skos:prefLabel      "Cut to Length Machines" ;
+    cmns-dsg:designates pc_ecs:codeCutToLengthMachine .
+ex_raw_pc_cs:codeCompressors
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4510"^^xsd:token ;
+    skos:prefLabel      "Compressors" ;
+    cmns-dsg:designates pc_ecs:codeCompressor .
+ex_raw_pc_cs:codeCoolantDeliverySystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4520"^^xsd:token ;
+    skos:prefLabel      "Coolant Delivery Systems" ;
+    cmns-dsg:designates pc_ecs:codeCoolantDeliverySystem .
+ex_raw_pc_cs:codeCoolantsCuttingFluidsAndOils
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4530"^^xsd:token ;
+    skos:prefLabel      "Coolants, Cutting Fluids and Oils" ;
+    cmns-dsg:designates pc_ecs:codeCoolantCuttingFluidOil .
+ex_raw_pc_cs:codeDieHandlingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4540"^^xsd:token ;
+    skos:prefLabel      "Die Handling Equipment" ;
+    cmns-dsg:designates pc_ecs:codeDieHandlingEquipment .
+ex_raw_pc_cs:codeElectricalSwitchgearEnclosuresAndComponents
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4550"^^xsd:token ;
+    skos:prefLabel      "Electrical Switchgear, Enclosures and Components" ;
+    cmns-dsg:designates pc_ecs:codeElectricalSwitchgearEnclosureComponent .
+ex_raw_pc_cs:codeConnectorsFasteners
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4555"^^xsd:token ;
+    skos:prefLabel      "Connectors & Fasteners" ;
+    cmns-dsg:designates pc_ecs:codeConnectorFastener .
+ex_raw_pc_cs:codeFurnishingsShopAndOfficeFilesDesksBenchesCabinetsToolChestsDrawingBoardsLighting
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4560"^^xsd:token ;
+    skos:prefLabel      "Furnishings, Shop and Office (files, desks, benches, cabinets, tool chests, drawing boards & lighting)" ;
+    cmns-dsg:designates pc_ecs:codeFurnishing .
+ex_raw_pc_cs:codeHandToolsOfAllTypes
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4580"^^xsd:token ;
+    skos:prefLabel      "Hand Tools Of All Types" ;
+    cmns-dsg:designates pc_ecs:codeHandTool .
+ex_raw_pc_cs:codeHandwheelsKnobsCranksEtc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4585"^^xsd:token ;
+    skos:prefLabel      "Handwheels, Knobs, Cranks, Etc." ;
+    cmns-dsg:designates pc_ecs:codeHandwheelKnobCrank .
+ex_raw_pc_cs:codeWorkpieceHandlingLoadingAndFeedingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4590"^^xsd:token ;
+    skos:prefLabel      "Workpiece Handling, Loading and Feeding Equipment" ;
+    cmns-dsg:designates pc_ecs:codeWorkpieceHandlingLoadingFeedingEquipment .
+ex_raw_pc_cs:codeHeatExchangersAndAirConditioningEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4600"^^xsd:token ;
+    skos:prefLabel      "Heat Exchangers and Air Conditioning Equipment" ;
+    cmns-dsg:designates pc_ecs:codeHeatExchangerAirConditioningEquipment .
+ex_raw_pc_cs:codeHydraulicAndPneumaticEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4610"^^xsd:token ;
+    skos:prefLabel      "Hydraulic and Pneumatic Equipment" ;
+    cmns-dsg:designates pc_ecs:codeHydraulicPneumaticEquipment .
+ex_raw_pc_cs:codeLiftingAndPositioningEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4620"^^xsd:token ;
+    skos:prefLabel      "Lifting and Positioning Equipment" ;
+    cmns-dsg:designates pc_ecs:codeLiftingPositioningEquipment .
+ex_raw_pc_cs:codeLightingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4630"^^xsd:token ;
+    skos:prefLabel      "Lighting Equipment" ;
+    cmns-dsg:designates pc_ecs:codeLightingEquipment .
+ex_raw_pc_cs:codeLubricantsAndGreases
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4635"^^xsd:token ;
+    skos:prefLabel      "Lubricants and Greases" ;
+    cmns-dsg:designates pc_ecs:codeLubricantGrease .
+ex_raw_pc_cs:codeMagnetsAndMagneticDevicesOfAllKinds
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4637"^^xsd:token ;
+    skos:prefLabel      "Magnets and Magnetic Devices of all Kinds" ;
+    cmns-dsg:designates pc_ecs:codeMagnetMagneticDevice .
+ex_raw_pc_cs:codeMetalSalesServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4638"^^xsd:token ;
+    skos:prefLabel      "Metal Sales & Services" ;
+    cmns-dsg:designates pc_ecs:codeMetalSalesService .
+ex_raw_pc_cs:codePaintSealantsAdhesives
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4640"^^xsd:token ;
+    skos:prefLabel      "Paint/Sealants/Adhesives" ;
+    cmns-dsg:designates pc_ecs:codePaintSealantAdhesive .
+ex_raw_pc_cs:codePalletChangersShuttlesAndProgrammableTransferDevices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4650"^^xsd:token ;
+    skos:prefLabel      "Pallet Changers/Shuttles and Programmable Transfer Devices" ;
+    cmns-dsg:designates pc_ecs:codePalletChangerShuttleTransferDevice .
+ex_raw_pc_cs:codePalletsToteBoxesAndSeparators
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4660"^^xsd:token ;
+    skos:prefLabel      "Pallets, Tote Boxes and Separators" ;
+    cmns-dsg:designates pc_ecs:codePalletToteSeparator .
+ex_raw_pc_cs:codePressAutomationDevices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4670"^^xsd:token ;
+    skos:prefLabel      "Press Automation Devices" ;
+    cmns-dsg:designates pc_ecs:codePressAutomationDevice .
+ex_raw_pc_cs:codePressFeedsAndLoadingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4680"^^xsd:token ;
+    skos:prefLabel      "Press Feeds and Loading Equipment" ;
+    cmns-dsg:designates pc_ecs:codePressFeedLoadingEquipment .
+ex_raw_pc_cs:codePressSafetyEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4690"^^xsd:token ;
+    skos:prefLabel      "Press Safety Equipment" ;
+    cmns-dsg:designates pc_ecs:codePressSafetyEquipment .
+ex_raw_pc_cs:codeSolventsAndDegreasingAgents
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4710"^^xsd:token ;
+    skos:prefLabel      "Solvents and Degreasing Agents" ;
+    cmns-dsg:designates pc_ecs:codeSolventDegreasingAgent .
+ex_raw_pc_cs:codeToolConditionMonitoringSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4720"^^xsd:token ;
+    skos:prefLabel      "Tool Condition Monitoring Systems" ;
+    cmns-dsg:designates pc_ecs:codeToolConditionMonitoringSystem .
+ex_raw_pc_cs:codeToolPresettingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4730"^^xsd:token ;
+    skos:prefLabel      "Tool Presetting Equipment" ;
+    cmns-dsg:designates pc_ecs:codeToolPresettingEquipment .
+ex_raw_pc_cs:codeToolStorageAndHandlingSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4740"^^xsd:token ;
+    skos:prefLabel      "Tool Storage and Handling Systems" ;
+    cmns-dsg:designates pc_ecs:codeToolStorageHandlingSystem .
+ex_raw_pc_cs:codeToolingMaterialsBlanksAndPreMachinedStockOfAllTypes
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4750"^^xsd:token ;
+    skos:prefLabel      "Tooling Materials, Blanks and Pre-Machined Stock of All Types" ;
+    cmns-dsg:designates pc_ecs:codeToolingMaterialBlank .
+ex_raw_pc_cs:codeVoltageCurrentRegulatorsTransformersAndPhaseConverters
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4760"^^xsd:token ;
+    skos:prefLabel      "Voltage/Current Regulators, Transformers and Phase Converters" ;
+    cmns-dsg:designates pc_ecs:codeVoltageRegulator .
+ex_raw_pc_cs:codeWorkpieceMaterialsAndStockOfAllKinds
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4770"^^xsd:token ;
+    skos:prefLabel      "Workpiece Materials and Stock of All Kinds" ;
+    cmns-dsg:designates pc_ecs:codeWorkpieceMaterial .
+ex_raw_pc_cs:codeAbrasiveCompoundsAndSlurries
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4880"^^xsd:token ;
+    skos:prefLabel      "Abrasive Compounds and Slurries" ;
+    cmns-dsg:designates pc_ecs:codeAbrasiveCompoundSlurry .
+ex_raw_pc_cs:codeArborsForCutters
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4885"^^xsd:token ;
+    skos:prefLabel      "Arbors (for Cutters)" ;
+    cmns-dsg:designates pc_ecs:codeCutterArbor .
+ex_raw_pc_cs:codeBoringToolsBarsHeads
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4890"^^xsd:token ;
+    skos:prefLabel      "Boring Tools/Bars/Heads" ;
+    cmns-dsg:designates pc_ecs:codeBoringToolBarHead .
+ex_raw_pc_cs:codeBroachingTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4900"^^xsd:token ;
+    skos:prefLabel      "Broaching Tools" ;
+    cmns-dsg:designates pc_ecs:codeBroachingTool .
+ex_raw_pc_cs:codeUltrasonicTooling
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4901"^^xsd:token ;
+    skos:prefLabel      "Ultrasonic Tooling" ;
+    cmns-dsg:designates pc_ecs:codeUltrasonicTooling .
+ex_raw_pc_cs:codeBuffingAndPolishingSupplies
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4905"^^xsd:token ;
+    skos:prefLabel      "Buffing and Polishing Supplies" ;
+    cmns-dsg:designates pc_ecs:codeBuffingPolishingSupply .
+ex_raw_pc_cs:codeBurnishingHoningAndLappingTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4910"^^xsd:token ;
+    skos:prefLabel      "Burnishing, Honing and Lapping Tools" ;
+    cmns-dsg:designates pc_ecs:codeBurnishingHoningLappingTool .
+ex_raw_pc_cs:codeDiamondToolingCoatingAbrasiveSinglePoint
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4915"^^xsd:token ;
+    skos:prefLabel      "Diamond Tooling, Coating, Abrasive, Single-point" ;
+    cmns-dsg:designates pc_ecs:codeDiamondTooling .
+ex_raw_pc_cs:codeChamferingTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4920"^^xsd:token ;
+    skos:prefLabel      "Chamfering Tools" ;
+    cmns-dsg:designates pc_ecs:codeChamferingTool .
+ex_raw_pc_cs:codeColletsSolidAndMaster
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4925"^^xsd:token ;
+    skos:prefLabel      "Collets, Solid and Master" ;
+    cmns-dsg:designates pc_ecs:codeSolidMasterCollet .
+ex_raw_pc_cs:codeCounterboresCountersinks
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4930"^^xsd:token ;
+    skos:prefLabel      "Counterbores/Countersinks" ;
+    cmns-dsg:designates pc_ecs:codeCounterboreCountersink .
+ex_raw_pc_cs:codeCutOffToolsAttachments
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4940"^^xsd:token ;
+    skos:prefLabel      "Cut-Off Tools/Attachments" ;
+    cmns-dsg:designates pc_ecs:codeCutOffToolAttachment .
+ex_raw_pc_cs:codeDeburringTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4950"^^xsd:token ;
+    skos:prefLabel      "Deburring Tools" ;
+    cmns-dsg:designates pc_ecs:codeDeburringTool .
+ex_raw_pc_cs:codeDrillBushings
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4970"^^xsd:token ;
+    skos:prefLabel      "Drill Bushings" ;
+    cmns-dsg:designates pc_ecs:codeDrillBushing .
+ex_raw_pc_cs:codeDrillChucks
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4975"^^xsd:token ;
+    skos:prefLabel      "Drill Chucks" ;
+    cmns-dsg:designates pc_ecs:codeDrillChuck .
+ex_raw_pc_cs:codeDrills
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4985"^^xsd:token ;
+    skos:prefLabel      "Drills" ;
+    cmns-dsg:designates pc_ecs:codeDrill .
+ex_raw_pc_cs:codeEndMills
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4990"^^xsd:token ;
+    skos:prefLabel      "End Mills" ;
+    cmns-dsg:designates pc_ecs:codeEndMill .
+ex_raw_pc_cs:codeFacingToolsHeads
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5000"^^xsd:token ;
+    skos:prefLabel      "Facing Tools/Heads" ;
+    cmns-dsg:designates pc_ecs:codeFacingTool .
+ex_raw_pc_cs:codeFormTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5010"^^xsd:token ;
+    skos:prefLabel      "Form Tools" ;
+    cmns-dsg:designates pc_ecs:codeFormTool .
+ex_raw_pc_cs:codeGearCuttingTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5020"^^xsd:token ;
+    skos:prefLabel      "Gear Cutting Tools" ;
+    cmns-dsg:designates pc_ecs:codeGearCuttingTool .
+ex_raw_pc_cs:codeGearRollingTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5021"^^xsd:token ;
+    skos:prefLabel      "Gear Rolling Tools" ;
+    cmns-dsg:designates pc_ecs:codeGearRollingTool .
+ex_raw_pc_cs:codeSplineRollingTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5022"^^xsd:token ;
+    skos:prefLabel      "Spline Rolling Tools" ;
+    cmns-dsg:designates pc_ecs:codeSplineRollingTool .
+ex_raw_pc_cs:codeGrindingWheelsAndAbrasiveBelts
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5030"^^xsd:token ;
+    skos:prefLabel      "Grinding Wheels and Abrasive Belts" ;
+    cmns-dsg:designates pc_ecs:codeGrindingWheelAbrasiveBelt .
+ex_raw_pc_cs:codeGrindingWheelDressingUnits
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5035"^^xsd:token ;
+    skos:prefLabel      "Grinding Wheel Dressing Units" ;
+    cmns-dsg:designates pc_ecs:codeGrindingWheelDressingUnit .
+ex_raw_pc_cs:codeGroovingTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5040"^^xsd:token ;
+    skos:prefLabel      "Grooving Tools" ;
+    cmns-dsg:designates pc_ecs:codeGroovingTool .
+ex_raw_pc_cs:codeGundrills
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5045"^^xsd:token ;
+    skos:prefLabel      "Gundrills" ;
+    cmns-dsg:designates pc_ecs:codeGundrill .
+ex_raw_pc_cs:codeInsertsIndexableCarbideEtcAndToolInserts
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5050"^^xsd:token ;
+    skos:prefLabel      "Inserts, Indexable (Carbide, etc.) and Tool Inserts" ;
+    cmns-dsg:designates pc_ecs:codeIndexableInsert .
+ex_raw_pc_cs:codeKeySeatingTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5060"^^xsd:token ;
+    skos:prefLabel      "Key Seating Tools" ;
+    cmns-dsg:designates pc_ecs:codeKeySeatingTool .
+ex_raw_pc_cs:codeKnurlingTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5070"^^xsd:token ;
+    skos:prefLabel      "Knurling Tools" ;
+    cmns-dsg:designates pc_ecs:codeKnurlingTool .
+ex_raw_pc_cs:codeMarkingTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5075"^^xsd:token ;
+    skos:prefLabel      "Marking Tools" ;
+    cmns-dsg:designates pc_ecs:codeMarkingTool .
+ex_raw_pc_cs:codeMassFinishingMediaAndCompounds
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5080"^^xsd:token ;
+    skos:prefLabel      "Mass Finishing Media and Compounds" ;
+    cmns-dsg:designates pc_ecs:codeMassFinishingMedia .
+ex_raw_pc_cs:codeMillingCutters
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5090"^^xsd:token ;
+    skos:prefLabel      "Milling Cutters" ;
+    cmns-dsg:designates pc_ecs:codeMillingCutter .
+ex_raw_pc_cs:codeProofingMaterialsWaxEtc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5095"^^xsd:token ;
+    skos:prefLabel      "Proofing Materials  (Wax, etc.)" ;
+    cmns-dsg:designates pc_ecs:codeProofingMaterial .
+ex_raw_pc_cs:codeProtectiveSleevesAndCoatingsForCuttingTools
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5096"^^xsd:token ;
+    skos:prefLabel      "Protective Sleeves and Coatings (for Cutting Tools)" ;
+    cmns-dsg:designates pc_ecs:codeProtectiveSleeveCoating .
+ex_raw_pc_cs:codePunchingToolsDies
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5100"^^xsd:token ;
+    skos:prefLabel      "Punching Tools/Dies" ;
+    cmns-dsg:designates pc_ecs:codePunchingToolDie .
+ex_raw_pc_cs:codeReamers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5105"^^xsd:token ;
+    skos:prefLabel      "Reamers" ;
+    cmns-dsg:designates pc_ecs:codeReamer .
+ex_raw_pc_cs:codeSawBlades
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5110"^^xsd:token ;
+    skos:prefLabel      "Saw Blades" ;
+    cmns-dsg:designates pc_ecs:codeSawBlade .
+ex_raw_pc_cs:codeShearBlades
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5120"^^xsd:token ;
+    skos:prefLabel      "Shear Blades" ;
+    cmns-dsg:designates pc_ecs:codeShearBlade .
+ex_raw_pc_cs:codeSlottingSaws
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5123"^^xsd:token ;
+    skos:prefLabel      "Slotting Saws" ;
+    cmns-dsg:designates pc_ecs:codeSlottingSaw .
+ex_raw_pc_cs:codeTapDriversAndAttachments
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5125"^^xsd:token ;
+    skos:prefLabel      "Tap Drivers and Attachments" ;
+    cmns-dsg:designates pc_ecs:codeTapDriverAttachment .
+ex_raw_pc_cs:codeTaps
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5130"^^xsd:token ;
+    skos:prefLabel      "Taps" ;
+    cmns-dsg:designates pc_ecs:codeTap .
+ex_raw_pc_cs:codeThreadingToolsCutting
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5136"^^xsd:token ;
+    skos:prefLabel      "Threading Tools - Cutting" ;
+    cmns-dsg:designates pc_ecs:codeCuttingThreadingTool .
+ex_raw_pc_cs:codeThreadingToolsForming
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5138"^^xsd:token ;
+    skos:prefLabel      "Threading Tools - Forming" ;
+    cmns-dsg:designates pc_ecs:codeFormingThreadingTool .
+ex_raw_pc_cs:codeToolBlanks
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5145"^^xsd:token ;
+    skos:prefLabel      "Tool Blanks" ;
+    cmns-dsg:designates pc_ecs:codeToolBlank .
+ex_raw_pc_cs:codeToolConditioningEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5150"^^xsd:token ;
+    skos:prefLabel      "Tool Conditioning Equipment" ;
+    cmns-dsg:designates pc_ecs:codeToolConditioningEquipment .
+ex_raw_pc_cs:codeToolHoldersAndAdapters
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5160"^^xsd:token ;
+    skos:prefLabel      "Tool Holders and Adapters" ;
+    cmns-dsg:designates pc_ecs:codeToolHolderAdapter .
+ex_raw_pc_cs:codeToolHoldersAndAdaptersHydraulic
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5161"^^xsd:token ;
+    skos:prefLabel      "Tool Holders and Adapters - Hydraulic" ;
+    cmns-dsg:designates pc_ecs:codeHydraulicToolHolderAdapter .
+ex_raw_pc_cs:codeToolingSystemsModularAndOrQuickChange
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5170"^^xsd:token ;
+    skos:prefLabel      "Tooling Systems, Modular and/or Quick-Change" ;
+    cmns-dsg:designates pc_ecs:codeModularQuickChangeToolingSystem .
+ex_raw_pc_cs:codeBallLeadScrewsAndRepairServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5280"^^xsd:token ;
+    skos:prefLabel      "Ball/Lead Screws and Repair Services" ;
+    cmns-dsg:designates pc_ecs:codeBallLeadScrew .
+ex_raw_pc_cs:codeBearingsPulleysClutchesGearsAndVBelts
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5290"^^xsd:token ;
+    skos:prefLabel      "Bearings, Pulleys, Clutches, Gears and V-Belts" ;
+    cmns-dsg:designates pc_ecs:codeBearingPulleyClutchGearVBelt .
+ex_raw_pc_cs:codeCentersLiveAndOther
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5300"^^xsd:token ;
+    skos:prefLabel      "Centers, Live and Other" ;
+    cmns-dsg:designates pc_ecs:codeLiveCenter .
+ex_raw_pc_cs:codeCouplings
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5315"^^xsd:token ;
+    skos:prefLabel      "Couplings" ;
+    cmns-dsg:designates pc_ecs:codeCoupling .
+ex_raw_pc_cs:codeDividingAndIndexingHeads
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5320"^^xsd:token ;
+    skos:prefLabel      "Dividing and Indexing Heads" ;
+    cmns-dsg:designates pc_ecs:codeDividingIndexingHead .
+ex_raw_pc_cs:codeDrillingHeadsAttachments
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5330"^^xsd:token ;
+    skos:prefLabel      "Drilling Heads/Attachments" ;
+    cmns-dsg:designates pc_ecs:codeDrillingHeadAttachment .
+ex_raw_pc_cs:codeMotorsNonServoIncludingSpindlesDriveUnitsPowerFeeds
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5340"^^xsd:token ;
+    skos:prefLabel      "Motors, Non-Servo (Including Spindles, Drive Units, & Power Feeds)" ;
+    cmns-dsg:designates pc_ecs:codeNonServoMotor .
+ex_raw_pc_cs:codeFeedbackDevicesEncodersResolversScalesSensors
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5350"^^xsd:token ;
+    skos:prefLabel      "Feedback Devices (Encoders/Resolvers/Scales/Sensors)" ;
+    cmns-dsg:designates pc_ecs:codeFeedbackDevice .
+ex_raw_pc_cs:codeGrindingAttachmentsAndAccessories
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5360"^^xsd:token ;
+    skos:prefLabel      "Grinding Attachments and Accessories" ;
+    cmns-dsg:designates pc_ecs:codeGrindingAttachmentAccessory .
+ex_raw_pc_cs:codeLightsIndicatorAndWarning
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5365"^^xsd:token ;
+    skos:prefLabel      "Lights, Indicator and Warning" ;
+    cmns-dsg:designates pc_ecs:codeIndicatorWarningLight .
+ex_raw_pc_cs:codeLubricators
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5370"^^xsd:token ;
+    skos:prefLabel      "Lubricators" ;
+    cmns-dsg:designates pc_ecs:codeLubricator .
+ex_raw_pc_cs:codeMachineCastingsAndWeldments
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5380"^^xsd:token ;
+    skos:prefLabel      "Machine Castings and Weldments" ;
+    cmns-dsg:designates pc_ecs:codeMachineCastingWeldment .
+ex_raw_pc_cs:codeMachineryMountingsLevelsAnchorsDampers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5390"^^xsd:token ;
+    skos:prefLabel      "Machinery Mountings, Levels, Anchors, Dampers" ;
+    cmns-dsg:designates pc_ecs:codeMachineryMounting .
+ex_raw_pc_cs:codeMinimumQuantityLubricationMqlSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5391"^^xsd:token ;
+    skos:prefLabel      "Minimum Quantity Lubrication (MQL) Systems" ;
+    cmns-dsg:designates pc_ecs:codeMQLSystem .
+ex_raw_pc_cs:codeMillingHeadsAttachments
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5400"^^xsd:token ;
+    skos:prefLabel      "Milling Heads/Attachments" ;
+    cmns-dsg:designates pc_ecs:codeMillingHeadAttachment .
+ex_raw_pc_cs:codeNameplatesLabelsAndSigns
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5410"^^xsd:token ;
+    skos:prefLabel      "Nameplates, Labels and Signs" ;
+    cmns-dsg:designates pc_ecs:codeNameplateLabelSign .
+ex_raw_pc_cs:codeProtectiveEnclosuresAndCovers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5430"^^xsd:token ;
+    skos:prefLabel      "Protective Enclosures and Covers" ;
+    cmns-dsg:designates pc_ecs:codeProtectiveEnclosureCover .
+ex_raw_pc_cs:codePumpsCoolant
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5440"^^xsd:token ;
+    skos:prefLabel      "Pumps, Coolant" ;
+    cmns-dsg:designates pc_ecs:codeCoolantPump .
+ex_raw_pc_cs:codeReplacementPartsRepairParts
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5450"^^xsd:token ;
+    skos:prefLabel      "Replacement Parts/Repair Parts" ;
+    cmns-dsg:designates pc_ecs:codeReplacementRepairPart .
+ex_raw_pc_cs:codeSlidesWaysAndLinearGuides
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5460"^^xsd:token ;
+    skos:prefLabel      "Slides, Ways, and Linear Guides" ;
+    cmns-dsg:designates pc_ecs:codeSlideWayLinearGuide .
+ex_raw_pc_cs:codeSpeedReducersAndGearBoxes
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5470"^^xsd:token ;
+    skos:prefLabel      "Speed Reducers and Gear Boxes" ;
+    cmns-dsg:designates pc_ecs:codeSpeedReducerGearBox .
+ex_raw_pc_cs:codeSpindles
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5480"^^xsd:token ;
+    skos:prefLabel      "Spindles" ;
+    cmns-dsg:designates pc_ecs:codeSpindle .
+ex_raw_pc_cs:codeSprings
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5485"^^xsd:token ;
+    skos:prefLabel      "Springs" ;
+    cmns-dsg:designates pc_ecs:codeSpring .
+ex_raw_pc_cs:codeSteadyRests
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5490"^^xsd:token ;
+    skos:prefLabel      "Steady Rests" ;
+    cmns-dsg:designates pc_ecs:codeSteadyRest .
+ex_raw_pc_cs:codeScrewMachineAttachmentsCamsRelatedEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5500"^^xsd:token ;
+    skos:prefLabel      "Screw Machine Attachments, Cams & Related Equipment" ;
+    cmns-dsg:designates pc_ecs:codeScrewMachineAttachmentsAndCams .
+ex_raw_pc_cs:codeToolTurrets
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5515"^^xsd:token ;
+    skos:prefLabel      "Tool Turrets" ;
+    cmns-dsg:designates pc_ecs:codeToolTurret .
+ex_raw_pc_cs:codeWayCoversWayProtectorsAndSeals
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5520"^^xsd:token ;
+    skos:prefLabel      "Way Covers, Way Protectors and Seals" ;
+    cmns-dsg:designates pc_ecs:codeWayCoverProtectorSeal .
+ex_raw_pc_cs:codeActuatorsHydraulicAndPneumatic
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5615"^^xsd:token ;
+    skos:prefLabel      "Actuators, Hydraulic and Pneumatic" ;
+    cmns-dsg:designates pc_ecs:codeHydraulicPneumaticActuator .
+ex_raw_pc_cs:codeAngleSubPlates
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5620"^^xsd:token ;
+    skos:prefLabel      "Angle & Sub Plates" ;
+    cmns-dsg:designates pc_ecs:codeAngleSubPlate .
+ex_raw_pc_cs:codeArborsExpandableWorkholding
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5625"^^xsd:token ;
+    skos:prefLabel      "Arbors, Expandable Workholding" ;
+    cmns-dsg:designates pc_ecs:codeExpandableWorkholdingArbor .
+ex_raw_pc_cs:codeChuckJawsAndCollets
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5630"^^xsd:token ;
+    skos:prefLabel      "Chuck Jaws and Collets" ;
+    cmns-dsg:designates pc_ecs:codeChuckJawCollet .
+ex_raw_pc_cs:codeChucksColletType
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5640"^^xsd:token ;
+    skos:prefLabel      "Chucks, Collet Type" ;
+    cmns-dsg:designates pc_ecs:codeColletChuck .
+ex_raw_pc_cs:codeChucksDiaphragm
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5642"^^xsd:token ;
+    skos:prefLabel      "Chucks, Diaphragm" ;
+    cmns-dsg:designates pc_ecs:codeDiaphragmChuck .
+ex_raw_pc_cs:codeChucksGear
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5644"^^xsd:token ;
+    skos:prefLabel      "Chucks, Gear" ;
+    cmns-dsg:designates pc_ecs:codeGearChuck .
+ex_raw_pc_cs:codeChucksIndex
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5646"^^xsd:token ;
+    skos:prefLabel      "Chucks, Index" ;
+    cmns-dsg:designates pc_ecs:codeIndexChuck .
+ex_raw_pc_cs:codeChucksJawType
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5650"^^xsd:token ;
+    skos:prefLabel      "Chucks, Jaw Type" ;
+    cmns-dsg:designates pc_ecs:codeJawChuck .
+ex_raw_pc_cs:codeChucksMagnetic
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5660"^^xsd:token ;
+    skos:prefLabel      "Chucks, Magnetic" ;
+    cmns-dsg:designates pc_ecs:codeMagneticChuck .
+ex_raw_pc_cs:codeChucksPrecision
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5661"^^xsd:token ;
+    skos:prefLabel      "Chucks, Precision" ;
+    cmns-dsg:designates pc_ecs:codePrecisionChuck .
+ex_raw_pc_cs:codeChucksSelfContained
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5662"^^xsd:token ;
+    skos:prefLabel      "Chucks, Self-Contained" ;
+    cmns-dsg:designates pc_ecs:codeSelfContainedChuck .
+ex_raw_pc_cs:codeChucksSpecial
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5663"^^xsd:token ;
+    skos:prefLabel      "Chucks, Special" ;
+    cmns-dsg:designates pc_ecs:codeSpecialChuck .
+ex_raw_pc_cs:codeChucksVacuum
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5664"^^xsd:token ;
+    skos:prefLabel      "Chucks, Vacuum" ;
+    cmns-dsg:designates pc_ecs:codeVacuumChuck .
+ex_raw_pc_cs:codeChucksPower
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5665"^^xsd:token ;
+    skos:prefLabel      "Chucks, Power" ;
+    cmns-dsg:designates pc_ecs:codePowerChuck .
+ex_raw_pc_cs:codeClampsAndFixturingDevices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5670"^^xsd:token ;
+    skos:prefLabel      "Clamps and Fixturing Devices" ;
+    cmns-dsg:designates pc_ecs:codeClampFixturingDevice .
+ex_raw_pc_cs:codeFixturingSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5680"^^xsd:token ;
+    skos:prefLabel      "Fixturing Systems" ;
+    cmns-dsg:designates pc_ecs:codeFixturingSystem .
+ex_raw_pc_cs:codeGuideBushingsForSwissLathes
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5683"^^xsd:token ;
+    skos:prefLabel      "Guide Bushings (for Swiss Lathes)" ;
+    cmns-dsg:designates pc_ecs:codeGuideBushing .
+ex_raw_pc_cs:codeIndexersAndRotaryTables
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5685"^^xsd:token ;
+    skos:prefLabel      "Indexers and Rotary Tables" ;
+    cmns-dsg:designates pc_ecs:codeIndexerRotaryTable .
+ex_raw_pc_cs:codeMandrels
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5690"^^xsd:token ;
+    skos:prefLabel      "Mandrels" ;
+    cmns-dsg:designates pc_ecs:codeMandrel .
+ex_raw_pc_cs:codePedestalTypeFixturesAndTombstoneBlocks
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5700"^^xsd:token ;
+    skos:prefLabel      "Pedestal Type Fixtures and Tombstone Blocks" ;
+    cmns-dsg:designates pc_ecs:codePedestalFixtureTombstone .
+ex_raw_pc_cs:codeRobotToolingGrippers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5710"^^xsd:token ;
+    skos:prefLabel      "Robot Tooling/Grippers" ;
+    cmns-dsg:designates pc_ecs:codeRobotToolingGripper .
+ex_raw_pc_cs:codeVisesAndViseJaws
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5720"^^xsd:token ;
+    skos:prefLabel      "Vises and Vise Jaws" ;
+    cmns-dsg:designates pc_ecs:codeViseViseJaw .
+ex_raw_pc_cs:codeWorkholdingCustom
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5730"^^xsd:token ;
+    skos:prefLabel      "Workholding, Custom" ;
+    cmns-dsg:designates pc_ecs:codeCustomWorkholding .
+ex_raw_pc_cs:codeCommunicationsNetworksAndDataTransmissionEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5940"^^xsd:token ;
+    skos:prefLabel      "Communications Networks, and Data Transmission Equipment" ;
+    cmns-dsg:designates pc_ecs:codeCommunicationDataTransmissionEquipment .
+ex_raw_pc_cs:codeComputerNumericalControlCncUnits
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5950"^^xsd:token ;
+    skos:prefLabel      "Computer Numerical Control (CNC) Units" ;
+    cmns-dsg:designates pc_ecs:codeCNCUnit .
+ex_raw_pc_cs:codeComputerNumericalControlCncSoftwareSoldIndependentOfHardware
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5951"^^xsd:token ;
+    skos:prefLabel      "Computer Numerical Control (CNC) Software (sold independent of hardware)" ;
+    cmns-dsg:designates pc_ecs:codeCNCSoftware .
+ex_raw_pc_cs:codeDigitalReadoutDroUnits
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5960"^^xsd:token ;
+    skos:prefLabel      "Digital Readout (DRO) Units" ;
+    cmns-dsg:designates pc_ecs:codeDROUnit .
+ex_raw_pc_cs:codeDigitizingScanningSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5970"^^xsd:token ;
+    skos:prefLabel      "Digitizing/Scanning Systems" ;
+    cmns-dsg:designates pc_ecs:codeDigitizingScanningSystem .
+ex_raw_pc_cs:codeDirectOrDistributiveNumericalControlDncSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5980"^^xsd:token ;
+    skos:prefLabel      "Direct or Distributive Numerical Control (DNC) Systems" ;
+    cmns-dsg:designates pc_ecs:codeDNCSystem .
+ex_raw_pc_cs:codeIdentificationSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "5990"^^xsd:token ;
+    skos:prefLabel      "Identification Systems" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeMemoryUnits
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6000"^^xsd:token ;
+    skos:prefLabel      "Memory Units" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codePrintedCircuitBoardDesignAndManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6005"^^xsd:token ;
+    skos:prefLabel      "Printed Circuit Board Design and Manufacturing" ;
+    cmns-dsg:designates pc_ecs:codePrintedCircuitBoardDesignManufacturing .
+ex_raw_pc_cs:codePrintersPlottersDraftingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6010"^^xsd:token ;
+    skos:prefLabel      "Printers/Plotters/Drafting Machines" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeProgrammableLogicControlsPlc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6020"^^xsd:token ;
+    skos:prefLabel      "Programmable Logic Controls (PLC)" ;
+    cmns-dsg:designates pc_ecs:codePLC .
+ex_raw_pc_cs:codeRobotControllers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6040"^^xsd:token ;
+    skos:prefLabel      "Robot Controllers" ;
+    cmns-dsg:designates pc_ecs:codeRobotController .
+ex_raw_pc_cs:codeSoftwareAccountingGeneralLedgerPayroll
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6150"^^xsd:token ;
+    skos:prefLabel      "Software, Accounting/General Ledger/Payroll" ;
+    cmns-dsg:designates pc_ecs:codeAccountingPayrollSoftware .
+ex_raw_pc_cs:codeSoftwareCadCam
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6180"^^xsd:token ;
+    skos:prefLabel      "Software, CAD/CAM" ;
+    cmns-dsg:designates pc_ecs:codeCADCAMSoftware .
+ex_raw_pc_cs:codeSoftwareDatabaseManagement
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6190"^^xsd:token ;
+    skos:prefLabel      "Software, Database Management" ;
+    cmns-dsg:designates pc_ecs:codeDatabaseManagementSoftware .
+ex_raw_pc_cs:codeSoftwareEngineeringAnalysisAndSimulation
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6200"^^xsd:token ;
+    skos:prefLabel      "Software, Engineering Analysis and Simulation" ;
+    cmns-dsg:designates pc_ecs:codeEngineeringAnalysisSimulationSoftware .
+ex_raw_pc_cs:codeSoftwareJobCostingEstimatingQuotingOrderEntryAndTracking
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6230"^^xsd:token ;
+    skos:prefLabel      "Software, Job Costing/Estimating/Quoting/Order Entry and Tracking" ;
+    cmns-dsg:designates pc_ecs:codeJobCostingEstimatingQuotingSoftware ;
+    skos:editorialNote  "harmonization-action: updated (-> 'Software, Job Costing/Estimating/Quoting')" .
+ex_raw_pc_cs:codeSoftwareMachinabilityDatabases
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6240"^^xsd:token ;
+    skos:prefLabel      "Software, Machinability Databases" ;
+    cmns-dsg:designates pc_ecs:codeMachinabilityDatabaseSoftware .
+ex_raw_pc_cs:codeSoftwareManufacturingExecutionSystemsMes
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6245"^^xsd:token ;
+    skos:prefLabel      "Software, Manufacturing Execution Systems (MES)" ;
+    cmns-dsg:designates pc_ecs:codeMESSoftware .
+ex_raw_pc_cs:codeSoftwareNcProgramOptimization
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6255"^^xsd:token ;
+    skos:prefLabel      "Software, NC Program Optimization" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeSoftwareNcVerification
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6260"^^xsd:token ;
+    skos:prefLabel      "Software, NC Verification" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeSoftwareNesting
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6270"^^xsd:token ;
+    skos:prefLabel      "Software, Nesting" ;
+    cmns-dsg:designates pc_ecs:codeNestingSoftware .
+ex_raw_pc_cs:codeSoftwareOtherManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6280"^^xsd:token ;
+    skos:prefLabel      "Software, Other Manufacturing" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeSoftwarePostProcessorsStandAloneSoldIndependentOfCamSystem
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6285"^^xsd:token ;
+    skos:prefLabel      "Software, Post Processors, Stand-Alone (sold independent of CAM system)" ;
+    cmns-dsg:designates pc_ecs:codeStandAlonePostProcessorSoftware .
+ex_raw_pc_cs:codeSoftwareToolCribControl
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6320"^^xsd:token ;
+    skos:prefLabel      "Software, Tool Crib Control" ;
+    cmns-dsg:designates pc_ecs:codeToolCribControlSoftware .
+ex_raw_pc_cs:codeSoftwareToolDesign
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6330"^^xsd:token ;
+    skos:prefLabel      "Software, Tool Design" ;
+    cmns-dsg:designates pc_ecs:codeToolDesignSoftware .
+ex_raw_pc_cs:codeDeburringServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6422"^^xsd:token ;
+    skos:prefLabel      "Deburring Services" ;
+    cmns-dsg:designates pc_ecs:codeDeburringService .
+ex_raw_pc_cs:codeAppraisalServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6440"^^xsd:token ;
+    skos:prefLabel      "Appraisal Services" ;
+    cmns-dsg:designates pc_ecs:codeAppraisalService .
+ex_raw_pc_cs:codeQualityMeasurementServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6441"^^xsd:token ;
+    skos:prefLabel      "Quality & Measurement Services" ;
+    cmns-dsg:designates pc_ecs:codeQualityMeasurementService .
+ex_raw_pc_cs:codeFinishingServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6443"^^xsd:token ;
+    skos:prefLabel      "Finishing Services" ;
+    cmns-dsg:designates pc_ecs:codeFinishingService .
+ex_raw_pc_cs:codeBooksPublicationsAndInformationServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6450"^^xsd:token ;
+    skos:prefLabel      "Books, Publications and Information Services" ;
+    cmns-dsg:designates pc_ecs:codeBookPublicationInformationService .
+ex_raw_pc_cs:codeConsultingServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6460"^^xsd:token ;
+    skos:prefLabel      "Consulting Services" ;
+    cmns-dsg:designates pc_ecs:codeConsultingService .
+ex_raw_pc_cs:codeContractManufacturingAndMachiningServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6470"^^xsd:token ;
+    skos:prefLabel      "Contract Manufacturing and Machining Services" ;
+    cmns-dsg:designates pc_ecs:codeContractManufacturingMachiningService .
+ex_raw_pc_cs:codeLeasingAndFinancingServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6480"^^xsd:token ;
+    skos:prefLabel      "Leasing and Financing Services" ;
+    cmns-dsg:designates pc_ecs:codeLeasingFinancingService .
+ex_raw_pc_cs:codeMachineryRiggingErectionAndInstallationServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6490"^^xsd:token ;
+    skos:prefLabel      "Machinery Rigging, Erection and Installation Services" ;
+    cmns-dsg:designates pc_ecs:codeMachineryRiggingErectionInstallationService .
+ex_raw_pc_cs:codeMachiningServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6491"^^xsd:token ;
+    skos:prefLabel      "Machining Services" ;
+    cmns-dsg:designates pc_ecs:codeMachiningService .
+ex_raw_pc_cs:codeMaintenanceAndRepairServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6500"^^xsd:token ;
+    skos:prefLabel      "Maintenance and Repair Services" ;
+    cmns-dsg:designates pc_ecs:codeMaintenanceRepairService .
+ex_raw_pc_cs:codeRecruitmentAndPlacementServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6510"^^xsd:token ;
+    skos:prefLabel      "Recruitment and Placement Services" ;
+    cmns-dsg:designates pc_ecs:codeRecruitmentPlacementService .
+ex_raw_pc_cs:codeReclamationRecyclingServicesScrapDealers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6520"^^xsd:token ;
+    skos:prefLabel      "Reclamation/Recycling Services, Scrap Dealers" ;
+    cmns-dsg:designates pc_ecs:codeReclamationRecyclingService .
+ex_raw_pc_cs:codeRequestForQuoteServicesInternetOnly
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6525"^^xsd:token ;
+    skos:prefLabel      "Request for Quote Services, Internet-Only" ;
+    cmns-dsg:designates pc_ecs:codeRFQService .
+ex_raw_pc_cs:codeRetrofittingRebuildingRemanufacturingServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6530"^^xsd:token ;
+    skos:prefLabel      "Retrofitting, Rebuilding, Remanufacturing Services" ;
+    cmns-dsg:designates pc_ecs:codeRetrofittingRebuildingService .
+ex_raw_pc_cs:codeShippingLogisticsServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6540"^^xsd:token ;
+    skos:prefLabel      "Shipping & Logistics Services" ;
+    cmns-dsg:designates pc_ecs:codeShippingLogisticsService .
+ex_raw_pc_cs:codeToolRepairCoatingAndTreatmentServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6550"^^xsd:token ;
+    skos:prefLabel      "Tool Repair, Coating, and Treatment Services" ;
+    cmns-dsg:designates pc_ecs:codeToolRepairCoatingTreatmentService .
+ex_raw_pc_cs:codeSpindleRepairAndMaintenanceServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6555"^^xsd:token ;
+    skos:prefLabel      "Spindle Repair and Maintenance Services" ;
+    cmns-dsg:designates pc_ecs:codeSpindleRepairService .
+ex_raw_pc_cs:codeTradeAssociationsSocietiesGovernmentalAgencies
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6560"^^xsd:token ;
+    skos:prefLabel      "Trade Associations, Societies, Governmental Agencies" ;
+    cmns-dsg:designates pc_ecs:codeTradeAssocSocietyGovAgencyCollection .
+ex_raw_pc_cs:codeTrainingOfAllTypesIncludingAudiovisual
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6570"^^xsd:token ;
+    skos:prefLabel      "Training of All Types, Including Audiovisual" ;
+    cmns-dsg:designates pc_ecs:codeTrainingService .
+ex_raw_pc_cs:codeUniversityCollegeOrResearchCenter
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6580"^^xsd:token ;
+    skos:prefLabel      "University, College or Research Center" ;
+    cmns-dsg:designates pc_ecs:codeAcademicResearchOrganization .
+ex_raw_pc_cs:codeToolingMaterialsCarbides
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6585"^^xsd:token ;
+    skos:prefLabel      "Tooling Materials, Carbides" ;
+    cmns-dsg:designates pc_ecs:codeCarbideToolingMaterial .
+ex_raw_pc_cs:codeToolingMaterialsCeramics
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6590"^^xsd:token ;
+    skos:prefLabel      "Tooling Materials, Ceramics" ;
+    cmns-dsg:designates pc_ecs:codeCeramicToolingMaterial .
+ex_raw_pc_cs:codeToolingMaterialsOther
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6591"^^xsd:token ;
+    skos:prefLabel      "Tooling Materials, Other" ;
+    cmns-dsg:designates pc_ecs:codeToolingMaterialOtherCollection .
+ex_raw_pc_cs:codeServicesSales
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6810"^^xsd:token ;
+    skos:prefLabel      "Services, Sales" ;
+    cmns-dsg:designates pc_ecs:codeSalesService .
+ex_raw_pc_cs:codeMultiMachineToolStorageSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6815"^^xsd:token ;
+    skos:prefLabel      "Multi-Machine Tool-Storage Systems" ;
+    cmns-dsg:designates pc_ecs:codeMultiMachineToolStorageSystem .
+ex_raw_pc_cs:codeService
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6820"^^xsd:token ;
+    skos:prefLabel      "Service" ;
+    cmns-dsg:designates pc_ecs:codeGenericService .
+ex_raw_pc_cs:codeToolchangers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6860"^^xsd:token ;
+    skos:prefLabel      "Toolchangers" ;
+    cmns-dsg:designates pc_ecs:codeToolchanger .
+ex_raw_pc_cs:codeBoringToolsHeadsForMachiningCenters
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6865"^^xsd:token ;
+    skos:prefLabel      "Boring Tools & Heads for Machining Centers" ;
+    cmns-dsg:designates pc_ecs:codeMachiningCenterBoringTool .
+ex_raw_pc_cs:codeBoringToolsForTurningMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6870"^^xsd:token ;
+    skos:prefLabel      "Boring Tools for Turning Machines" ;
+    cmns-dsg:designates pc_ecs:codeTurningBoringTool .
+ex_raw_pc_cs:codeConveyorsOtherPartHandlingAutomation
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6875"^^xsd:token ;
+    skos:prefLabel      "Conveyors & Other Part Handling Automation" ;
+    cmns-dsg:designates pc_ecs:codeConveyorPartHandlingAutomation .
+ex_raw_pc_cs:codeGantryLoaders
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6880"^^xsd:token ;
+    skos:prefLabel      "Gantry Loaders" ;
+    cmns-dsg:designates pc_ecs:codeGantryLoader .
+ex_raw_pc_cs:codePalletChangersManual
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6890"^^xsd:token ;
+    skos:prefLabel      "Pallet Changers - Manual" ;
+    cmns-dsg:designates pc_ecs:codeManualPalletChanger .
+ex_raw_pc_cs:codeMachineMonitoringSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6895"^^xsd:token ;
+    skos:prefLabel      "Machine Monitoring Systems" ;
+    cmns-dsg:designates pc_ecs:codeMachineMonitoringSystem .
+ex_raw_pc_cs:codeSoftwareCalibration
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6900"^^xsd:token ;
+    skos:prefLabel      "Software, Calibration" ;
+    cmns-dsg:designates pc_ecs:codeCalibrationSoftware .
+ex_raw_pc_cs:codeSoftwareErpForMakeToOrderManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6905"^^xsd:token ;
+    skos:prefLabel      "Software, ERP for Make-to-Order Manufacturing" ;
+    cmns-dsg:designates pc_ecs:codeMakeToOrderERPSoftware .
+ex_raw_pc_cs:codeSoftwareErpForStandardProductsManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6910"^^xsd:token ;
+    skos:prefLabel      "Software, ERP for Standard Products Manufacturing" ;
+    cmns-dsg:designates pc_ecs:codeStandardProductERPSoftware .
+ex_raw_pc_cs:codeSoftwareQualityDocumentation
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6920"^^xsd:token ;
+    skos:prefLabel      "Software, Quality Documentation" ;
+    cmns-dsg:designates pc_ecs:codeQualityDocumentationSoftware .
+ex_raw_pc_cs:codeSoftwareStatisticalDataCollectionAnalysis
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "6925"^^xsd:token ;
+    skos:prefLabel      "Software, Statistical Data Collection & Analysis" ;
+    cmns-dsg:designates pc_ecs:codeStatisticalDataAnalysisSoftware .
+ex_raw_pc_cs:codeBearingProductionAndMachiningEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8000"^^xsd:token ;
+    skos:prefLabel      "Bearing Production and Machining Equipment" ;
+    cmns-dsg:designates pc_ecs:codeBearingProductionEquipment .
+ex_raw_pc_cs:codeManufacturingEquipmentForMechanicalTransmissionSystemsMotorsAndSeals
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8005"^^xsd:token ;
+    skos:prefLabel      "Manufacturing Equipment for Mechanical Transmission Systems, Motors and Seals" ;
+    cmns-dsg:designates pc_ecs:codeMechanicalSubsystemEquipmentCollection .
+ex_raw_pc_cs:codeElectronicAndOptoElectronicComponents
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8010"^^xsd:token ;
+    skos:prefLabel      "Electronic and Opto-Electronic Components" ;
+    cmns-dsg:designates pc_ecs:codeElectronicOptoElectronicComponent .
+ex_raw_pc_cs:codeLinearMotionSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8015"^^xsd:token ;
+    skos:prefLabel      "Linear Motion Systems" ;
+    cmns-dsg:designates pc_ecs:codeLinearMotionSystem .
+ex_raw_pc_cs:codeSeals
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8020"^^xsd:token ;
+    skos:prefLabel      "Seals" ;
+    cmns-dsg:designates pc_ecs:codeSeal .
+ex_raw_pc_cs:codeAirCompressors
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8025"^^xsd:token ;
+    skos:prefLabel      "Air Compressors" ;
+    cmns-dsg:designates pc_ecs:codeAirCompressor .
+ex_raw_pc_cs:codeCompressedAirProcessingEquipmentDryersCoolersEtc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8030"^^xsd:token ;
+    skos:prefLabel      "Compressed Air Processing Equipment, Dryers, Coolers, etc." ;
+    cmns-dsg:designates pc_ecs:codeCompressedAirProcessingEquipment .
+ex_raw_pc_cs:codeCompressedAirStorageAndDistributionEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8035"^^xsd:token ;
+    skos:prefLabel      "Compressed Air Storage and Distribution Equipment" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeCompressedAirEquipmentOther
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8040"^^xsd:token ;
+    skos:prefLabel      "Compressed Air Equipment; Other" ;
+    cmns-dsg:designates pc_ecs:codeCompressedAirOtherCollection .
+ex_raw_pc_cs:codeCompressorAccessoriesComponentsValvesPressureGaugesReducersSilencersHeatRecoveryCoolingSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8045"^^xsd:token ;
+    skos:prefLabel      "Compressor Accessories & Components (Valves, Pressure Gauges & Reducers, Silencers, Heat Recovery & Cooling Systems)" ;
+    cmns-dsg:designates pc_ecs:codeCompressorAccessoryComponent .
+ex_raw_pc_cs:codeConditionMonitoringAndVibrationReduction
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8050"^^xsd:token ;
+    skos:prefLabel      "Condition Monitoring and Vibration Reduction" ;
+    cmns-dsg:designates pc_ecs:codeConditionMonitoringVibrationReduction .
+ex_raw_pc_cs:codeVacuumTechnology
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8055"^^xsd:token ;
+    skos:prefLabel      "Vacuum Technology" ;
+    cmns-dsg:designates pc_ecs:codeVacuumTechnology .
+ex_raw_pc_cs:codeSoftwareComputerAidedFacilityManagementSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8060"^^xsd:token ;
+    skos:prefLabel      "Software, Computer Aided Facility Management Systems" ;
+    cmns-dsg:designates pc_ecs:codeFacilityManagementSoftware .
+ex_raw_pc_cs:codeSoftwareCustomerRelationshipManagementSoftwareCrm
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8065"^^xsd:token ;
+    skos:prefLabel      "Software, Customer Relationship Management Software, CRM" ;
+    cmns-dsg:designates pc_ecs:codeCRMSoftware .
+ex_raw_pc_cs:codeSoftwareHumanResources
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8075"^^xsd:token ;
+    skos:prefLabel      "Software, Human Resources" ;
+    cmns-dsg:designates pc_ecs:codeHRSoftware .
+ex_raw_pc_cs:codeSoftwareIndustrialItOthers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8080"^^xsd:token ;
+    skos:prefLabel      "Software, Industrial IT & Others" ;
+    cmns-dsg:designates pc_ecs:codeIndustrialITOtherSoftware .
+ex_raw_pc_cs:codeSoftwareInternetCommunications
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8085"^^xsd:token ;
+    skos:prefLabel      "Software, Internet & Communications" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeSoftwareMultimediaSoftware
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8090"^^xsd:token ;
+    skos:prefLabel      "Software, Multimedia Software" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeSoftwareOperatingSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8095"^^xsd:token ;
+    skos:prefLabel      "Software, Operating Systems" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeSoftwareProductLifeCycleManagementSoftwarePlmComputer
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8100"^^xsd:token ;
+    skos:prefLabel      "Software, Product Life Cycle Management Software, PLM, Computer" ;
+    cmns-dsg:designates pc_ecs:codePLMSoftware ;
+    skos:editorialNote  "harmonization-action: updated (-> 'Software, Product Life Cycle Management')" .
+ex_raw_pc_cs:codeSoftwareProgramDevelopmentSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8105"^^xsd:token ;
+    skos:prefLabel      "Software,  Program Development Systems" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeSoftwareForDrivesGearsHydraulicsPneumatics
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8110"^^xsd:token ;
+    skos:prefLabel      "Software  ( for Drives, Gears Hydraulics, Pneumatics)" ;
+    cmns-dsg:designates pc_ecs:codeDrivesGearsHydraulicsPneumaticsSoftware .
+ex_raw_pc_cs:codeSoftwareSpeechRecognition
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8115"^^xsd:token ;
+    skos:prefLabel      "Software, Speech Recognition" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeSoftwareVideoConferencingSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8120"^^xsd:token ;
+    skos:prefLabel      "Software, Video Conferencing Systems" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeSoftwareVirtualRealitySystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8125"^^xsd:token ;
+    skos:prefLabel      "Software, Virtual Reality Systems" ;
+    cmns-dsg:designates pc_ecs:codeVirtualRealitySoftware .
+ex_raw_pc_cs:codeEngineeringServicesForDrivesGearsHydraulicsPneumatics
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8130"^^xsd:token ;
+    skos:prefLabel      "Engineering Services (for Drives, Gears, Hydraulics, Pneumatics)" ;
+    cmns-dsg:designates pc_ecs:codeEngineeringService .
+ex_raw_pc_cs:codeIndustrialItServicesOutsourcing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8135"^^xsd:token ;
+    skos:prefLabel      "Industrial IT Services & Outsourcing" ;
+    cmns-dsg:designates pc_ecs:codeIndustrialITServiceOutsourcing .
+ex_raw_pc_cs:codeSupportAndMaintenanceServicesForDrivesGearsHydraulicsPneumatics
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8140"^^xsd:token ;
+    skos:prefLabel      "Support and Maintenance Services ( for Drives, Gears Hydraulics, Pneumatics)" ;
+    cmns-dsg:designates pc_ecs:codeDrivesGearsHydraulicsPneumaticsSupportService .
+ex_raw_pc_cs:codeAutomationServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8145"^^xsd:token ;
+    skos:prefLabel      "Automation Services" ;
+    cmns-dsg:designates pc_ecs:codeAutomationService .
+ex_raw_pc_cs:codeCommunicationNetworksAndFieldBusSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8150"^^xsd:token ;
+    skos:prefLabel      "Communication, Networks and Field Bus Systems" ;
+    cmns-dsg:designates pc_ecs:codeCommunicationNetworkFieldBusSystem .
+ex_raw_pc_cs:codeControlSystemsPlcScadaSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8155"^^xsd:token ;
+    skos:prefLabel      "Control Systems, PLC, SCADA Systems" ;
+    cmns-dsg:designates pc_ecs:codePLCSCADAControlSystem .
+ex_raw_pc_cs:codeEmbeddedSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8160"^^xsd:token ;
+    skos:prefLabel      "Embedded Systems" ;
+    cmns-dsg:designates pc_ecs:codeEmbeddedSystem .
+ex_raw_pc_cs:codeIndustrialAutomaticDataCapturingAndIdentificationSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8165"^^xsd:token ;
+    skos:prefLabel      "Industrial Automatic Data Capturing and Identification Systems" ;
+    cmns-dsg:designates pc_ecs:codeIndustrialAutoIDSystem .
+ex_raw_pc_cs:codeIndustrialBuildingAutomationSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8170"^^xsd:token ;
+    skos:prefLabel      "Industrial Building Automation Systems" ;
+    cmns-dsg:designates pc_ecs:codeIndustrialBuildingAutomationSystem .
+ex_raw_pc_cs:codeIndustrialImageProcessingSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8175"^^xsd:token ;
+    skos:prefLabel      "Industrial Image Processing Systems" ;
+    cmns-dsg:designates pc_ecs:codeIndustrialImageProcessingSystem .
+ex_raw_pc_cs:codeIndustrialPcs
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8180"^^xsd:token ;
+    skos:prefLabel      "Industrial PCs" ;
+    cmns-dsg:designates pc_ecs:codeIndustrialPC .
+ex_raw_pc_cs:codeLaserTechnology
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8185"^^xsd:token ;
+    skos:prefLabel      "Laser Technology" ;
+    cmns-dsg:designates pc_ecs:codeLaserTechnologyCollection .
+ex_raw_pc_cs:codeMeasuringAndTestSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8190"^^xsd:token ;
+    skos:prefLabel      "Measuring and Test Systems" ;
+    cmns-dsg:designates pc_ecs:codeMeasuringTestSystem .
+ex_raw_pc_cs:codeSafetyAndSecuritySystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8195"^^xsd:token ;
+    skos:prefLabel      "Safety and Security Systems" ;
+    cmns-dsg:designates pc_ecs:codeSafetySecuritySystem .
+ex_raw_pc_cs:codeSensorsAndActuators
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8200"^^xsd:token ;
+    skos:prefLabel      "Sensors and Actuators" ;
+    cmns-dsg:designates pc_ecs:codeSensorActuatorCollection .
+ex_raw_pc_cs:codeDesignAndModelingOfMicroSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8205"^^xsd:token ;
+    skos:prefLabel      "Design and Modeling of Micro-systems" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeMicroActuators
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8210"^^xsd:token ;
+    skos:prefLabel      "Micro actuators" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeMicroAndFiberOptics
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8215"^^xsd:token ;
+    skos:prefLabel      "Micro and fiber optics" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeMicroAssembly
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8220"^^xsd:token ;
+    skos:prefLabel      "Micro assembly" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeMicroEngineering
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8225"^^xsd:token ;
+    skos:prefLabel      "Micro engineering" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeMicroJoiningTechnology
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8230"^^xsd:token ;
+    skos:prefLabel      "Micro joining technology" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeMicroSensors
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8240"^^xsd:token ;
+    skos:prefLabel      "Micro sensors" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeMicrosystemsComponents
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8245"^^xsd:token ;
+    skos:prefLabel      "Microsystems components" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeMicrosystemsTechnologyOthers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8250"^^xsd:token ;
+    skos:prefLabel      "Microsystems technology, others" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeModularMicroSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8255"^^xsd:token ;
+    skos:prefLabel      "Modular Micro-Systems" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeNanotechnology
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8260"^^xsd:token ;
+    skos:prefLabel      "Nanotechnology" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeRapidMicroProductDevelopment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8265"^^xsd:token ;
+    skos:prefLabel      "Rapid micro product development" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeMachiningFlexLines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8270"^^xsd:token ;
+    skos:prefLabel      "Machining Flex Lines" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeBurnishingToolsRoller
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "8275"^^xsd:token ;
+    skos:prefLabel      "Burnishing Tools (Roller)" ;
+    cmns-dsg:designates pc_ecs:codeRollerBurnishingTool .
+ex_raw_pc_cs:codeElectroplatingUnits
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10000"^^xsd:token ;
+    skos:prefLabel      "Electroplating Units" ;
+    cmns-dsg:designates pc_ecs:codeElectroplatingUnit .
+ex_raw_pc_cs:codeManufacturingEquipmentForAutomationElectricalSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10001"^^xsd:token ;
+    skos:prefLabel      "Manufacturing Equipment for Automation & Electrical Systems" ;
+    cmns-dsg:designates pc_ecs:codeAutomationElectricalEquipmentCollection .
+ex_raw_pc_cs:codeSystemsForIndustrialPlasmaSurfaceTechnology
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10003"^^xsd:token ;
+    skos:prefLabel      "Systems for Industrial Plasma & Surface Technology" ;
+    cmns-dsg:designates pc_ecs:codeIndustrialPlasmaSurfaceSystem .
+ex_raw_pc_cs:codeFormedPartsCastingsSinteredEtc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10004"^^xsd:token ;
+    skos:prefLabel      "Formed Parts (castings, sintered, etc.)" ;
+    cmns-dsg:designates pc_ecs:codeFormedPart .
+ex_raw_pc_cs:codePistonCompressors
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10005"^^xsd:token ;
+    skos:prefLabel      "Piston Compressors" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeSwitchesCircuitBreakers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10007"^^xsd:token ;
+    skos:prefLabel      "Switches & Circuit breakers" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeVacuumFittingsSealsValvesAccessories
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10008"^^xsd:token ;
+    skos:prefLabel      "Vacuum Fittings, Seals, Valves & Accessories" ;
+    cmns-dsg:designates pc_ecs:codeVacuumFittingSealValveAccessory .
+ex_raw_pc_cs:codeVacuumPumps
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10009"^^xsd:token ;
+    skos:prefLabel      "Vacuum Pumps" ;
+    cmns-dsg:designates pc_ecs:codeVacuumPump .
+ex_raw_pc_cs:codeEnergyManagementSoftwareSystemsServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10010"^^xsd:token ;
+    skos:prefLabel      "Energy Management Software, Systems & Services" ;
+    cmns-dsg:designates pc_ecs:codeEnergyManagementSoftwareSystemService .
+ex_raw_pc_cs:codeIndustrialInternetOfThingsIiotTechnology
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10011"^^xsd:token ;
+    skos:prefLabel      "Industrial Internet of Things (IIoT) Technology" ;
+    cmns-dsg:designates pc_ecs:codeIIoTTechnology .
+ex_raw_pc_cs:codeWirelessTechnology
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10012"^^xsd:token ;
+    skos:prefLabel      "Wireless Technology" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeServicesAssembliesMetalStructuresSpringsSheetMetalWireParts
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10013"^^xsd:token ;
+    skos:prefLabel      "Services, Assemblies & Metal Structures (springs, sheet metal & wire parts)" ;
+    cmns-dsg:designates pc_ecs:codeAssemblyMetalStructureService .
+ex_raw_pc_cs:codeCompressedAirVacuumTechnologyServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10014"^^xsd:token ;
+    skos:prefLabel      "Compressed Air & Vacuum Technology Services" ;
+    cmns-dsg:designates pc_ecs:codeCompressedAirVacuumService .
+ex_raw_pc_cs:codeMetalFormingServicesSolidFormingSheetMetalFormingOtherFormedMetalParts
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10015"^^xsd:token ;
+    skos:prefLabel      "Metal Forming Services (solid forming, sheet metal forming & other formed metal parts)" ;
+    cmns-dsg:designates pc_ecs:codeMetalFormingService .
+ex_raw_pc_cs:codeMotorVehicleComponentsServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10016"^^xsd:token ;
+    skos:prefLabel      "Motor Vehicle Components Services" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeServicesNonMetalPartsPlasticRubberCeramic
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10017"^^xsd:token ;
+    skos:prefLabel      "Services, Non-Metal Parts (plastic, rubber, ceramic)" ;
+    cmns-dsg:designates pc_ecs:codeNonMetalPartService .
+ex_raw_pc_cs:codeProcessAutomationSystemsServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10018"^^xsd:token ;
+    skos:prefLabel      "Process Automation Systems & Services" ;
+    cmns-dsg:designates pc_ecs:codeProcessAutomationSystemService .
+ex_raw_pc_cs:codeSoftwareCadCamForAdditiveManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10020"^^xsd:token ;
+    skos:prefLabel      "Software, CAD/CAM for Additive Manufacturing" ;
+    cmns-dsg:designates pc_ecs:codeAdditiveCADCAMSoftware .
+ex_raw_pc_cs:codeOnMachineProbes
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10021"^^xsd:token ;
+    skos:prefLabel      "On-Machine Probes" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: removed" .
+ex_raw_pc_cs:codeServoMotorsLinear
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10022"^^xsd:token ;
+    skos:prefLabel      "Servo Motors, Linear" ;
+    cmns-dsg:designates pc_ecs:codeLinearServoMotor .
+ex_raw_pc_cs:codeServoMotorsRotary
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10023"^^xsd:token ;
+    skos:prefLabel      "Servo Motors, Rotary" ;
+    cmns-dsg:designates pc_ecs:codeRotaryServoMotor .
+ex_raw_pc_cs:codePalletChangersAutomatic
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10024"^^xsd:token ;
+    skos:prefLabel      "Pallet Changers - Automatic" ;
+    cmns-dsg:designates pc_ecs:codeAutomaticPalletChanger .
+ex_raw_pc_cs:codeAutomatedPalletSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10025"^^xsd:token ;
+    skos:prefLabel      "Automated Pallet Systems" ;
+    cmns-dsg:designates pc_ecs:codeAutomatedPalletSystem .
+ex_raw_pc_cs:codeMachiningCellsFms
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10026"^^xsd:token ;
+    skos:prefLabel      "Machining Cells & FMS" ;
+    cmns-dsg:designates pc_ecs:codeMachiningCellFMSCollection .
+ex_raw_pc_cs:codeVatPhotopolymerization
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10040"^^xsd:token ;
+    skos:prefLabel      "Vat Photopolymerization" ;
+    cmns-dsg:designates pc_ecs:codeVatPhotopolymerization .
+ex_raw_pc_cs:codePowderBedFusionPbf
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10041"^^xsd:token ;
+    skos:prefLabel      "Powder Bed Fusion (PBF)" ;
+    cmns-dsg:designates pc_ecs:codePowderBedFusion .
+ex_raw_pc_cs:codeBinderJetting
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10042"^^xsd:token ;
+    skos:prefLabel      "Binder Jetting" ;
+    cmns-dsg:designates pc_ecs:codeBinderJetting .
+ex_raw_pc_cs:codeMaterialJetting
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10043"^^xsd:token ;
+    skos:prefLabel      "Material Jetting" ;
+    cmns-dsg:designates pc_ecs:codeMaterialJetting .
+ex_raw_pc_cs:codeSheetLamination
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10044"^^xsd:token ;
+    skos:prefLabel      "Sheet Lamination" ;
+    cmns-dsg:designates pc_ecs:codeSheetLamination .
+ex_raw_pc_cs:codeMaterialExtrusion
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10045"^^xsd:token ;
+    skos:prefLabel      "Material Extrusion" ;
+    cmns-dsg:designates pc_ecs:codeMaterialExtrusion .
+ex_raw_pc_cs:codeDirectedEnergyDepositionDed
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10046"^^xsd:token ;
+    skos:prefLabel      "Directed Energy Deposition (DED)" ;
+    cmns-dsg:designates pc_ecs:codeDirectedEnergyDeposition .
+ex_raw_pc_cs:codeHybridAdditiveManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10047"^^xsd:token ;
+    skos:prefLabel      "Hybrid - Additive Manufacturing" ;
+    cmns-dsg:designates pc_ecs:codeHybridAdditiveManufacturing .
+ex_raw_pc_cs:codeMobileRobotsAgvUgvAmr
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10048"^^xsd:token ;
+    skos:prefLabel      "Mobile Robots - (AGV / UGV / AMR )" ;
+    cmns-dsg:designates pc_ecs:codeMobileRobot .
+ex_raw_pc_cs:codeStationaryRobotsRobotArm
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10049"^^xsd:token ;
+    skos:prefLabel      "Stationary Robots - (Robot Arm)" ;
+    cmns-dsg:designates pc_ecs:codeStationaryRobot .
+ex_raw_pc_cs:codeSoftwareAutomation
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10050"^^xsd:token ;
+    skos:prefLabel      "Software, Automation" ;
+    cmns-dsg:designates pc_ecs:codeAutomationSoftware .

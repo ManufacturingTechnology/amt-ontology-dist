@@ -1,0 +1,1223 @@
+@prefix lead_pc_cs:  <http://ontology.amt.org/codes/lead-product-interest#> .
+@prefix amtmeta:     <http://ontology.amt.org/meta#> .
+@prefix pc_vcs:      <http://ontology.amt.org/codes/visitor-product-categories#> .
+@prefix cmns-cds:    <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+@prefix cmns-col:    <https://www.omg.org/spec/Commons/Collections/> .
+@prefix cmns-dsg:    <https://www.omg.org/spec/Commons/Designators/> .
+@prefix owl:         <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:         <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:        <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:         <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:        <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:     <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# Lead-Scan Product-Interest CodeSet
+# ============================================================================
+# Pre-harmonization visitor-form product-interest vocabulary as it stood for
+# IMTS 2024. Each entry corresponds to one row of "Page 2 Updates" in
+# old_visitor_categories_mapped.xlsx; the Answer ID is preserved as
+# skos:notation.
+#
+# cmns-dsg:designates targets pc_vcs: CodeElements (the harmonized visitor
+# codeset), giving a same-context old->new answer-ID mapping. The pc:
+# class anchor is reached transitively through pc_vcs's own designates.
+# When the harmonized target is a bucket-level grouping, the designate
+# points at the pc_vcs:bucket* Collection.
+#
+# Entries marked owl:deprecated true are retired in the harmonized model
+# (Action=REMOVE) or were manually retired post-harmonization. Their
+# notations remain so historical lead-scan data still resolves.
+# ============================================================================
+
+<http://ontology.amt.org/codes/lead-product-interest>
+    a owl:Ontology, amtmeta:CodeSetVocabulary ;
+    owl:imports <http://ontology.amt.org/meta>,
+                <http://ontology.amt.org/product-categories>,
+                <https://www.omg.org/spec/Commons/CodesAndCodeSets/>,
+                <https://www.omg.org/spec/Commons/Collections/>,
+                <https://www.omg.org/spec/Commons/Designators/> ;
+
+    dcterms:title    "Lead-Scan Product Interest CodeSet" ;
+    owl:versionInfo  "0.5.0" ;
+    owl:versionIRI   <http://ontology.amt.org/codes/lead-product-interest/0.5.0> ;
+
+    amtmeta:status              amtmeta:Active ;
+    amtmeta:taxonomyOwner       "Chris Downs" ;
+    amtmeta:technicalSteward    "Shaurabh" ;
+    amtmeta:relatedProduct      "IMTS Lead Scan" ;
+    amtmeta:nextReviewDate      "2027-01-01"^^xsd:date ;
+
+    amtmeta:releaseDate     "2026-06-12"^^xsd:date ;
+    amtmeta:scopeSummary    "IMTS 2024 lead-scan-form product-interest vocabulary; CodeElement notations are Answer IDs from old_visitor_categories_mapped.xlsx. cmns-dsg:designates targets pc_vcs: CodeElements; deprecated entries (REMOVE / manually retired) retain notation for historical data resolution." ;
+    amtmeta:releaseOwner    "Shaurabh" ;
+    amtmeta:approvalStatus  amtmeta:Draft ;
+    amtmeta:gitTag          "v0.5.0" ;
+    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.5.0> ;
+    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.5.0> ;
+
+    amtmeta:useCase
+        "Capture visitors' 2024 lead-scan-form product-interest selections; trace to the harmonized visitor codeset via cmns-dsg:designates" .
+
+lead_pc_cs:LeadProductInterestConcept
+    a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label   "Lead-Scan Product Interest" ;
+    rdfs:comment "Anchor for amtmeta:codesFor on lead_pc_cs:LeadProductInterestCodeSet." .
+
+lead_pc_cs:LeadProductInterestCodeSet
+    a cmns-cds:CodeSet, owl:NamedIndividual ;
+    amtmeta:codesFor    lead_pc_cs:LeadProductInterestConcept ;
+    rdfs:label          "Lead-Scan Product Interest CodeSet" ;
+    amtmeta:consumerFor "IMTS Lead Scan registration question: product interest (2024)" ;
+    rdfs:comment        "Pre-harmonization lead-scan-form product-interest vocabulary." .
+
+#-------------------------------------------------------------------------------
+# CodeElements (in Answer ID order)
+#-------------------------------------------------------------------------------
+
+lead_pc_cs:codeTurningAndLathes
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3A"^^xsd:token ;
+    skos:prefLabel      "Turning and Lathes" ;
+    cmns-dsg:designates pc_vcs:bucketTurningScrewMachiningAndThreadManufacturing ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeLathesHorizontalCncSwissStyleLathes
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3A1"^^xsd:token ;
+    skos:prefLabel      "Lathes, Horizontal, CNC-Swiss Style Lathes" ;
+    cmns-dsg:designates pc_vcs:codeSwissStyleLathe ;
+    skos:editorialNote  "harmonization-action: Keep (Add to model)" .
+lead_pc_cs:codeLathesHorizontalCncMultiSpindle
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3A2"^^xsd:token ;
+    skos:prefLabel      "Lathes, Horizontal, CNC-Multi-Spindle" ;
+    cmns-dsg:designates pc_vcs:codeMultiSpindleHorizontalCNCLathe ;
+    skos:editorialNote  "harmonization-action: Keep (Add to model)" .
+lead_pc_cs:codeLathesHorizontalCncTwinSpindleMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3A3"^^xsd:token ;
+    skos:prefLabel      "Lathes, Horizontal, CNC-Twin Spindle Machines" ;
+    cmns-dsg:designates pc_vcs:codeTwinSpindleHorizontalCNCLathe ;
+    skos:editorialNote  "harmonization-action: Keep (Add to model)" .
+lead_pc_cs:codeLathesHorizontalCncOther
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3A4"^^xsd:token ;
+    skos:prefLabel      "Lathes, Horizontal, CNC-Other" ;
+    cmns-dsg:designates pc_vcs:codeHorizontalCNCLathe ;
+    skos:editorialNote  "harmonization-action: Update (Add to model)" .
+lead_pc_cs:codeLathesVerticalCnc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3A5"^^xsd:token ;
+    skos:prefLabel      "Lathes, Vertical, CNC" ;
+    cmns-dsg:designates pc_vcs:codeVerticalCNCLathe ;
+    skos:editorialNote  "harmonization-action: Keep (Add to model)" .
+lead_pc_cs:codeLathesNonNc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3A6"^^xsd:token ;
+    skos:prefLabel      "Lathes, Non-NC" ;
+    cmns-dsg:designates pc_vcs:codeManualLathe ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeMachiningCenters
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3B"^^xsd:token ;
+    skos:prefLabel      "Machining Centers" ;
+    cmns-dsg:designates pc_vcs:bucketMillingBoringDrillingAndTapping ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeHorizontal
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3B1"^^xsd:token ;
+    skos:prefLabel      "Horizontal" ;
+    cmns-dsg:designates pc_vcs:codeHorizontalMachiningCenter ;
+    skos:editorialNote  "harmonization-action: Update (Add to model)" .
+lead_pc_cs:codeVerticalColumn
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3B2"^^xsd:token ;
+    skos:prefLabel      "Vertical Column" ;
+    cmns-dsg:designates pc_vcs:codeVerticalColumnMachiningCenter ;
+    skos:editorialNote  "harmonization-action: Update (Add to model)" .
+lead_pc_cs:codeVerticalBridgeGantry
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3B3"^^xsd:token ;
+    skos:prefLabel      "Vertical Bridge & Gantry" ;
+    cmns-dsg:designates pc_vcs:codeVerticalBridgeGantryMachiningCenter ;
+    skos:editorialNote  "harmonization-action: Update (Add to model)" .
+lead_pc_cs:codeUniversal
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3B4"^^xsd:token ;
+    skos:prefLabel      "Universal" ;
+    cmns-dsg:designates pc_vcs:codeUniversalMachiningCenter ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeMillingDrillingOrBoringMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3C"^^xsd:token ;
+    skos:prefLabel      "Milling, Drilling or Boring Machines" ;
+    cmns-dsg:designates pc_vcs:bucketMillingBoringDrillingAndTapping ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3B)" .
+lead_pc_cs:codeJigBoring
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3C1"^^xsd:token ;
+    skos:prefLabel      "Jig Boring" ;
+    cmns-dsg:designates pc_vcs:codeJigBoringMachine ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeBoringOrDrillingNonNc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3C2"^^xsd:token ;
+    skos:prefLabel      "Boring or Drilling, Non-NC" ;
+    cmns-dsg:designates pc_vcs:codeBoringMachine ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeBoringOrDrillingNc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3C3"^^xsd:token ;
+    skos:prefLabel      "Boring or Drilling, NC" ;
+    cmns-dsg:designates pc_vcs:codeBoringMachine ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3C2)" .
+lead_pc_cs:codeMillingMachinesProfilingDuplicatingNc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3C4"^^xsd:token ;
+    skos:prefLabel      "Milling Machines-Profiling & Duplicating, NC" ;
+    cmns-dsg:designates pc_vcs:codeProfileDuplicatingMillingMachine ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeToolsTooling
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3D"^^xsd:token ;
+    skos:prefLabel      "Tools & Tooling" ;
+    cmns-dsg:designates pc_vcs:bucketTooling ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeSawBladesAbrasives
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3D1"^^xsd:token ;
+    skos:prefLabel      "Saw Blades, Abrasives" ;
+    cmns-dsg:designates pc_vcs:codeSawBlade ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeCarbideToolingCoatings
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3D2"^^xsd:token ;
+    skos:prefLabel      "Carbide Tooling & Coatings" ;
+    cmns-dsg:designates pc_vcs:codeCarbideToolingCoating ;
+    skos:editorialNote  "harmonization-action: Keep (Add to model)" .
+lead_pc_cs:codeDiamondToolingsCoatings
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3D3"^^xsd:token ;
+    skos:prefLabel      "Diamond Toolings & Coatings" ;
+    cmns-dsg:designates pc_vcs:codeDiamondTooling ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeDrillsBoring
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3D4"^^xsd:token ;
+    skos:prefLabel      "Drills & Boring" ;
+    cmns-dsg:designates pc_vcs:codeBoringToolBarHead ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeMillsFacingEndMills
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3D5"^^xsd:token ;
+    skos:prefLabel      "Mills Facing & End Mills" ;
+    cmns-dsg:designates pc_vcs:codeFacingTool ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeToolHoldersArborsChucksCollets
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3D6"^^xsd:token ;
+    skos:prefLabel      "Tool Holders, Arbors, Chucks & Collets" ;
+    cmns-dsg:designates pc_vcs:codeToolHolderAdapter ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeOtherTooling
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3D8"^^xsd:token ;
+    skos:prefLabel      "Other Tooling" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: Keep (Keep?)" .
+lead_pc_cs:codeFormingTooling
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3D9"^^xsd:token ;
+    skos:prefLabel      "Forming Tooling" ;
+    cmns-dsg:designates pc_vcs:codeFormTool ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeGrindingFinishingMachinery
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3E"^^xsd:token ;
+    skos:prefLabel      "Grinding & Finishing Machinery" ;
+    cmns-dsg:designates pc_vcs:bucketFinishingAndPostProcessing ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeGrindingExternalCenterTypeIncludingPlungeGrinders
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3E1"^^xsd:token ;
+    skos:prefLabel      "Grinding-External Center Type (Including Plunge Grinders)" ;
+    cmns-dsg:designates pc_vcs:codeCylindricalODGrinder ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeGrindingInternal
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3E2"^^xsd:token ;
+    skos:prefLabel      "Grinding-Internal" ;
+    cmns-dsg:designates pc_vcs:codeInternalCylindricalGrinder ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeGrindingSurface
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3E3"^^xsd:token ;
+    skos:prefLabel      "Grinding-Surface" ;
+    cmns-dsg:designates pc_vcs:codeSurfaceGrindingMachine ;
+    skos:editorialNote  "harmonization-action: Update (Add to model)" .
+lead_pc_cs:codeGrindingToolCutterGrinder
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3E4"^^xsd:token ;
+    skos:prefLabel      "Grinding-Tool & Cutter Grinder" ;
+    cmns-dsg:designates pc_vcs:codeToolCutterDrillPointGrinder ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeGrindingCenterless
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3E5"^^xsd:token ;
+    skos:prefLabel      "Grinding-Centerless" ;
+    cmns-dsg:designates pc_vcs:codeCenterlessGrinder ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeHoningLappingPolishingBuffingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3E6"^^xsd:token ;
+    skos:prefLabel      "Honing, Lapping, Polishing & Buffing Machines" ;
+    cmns-dsg:designates pc_vcs:codeBuffingPolishingMachine ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeDeburringEtchingCleaningPeening
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3E7"^^xsd:token ;
+    skos:prefLabel      "Deburring, Etching, Cleaning & Peening" ;
+    cmns-dsg:designates pc_vcs:codeDeburringEtchingCleaningPeening ;
+    skos:editorialNote  "harmonization-action: Keep (Add to model)" .
+lead_pc_cs:codeQualityTestingMeasuringVision
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3F"^^xsd:token ;
+    skos:prefLabel      "Quality, Testing, Measuring & Vision" ;
+    cmns-dsg:designates pc_vcs:bucketMetrology ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeCmms
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3F1"^^xsd:token ;
+    skos:prefLabel      "CMMS" ;
+    cmns-dsg:designates pc_vcs:codeCoordinateMeasuringMachine ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeComparators
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3F2"^^xsd:token ;
+    skos:prefLabel      "Comparators" ;
+    cmns-dsg:designates pc_vcs:codeOpticalComparator ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeVideoSystemsCnc
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3F3"^^xsd:token ;
+    skos:prefLabel      "Video Systems-CNC" ;
+    cmns-dsg:designates pc_vcs:codeVisionSystem ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeVideoSystemsManual
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3F4"^^xsd:token ;
+    skos:prefLabel      "Video Systems-Manual" ;
+    cmns-dsg:designates pc_vcs:codeVisionSystem ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3F3)" .
+lead_pc_cs:codeFlawFlatnessRoundnessHardness
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3F5"^^xsd:token ;
+    skos:prefLabel      "Flaw, Flatness, Roundness & Hardness" ;
+    cmns-dsg:designates pc_vcs:codeFlawDetectionEquipment ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeOtherMeasuringAndInspectionEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3F6"^^xsd:token ;
+    skos:prefLabel      "Other Measuring and Inspection Equipment" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: Keep (Keep?)" .
+lead_pc_cs:codeWorkholdingDevices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3G"^^xsd:token ;
+    skos:prefLabel      "Workholding Devices" ;
+    cmns-dsg:designates pc_vcs:bucketWorkholding ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeChucksArborsMandrelsCollets
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3G1"^^xsd:token ;
+    skos:prefLabel      "Chucks, Arbors, Mandrels & Collets" ;
+    cmns-dsg:designates pc_vcs:codeChuckJawCollet ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeVisesClampsAndActuators
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3G2"^^xsd:token ;
+    skos:prefLabel      "Vises, Clamps, and Actuators" ;
+    cmns-dsg:designates pc_vcs:codeViseViseJaw ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeFixturingSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3G3"^^xsd:token ;
+    skos:prefLabel      "Fixturing Systems" ;
+    cmns-dsg:designates pc_vcs:codeFixturingSystem ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeCustomWorkholding
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3G4"^^xsd:token ;
+    skos:prefLabel      "Custom Workholding" ;
+    cmns-dsg:designates pc_vcs:codeCustomWorkholding ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeCadCamCimSoftwareComponentsCommunicationSystemsLan
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3H"^^xsd:token ;
+    skos:prefLabel      "CAD/CAM/CIM, Software & Components, Communication Systems & LAN" ;
+    cmns-dsg:designates pc_vcs:bucketSoftwareAndDigitalSolutions ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeSoftwareAdministrative
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3H1"^^xsd:token ;
+    skos:prefLabel      "Software, Administrative" ;
+    cmns-dsg:designates pc_vcs:codeAdministrativeSoftware ;
+    skos:editorialNote  "harmonization-action: Keep (Add to model)" .
+lead_pc_cs:codeSoftwareCadCam
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3H2"^^xsd:token ;
+    skos:prefLabel      "Software, CAD/CAM" ;
+    cmns-dsg:designates pc_vcs:bucketCADCAM ;
+    skos:editorialNote  "harmonization-action: Update (New Major Category)" .
+lead_pc_cs:codeSoftwareProductionFloor
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3H3"^^xsd:token ;
+    skos:prefLabel      "Software, Production Floor" ;
+    cmns-dsg:designates pc_vcs:codeProductionFloorSoftware ;
+    skos:editorialNote  "harmonization-action: Keep (Add to model)" .
+lead_pc_cs:codeSoftwareEngineeringAnalysis
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3H4"^^xsd:token ;
+    skos:prefLabel      "Software, Engineering Analysis" ;
+    cmns-dsg:designates pc_vcs:codeEngineeringAnalysisSimulationSoftware ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeOtherComputersCommunicationsAndSoftware
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3H5"^^xsd:token ;
+    skos:prefLabel      "Other Computers, Communications and Software" ;
+    cmns-dsg:designates pc_vcs:codeIndustrialITOtherSoftware ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeSawingAbrasiveCutOff
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3I"^^xsd:token ;
+    skos:prefLabel      "Sawing & Abrasive Cut-Off" ;
+    cmns-dsg:designates pc_vcs:bucketSawing ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeSawingVertical
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3I1"^^xsd:token ;
+    skos:prefLabel      "Sawing-Vertical" ;
+    cmns-dsg:designates pc_vcs:codeVerticalTiltFrameBandsaw ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeSawingCircular
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3I2"^^xsd:token ;
+    skos:prefLabel      "Sawing-Circular" ;
+    cmns-dsg:designates pc_vcs:codeCircularCutOffSawingMachine ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeSawingBandsaws
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3I3"^^xsd:token ;
+    skos:prefLabel      "Sawing-Bandsaws" ;
+    cmns-dsg:designates pc_vcs:codeBandsaw ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeAbrasiveSaws
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3I4"^^xsd:token ;
+    skos:prefLabel      "Abrasive Saws" ;
+    cmns-dsg:designates pc_vcs:codeAbrasiveCutOffMachine ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeOtherSawingAbrasiveEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3I5"^^xsd:token ;
+    skos:prefLabel      "Other Sawing & Abrasive Equipment" ;
+    cmns-dsg:designates pc_vcs:codeSawingMachineOtherCollection ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeMaterialsHandlingStorage
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3J"^^xsd:token ;
+    skos:prefLabel      "Materials Handling/Storage" ;
+    cmns-dsg:designates pc_vcs:bucketAutomationAndMaterialHandling ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3W)" .
+lead_pc_cs:codePalletChangers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3J1"^^xsd:token ;
+    skos:prefLabel      "Pallet Changers" ;
+    cmns-dsg:designates pc_vcs:codePalletChangerShuttleTransferDevice ;
+    skos:editorialNote  "harmonization-action: Update (Move under 3W)" .
+lead_pc_cs:codeWorkPieceHandlingLoadingFeedingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3J2"^^xsd:token ;
+    skos:prefLabel      "Work Piece, Handling, Loading & Feeding Equipment" ;
+    cmns-dsg:designates pc_vcs:codeWorkpieceHandlingLoadingFeedingEquipment ;
+    skos:editorialNote  "harmonization-action: Update (Move under 3W)" .
+lead_pc_cs:codeBarFeeders
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3J3"^^xsd:token ;
+    skos:prefLabel      "Bar Feeders" ;
+    cmns-dsg:designates pc_vcs:codeBarFeedMechanism ;
+    skos:editorialNote  "harmonization-action: Update (Move under 3W)" .
+lead_pc_cs:codeFormingEquipmentLoadingPositioning
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3J5"^^xsd:token ;
+    skos:prefLabel      "Forming Equipment-Loading & Positioning" ;
+    cmns-dsg:designates pc_vcs:codeFormingEquipmentLoadingPositioning ;
+    skos:editorialNote  "harmonization-action: Keep (Move under 3W Add to model)" .
+lead_pc_cs:codeAutomaticStorageRetrievalSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3J6"^^xsd:token ;
+    skos:prefLabel      "Automatic Storage & Retrieval Systems" ;
+    cmns-dsg:designates pc_vcs:codeAutomaticStorageRetrievalSystem ;
+    skos:editorialNote  "harmonization-action: Update (Move under 3W)" .
+lead_pc_cs:codeWaterjetCuttingSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3K"^^xsd:token ;
+    skos:prefLabel      "Waterjet Cutting Systems" ;
+    cmns-dsg:designates pc_vcs:bucketEDMECMLaserPlasmaAndWaterJetCutting ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeEdmEcm
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3L"^^xsd:token ;
+    skos:prefLabel      "EDM & ECM" ;
+    cmns-dsg:designates pc_vcs:bucketEDMECMLaserPlasmaAndWaterJetCutting ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3K)" .
+lead_pc_cs:codeEdmRam
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3L1"^^xsd:token ;
+    skos:prefLabel      "EDM-Ram" ;
+    cmns-dsg:designates pc_vcs:codeRamEDM ;
+    skos:editorialNote  "harmonization-action: Update (Move under 3K)" .
+lead_pc_cs:codeEdmTravelingWire
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3L2"^^xsd:token ;
+    skos:prefLabel      "EDM-Traveling Wire" ;
+    cmns-dsg:designates pc_vcs:codeWireEDM ;
+    skos:editorialNote  "harmonization-action: Update (Move under 3K)" .
+lead_pc_cs:codeEdmSinker
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3L3"^^xsd:token ;
+    skos:prefLabel      "EDM-Sinker" ;
+    cmns-dsg:designates pc_vcs:codeRamEDM ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3L1)" .
+lead_pc_cs:codeEdmSmallHoleDrilling
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3L4"^^xsd:token ;
+    skos:prefLabel      "EDM-Small Hole Drilling" ;
+    cmns-dsg:designates pc_vcs:codeSmallHoleEDM ;
+    skos:editorialNote  "harmonization-action: Update (Move under 3K)" .
+lead_pc_cs:codeEcm
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3L5"^^xsd:token ;
+    skos:prefLabel      "ECM" ;
+    cmns-dsg:designates pc_vcs:codeElectroChemicalMachine ;
+    skos:editorialNote  "harmonization-action: Update (Move under 3K)" .
+lead_pc_cs:codeWeldingJoiningEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3M"^^xsd:token ;
+    skos:prefLabel      "Welding & Joining Equipment" ;
+    cmns-dsg:designates pc_vcs:bucketWelding ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeWeldingGas
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3M1"^^xsd:token ;
+    skos:prefLabel      "Welding-Gas" ;
+    cmns-dsg:designates pc_vcs:codeGasWeldingMachine ;
+    skos:editorialNote  "harmonization-action: Update (Add to model)" .
+lead_pc_cs:codeWeldingElectric
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3M2"^^xsd:token ;
+    skos:prefLabel      "Welding-Electric" ;
+    cmns-dsg:designates pc_vcs:codeElectricWeldingMachine ;
+    skos:editorialNote  "harmonization-action: Update (Add to model)" .
+lead_pc_cs:codeWeldingLaser
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3M3"^^xsd:token ;
+    skos:prefLabel      "Welding-Laser" ;
+    cmns-dsg:designates pc_vcs:codeLaserWeldingMachine ;
+    skos:editorialNote  "harmonization-action: Update (Add to model)" .
+lead_pc_cs:codeWeldingSystemsOrRobotic
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3M4"^^xsd:token ;
+    skos:prefLabel      "Welding-Systems or Robotic" ;
+    cmns-dsg:designates pc_vcs:codeRoboticWeldingSystem ;
+    skos:editorialNote  "harmonization-action: Update (Add to model)" .
+lead_pc_cs:codeWeldingFriction
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3M5"^^xsd:token ;
+    skos:prefLabel      "Welding-Friction" ;
+    cmns-dsg:designates pc_vcs:codeFrictionWeldingMachine ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeFormingFabricatingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3N"^^xsd:token ;
+    skos:prefLabel      "Forming & Fabricating Machines" ;
+    cmns-dsg:designates pc_vcs:bucketForming ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeHydraulicPresses
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3N1"^^xsd:token ;
+    skos:prefLabel      "Hydraulic Presses" ;
+    cmns-dsg:designates pc_vcs:codeHydraulicPress ;
+    skos:editorialNote  "harmonization-action: Update (Add to model)" .
+lead_pc_cs:codeMechanicalPresses
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3N2"^^xsd:token ;
+    skos:prefLabel      "Mechanical Presses" ;
+    cmns-dsg:designates pc_vcs:codeMechanicalPress ;
+    skos:editorialNote  "harmonization-action: Update (Add to model)" .
+lead_pc_cs:codePunching
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3N3"^^xsd:token ;
+    skos:prefLabel      "Punching" ;
+    cmns-dsg:designates pc_vcs:codePunchPress ;
+    skos:editorialNote  "harmonization-action: Update (Add to model)" .
+lead_pc_cs:codeBendingPlateAngleTube
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3N4"^^xsd:token ;
+    skos:prefLabel      "Bending-Plate, Angle, Tube" ;
+    cmns-dsg:designates pc_vcs:codeRollFormingBendingMachine ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codePressBrakes
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3N5"^^xsd:token ;
+    skos:prefLabel      "Press Brakes" ;
+    cmns-dsg:designates pc_vcs:codePressBrake ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeShearing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3N6"^^xsd:token ;
+    skos:prefLabel      "Shearing" ;
+    cmns-dsg:designates pc_vcs:codeShearing ;
+    skos:editorialNote  "harmonization-action: Keep (Add to model)" .
+lead_pc_cs:codeCoilHandling
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3N7"^^xsd:token ;
+    skos:prefLabel      "Coil Handling" ;
+    cmns-dsg:designates pc_vcs:codeCoilHandling ;
+    skos:editorialNote  "harmonization-action: Keep (Add to model)" .
+lead_pc_cs:codeWireFormingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3N8"^^xsd:token ;
+    skos:prefLabel      "Wire Forming Machines" ;
+    cmns-dsg:designates pc_vcs:codeWireFormingMachine ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeIndustrialLasers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3O"^^xsd:token ;
+    skos:prefLabel      "Industrial Lasers" ;
+    cmns-dsg:designates pc_vcs:bucketEDMECMLaserPlasmaAndWaterJetCutting ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3K)" .
+lead_pc_cs:code2DCutting
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3O1"^^xsd:token ;
+    skos:prefLabel      "2D Cutting" ;
+    cmns-dsg:designates pc_vcs:codeLaserCuttingSystem ;
+    skos:editorialNote  "harmonization-action: Update (Move under 3K)" .
+lead_pc_cs:code3DCutting
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3O2"^^xsd:token ;
+    skos:prefLabel      "3D Cutting" ;
+    cmns-dsg:designates pc_vcs:codeLaserCuttingSystem ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3O1)" .
+lead_pc_cs:codeMarking
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3O3"^^xsd:token ;
+    skos:prefLabel      "Marking" ;
+    cmns-dsg:designates pc_vcs:codeLaserMarkingSystem ;
+    skos:editorialNote  "harmonization-action: Update (Move under 3K)" .
+lead_pc_cs:codeComponentsAccessoriesAttachmentsPartsMaterials
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P"^^xsd:token ;
+    skos:prefLabel      "Components, Accessories, Attachments, Parts & Materials" ;
+    cmns-dsg:designates pc_vcs:bucketMachineComponentsAndAccessories, pc_vcs:bucketMaterials ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeLinearGuidesSlidesWaysBallLeadScrews
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P1"^^xsd:token ;
+    skos:prefLabel      "Linear Guides, Slides, Ways, Ball & Lead Screws" ;
+    cmns-dsg:designates pc_vcs:codeBallLeadScrew ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeSpindlesOrSpeedReducersGearboxes
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P2"^^xsd:token ;
+    skos:prefLabel      "Spindles or Speed Reducers & Gearboxes" ;
+    cmns-dsg:designates pc_vcs:codeSpindle ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeAccessoriesOrPartsForFormingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P3"^^xsd:token ;
+    skos:prefLabel      "Accessories or Parts for Forming Equipment" ;
+    cmns-dsg:designates pc_vcs:codeFormedPart ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeGrindingAccessoriesOrAttachments
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P4"^^xsd:token ;
+    skos:prefLabel      "Grinding Accessories or Attachments" ;
+    cmns-dsg:designates pc_vcs:codeGrindingAttachmentAccessory ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeElectricalMotorsSwitchgearFeedbackOrOtherElectricalComponents
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P5"^^xsd:token ;
+    skos:prefLabel      "Electrical Motors, Switchgear, Feedback or other Electrical Components" ;
+    cmns-dsg:designates pc_vcs:codeElectricalSwitchgearEnclosureComponent ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeCompressorsOrPumps
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P6"^^xsd:token ;
+    skos:prefLabel      "Compressors or Pumps" ;
+    cmns-dsg:designates pc_vcs:codeCompressor ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeRotaryTables
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P7"^^xsd:token ;
+    skos:prefLabel      "Rotary Tables" ;
+    cmns-dsg:designates pc_vcs:codeIndexerRotaryTable ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codePistonCompressorsOrPumps
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P8"^^xsd:token ;
+    skos:prefLabel      "Piston Compressors or Pumps" ;
+    cmns-dsg:designates pc_vcs:codeCompressor ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3P6)" .
+lead_pc_cs:codeScrewCompressors
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P9"^^xsd:token ;
+    skos:prefLabel      "Screw Compressors" ;
+    cmns-dsg:designates pc_vcs:codeCompressor ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3P6)" .
+lead_pc_cs:codeVacuumPumpsAndAccessories
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P10"^^xsd:token ;
+    skos:prefLabel      "Vacuum Pumps and Accessories" ;
+    cmns-dsg:designates pc_vcs:codeVacuumPump ;
+    skos:editorialNote  "harmonization-action: Update (Move under 3T)" .
+lead_pc_cs:codeSteelFerrousMaterials
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P11"^^xsd:token ;
+    skos:prefLabel      "Steel & Ferrous Materials" ;
+    cmns-dsg:designates pc_vcs:codeFerrousMaterial ;
+    skos:editorialNote  "harmonization-action: Update (Move under Materials)" .
+lead_pc_cs:codeNonFerrousMaterials
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P12"^^xsd:token ;
+    skos:prefLabel      "Non-Ferrous Materials" ;
+    cmns-dsg:designates pc_vcs:codeNonFerrousMaterial ;
+    skos:editorialNote  "harmonization-action: Update (Move under Materials)" .
+lead_pc_cs:codeIntelligentMaterialsSmartMaterials
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3P13"^^xsd:token ;
+    skos:prefLabel      "Intelligent Materials, Smart Materials" ;
+    cmns-dsg:designates pc_vcs:codeSmartMaterial ;
+    skos:editorialNote  "harmonization-action: Keep (Move under Materials Add to model)" .
+lead_pc_cs:codeGearMakingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3Q"^^xsd:token ;
+    skos:prefLabel      "Gear-Making Machines" ;
+    cmns-dsg:designates pc_vcs:bucketGearManufacturing ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeGearGenerationEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3Q1"^^xsd:token ;
+    skos:prefLabel      "Gear Generation Equipment" ;
+    cmns-dsg:designates pc_vcs:codeBevelGearGenerationMachine ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeGearCuttingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3Q2"^^xsd:token ;
+    skos:prefLabel      "Gear Cutting Equipment" ;
+    cmns-dsg:designates pc_vcs:codeGearHobbingMachine ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeGearMakingMachinesOther
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3Q3"^^xsd:token ;
+    skos:prefLabel      "Gear Making Machines-Other" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: Keep (Keep?)" .
+lead_pc_cs:codeServicesEngContractMfgSystemsIntgFinanceOther
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3R"^^xsd:token ;
+    skos:prefLabel      "Services: Eng, Contract Mfg, Systems Intg, Finance & Other" ;
+    cmns-dsg:designates pc_vcs:bucketServices ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeAutomationSystemsIntegrationAndEngineeringServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3R1"^^xsd:token ;
+    skos:prefLabel      "Automation & Systems Integration and Engineering Services" ;
+    cmns-dsg:designates pc_vcs:codeAutomationService ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeContractManufacturingServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3R2"^^xsd:token ;
+    skos:prefLabel      "Contract Manufacturing Services" ;
+    cmns-dsg:designates pc_vcs:codeContractManufacturingMachiningService ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeInsuranceFinancialHrServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3R3"^^xsd:token ;
+    skos:prefLabel      "Insurance/Financial/HR Services" ;
+    cmns-dsg:designates pc_vcs:codeInsuranceFinancialHRService ;
+    skos:editorialNote  "harmonization-action: Keep (Add to model)" .
+lead_pc_cs:codePrototypingOrDesignServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3R4"^^xsd:token ;
+    skos:prefLabel      "Prototyping or Design Services" ;
+    cmns-dsg:designates pc_vcs:codePrototypingDesignService ;
+    skos:editorialNote  "harmonization-action: Keep (Add to model)" .
+lead_pc_cs:codeFlameOrPlasmaCutting
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3S"^^xsd:token ;
+    skos:prefLabel      "Flame or Plasma Cutting" ;
+    cmns-dsg:designates pc_vcs:bucketEDMECMLaserPlasmaAndWaterJetCutting ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3K)" .
+lead_pc_cs:codeMaintenanceEnvironmentalSafety
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3T"^^xsd:token ;
+    skos:prefLabel      "Maintenance, Environmental & Safety" ;
+    cmns-dsg:designates pc_vcs:bucketPlantOperationsAndMaintenanceEquipment ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeFiltrationFluidsAirAndDust
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3T1"^^xsd:token ;
+    skos:prefLabel      "Filtration-Fluids, Air and Dust" ;
+    cmns-dsg:designates pc_vcs:codeDustCollectorAirFiltrationEquipment ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeCoolant
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3T2"^^xsd:token ;
+    skos:prefLabel      "Coolant" ;
+    cmns-dsg:designates pc_vcs:codeCoolantCuttingFluidOil ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeCleaningEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3T3"^^xsd:token ;
+    skos:prefLabel      "Cleaning Equipment" ;
+    cmns-dsg:designates pc_vcs:codeCleaningDegreasingEquipment ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codePlantMaintenanceRepair
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3T4"^^xsd:token ;
+    skos:prefLabel      "Plant Maintenance & Repair" ;
+    cmns-dsg:designates pc_vcs:codePlantMaintenanceRepairEquipment ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeSafetyRelatedProducts
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3T5"^^xsd:token ;
+    skos:prefLabel      "Safety Related Products" ;
+    cmns-dsg:designates pc_vcs:codeSafetyRelatedProduct ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeAdditiveManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U"^^xsd:token ;
+    skos:prefLabel      "Additive Manufacturing" ;
+    cmns-dsg:designates pc_vcs:bucketAdditive ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeFusionLaminationPhotopolymerization
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U1"^^xsd:token ;
+    skos:prefLabel      "Fusion/Lamination/Photopolymerization" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: REMOVE" .
+lead_pc_cs:codeJettingMaterialBinder
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U2"^^xsd:token ;
+    skos:prefLabel      "Jetting (Material & Binder)" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: REMOVE" .
+lead_pc_cs:codeExtrusion
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U3"^^xsd:token ;
+    skos:prefLabel      "Extrusion" ;
+    cmns-dsg:designates pc_vcs:codeMaterialExtrusion ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3U10)" .
+lead_pc_cs:codeDeposition
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U4"^^xsd:token ;
+    skos:prefLabel      "Deposition" ;
+    cmns-dsg:designates pc_vcs:codeDirectedEnergyDeposition ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3U11)" .
+lead_pc_cs:codeVatPhotopolymerization
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U5"^^xsd:token ;
+    skos:prefLabel      "Vat Photopolymerization" ;
+    cmns-dsg:designates pc_vcs:codeVatPhotopolymerization ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codePowderBedFusionPbf
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U6"^^xsd:token ;
+    skos:prefLabel      "Powder Bed Fusion (PBF)" ;
+    cmns-dsg:designates pc_vcs:codePowderBedFusion ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeBinderJetting
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U7"^^xsd:token ;
+    skos:prefLabel      "Binder Jetting" ;
+    cmns-dsg:designates pc_vcs:codeBinderJetting ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeMaterialJetting
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U8"^^xsd:token ;
+    skos:prefLabel      "Material Jetting" ;
+    cmns-dsg:designates pc_vcs:codeMaterialJetting ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeSheetLamination
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U9"^^xsd:token ;
+    skos:prefLabel      "Sheet Lamination" ;
+    cmns-dsg:designates pc_vcs:codeSheetLamination ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeMaterialExtrusion
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U10"^^xsd:token ;
+    skos:prefLabel      "Material Extrusion" ;
+    cmns-dsg:designates pc_vcs:codeMaterialExtrusion ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeDirectedEnergyDepositionDed
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U11"^^xsd:token ;
+    skos:prefLabel      "Directed Energy Deposition (DED)" ;
+    cmns-dsg:designates pc_vcs:codeDirectedEnergyDeposition ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeHybridAdditiveManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U12"^^xsd:token ;
+    skos:prefLabel      "Hybrid - Additive Manufacturing" ;
+    cmns-dsg:designates pc_vcs:codeHybridAdditiveManufacturing ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeElectroDeposition
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U13"^^xsd:token ;
+    skos:prefLabel      "Electro - Deposition" ;
+    cmns-dsg:designates pc_vcs:codeDirectedEnergyDeposition ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3U11)" .
+lead_pc_cs:codeMoldEnabledAdditiveManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U14"^^xsd:token ;
+    skos:prefLabel      "Mold - Enabled Additive Manufacturing" ;
+    cmns-dsg:designates pc_vcs:codeMoldEnabledAdditiveManufacturing ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeColdSpray
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3U15"^^xsd:token ;
+    skos:prefLabel      "Cold Spray" ;
+    cmns-dsg:designates pc_vcs:codeDirectedEnergyDeposition ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3U11)" .
+lead_pc_cs:codeOther
+    a cmns-cds:CodeElement, amtmeta:SentinelCodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3V"^^xsd:token ;
+    skos:prefLabel      "Other" ;
+    cmns-dsg:designates pc_vcs:codeOther ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeGeneralAutomation
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W"^^xsd:token ;
+    skos:prefLabel      "General Automation" ;
+    cmns-dsg:designates pc_vcs:bucketAutomationAndMaterialHandling ;
+    skos:editorialNote  "harmonization-action: Update" .
+lead_pc_cs:codeAutomatedSystemCellsForAssemblyTest
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W1"^^xsd:token ;
+    skos:prefLabel      "Automated System & Cells for Assembly & Test" ;
+    cmns-dsg:designates pc_vcs:codeAssemblyTestCell ;
+    skos:editorialNote  "harmonization-action: Keep (Move under Automated Systems > Automated Systems & Cells)" .
+lead_pc_cs:codeAutomatedSystemCellsForMaterialFormingFabricating
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W2"^^xsd:token ;
+    skos:prefLabel      "Automated System & Cells for Material Forming & Fabricating" ;
+    cmns-dsg:designates pc_vcs:codeMaterialFormingCell ;
+    skos:editorialNote  "harmonization-action: Keep (Move under Automated Systems > Automated Systems & Cells)" .
+lead_pc_cs:codeAutomatedSystemCellsForMaterialJoining
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W3"^^xsd:token ;
+    skos:prefLabel      "Automated System & Cells for Material Joining" ;
+    cmns-dsg:designates pc_vcs:codeMaterialJoiningCell ;
+    skos:editorialNote  "harmonization-action: Keep (Move under Automated Systems > Automated Systems & Cells)" .
+lead_pc_cs:codeAutomatedSystemCellsForMaterialRemoval
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W4"^^xsd:token ;
+    skos:prefLabel      "Automated System & Cells for Material Removal" ;
+    cmns-dsg:designates pc_vcs:codeMaterialRemovalCell ;
+    skos:editorialNote  "harmonization-action: Keep (Move under Automated Systems > Automated Systems & Cells)" .
+lead_pc_cs:codeAutomationServices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W5"^^xsd:token ;
+    skos:prefLabel      "Automation Services" ;
+    cmns-dsg:designates pc_vcs:codeAutomationService ;
+    skos:editorialNote  "harmonization-action: Merge (Merge with 3R1)" .
+lead_pc_cs:codeCommunicationNetworksAndFieldBusSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W6"^^xsd:token ;
+    skos:prefLabel      "Communication Networks and Field Bus Systems" ;
+    cmns-dsg:designates pc_vcs:codeCommunicationNetworkFieldBusSystem ;
+    skos:editorialNote  "harmonization-action: Update (Move under Controls)" .
+lead_pc_cs:codeControlSystemsPlcScadaSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W7"^^xsd:token ;
+    skos:prefLabel      "Control Systems PLC SCADA Systems" ;
+    cmns-dsg:designates pc_vcs:codePLCSCADAControlSystem ;
+    skos:editorialNote  "harmonization-action: Update (Move under Controls)" .
+lead_pc_cs:codeConveyorsOtherPartHandlingAutomation
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W8"^^xsd:token ;
+    skos:prefLabel      "Conveyors & Other Part Handling Automation" ;
+    cmns-dsg:designates pc_vcs:codeConveyorPartHandlingAutomation ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeEmbeddedSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W9"^^xsd:token ;
+    skos:prefLabel      "Embedded Systems" ;
+    cmns-dsg:designates pc_vcs:codeEmbeddedSystem ;
+    skos:editorialNote  "harmonization-action: Keep (Move under Controls)" .
+lead_pc_cs:codeGantryLoaders
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W10"^^xsd:token ;
+    skos:prefLabel      "Gantry Loaders" ;
+    cmns-dsg:designates pc_vcs:codeGantryLoader ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeIndustrialAutomaticDataCapturingAndIdentificationSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W11"^^xsd:token ;
+    skos:prefLabel      "Industrial Automatic Data Capturing and Identification Systems" ;
+    cmns-dsg:designates pc_vcs:codeIndustrialAutoIDSystem ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeIndustrialBuildingAutomationSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W12"^^xsd:token ;
+    skos:prefLabel      "Industrial Building Automation Systems" ;
+    cmns-dsg:designates pc_vcs:codeIndustrialBuildingAutomationSystem ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeIndustrialImageProcessingSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W13"^^xsd:token ;
+    skos:prefLabel      "Industrial Image Processing Systems" ;
+    cmns-dsg:designates pc_vcs:codeIndustrialImageProcessingSystem ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeIndustrialPcs
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W14"^^xsd:token ;
+    skos:prefLabel      "Industrial PCs" ;
+    cmns-dsg:designates pc_vcs:codeIndustrialPC ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeLaserTechnology
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W15"^^xsd:token ;
+    skos:prefLabel      "Laser Technology" ;
+    cmns-dsg:designates pc_vcs:codeLaserTechnologyCollection ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeMeasuringAndTestSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W16"^^xsd:token ;
+    skos:prefLabel      "Measuring and Test Systems" ;
+    cmns-dsg:designates pc_vcs:codeMeasuringTestSystem ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeMultiMachineToolStorageSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W17"^^xsd:token ;
+    skos:prefLabel      "Multi-Machine Tool-Storage Systems" ;
+    cmns-dsg:designates pc_vcs:codeMultiMachineToolStorageSystem ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codePalletChangersShuttlesAndProgrammableTransferDevices
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W18"^^xsd:token ;
+    skos:prefLabel      "Pallet Changers/Shuttles and Programmable Transfer Devices" ;
+    cmns-dsg:designates pc_vcs:codePalletChangerShuttleTransferDevice ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeRobotToolingGrippers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W19"^^xsd:token ;
+    skos:prefLabel      "Robot Tooling/Grippers" ;
+    cmns-dsg:designates pc_vcs:codeRobotToolingGripper ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeSafetyAndSecuritySystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W21"^^xsd:token ;
+    skos:prefLabel      "Safety and Security Systems" ;
+    cmns-dsg:designates pc_vcs:codeSafetySecuritySystem ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeSensorsAndActuators
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W22"^^xsd:token ;
+    skos:prefLabel      "Sensors and Actuators" ;
+    cmns-dsg:designates pc_vcs:codeSensorActuatorCollection ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeCncPlcDroDnoAdaptiveControlsRobotControllers
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W23"^^xsd:token ;
+    skos:prefLabel      "CNC, PLC, DRO, DNO, Adaptive Controls, & Robot Controllers" ;
+    cmns-dsg:designates pc_vcs:codeRobotController ;
+    skos:editorialNote  "harmonization-action: Update (Move under Controls)" .
+lead_pc_cs:codeMobileRobotsAgvUgvAmr
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W27"^^xsd:token ;
+    skos:prefLabel      "Mobile Robots - (AGV / UGV / AMR)" ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeStationaryRobotsRobotArm
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3W28"^^xsd:token ;
+    skos:prefLabel      "Stationary Robots - (Robot Arm)" ;
+    skos:editorialNote  "harmonization-action: Keep" .
+lead_pc_cs:codeMicrosystemsTechnology
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3X"^^xsd:token ;
+    skos:prefLabel      "Microsystems Technology" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: REMOVE" .
+lead_pc_cs:codeNanotechnology
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
+    skos:notation       "3X1"^^xsd:token ;
+    skos:prefLabel      "Nanotechnology" ;
+    owl:deprecated      true ;
+    skos:editorialNote  "harmonization-action: REMOVE" .

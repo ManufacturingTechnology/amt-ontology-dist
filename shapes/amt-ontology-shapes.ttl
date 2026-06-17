@@ -13,6 +13,8 @@
 @prefix cmns-cds:  <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
 @prefix cmns-col:  <https://www.omg.org/spec/Commons/Collections/> .
 @prefix cmns-dsg:  <https://www.omg.org/spec/Commons/Designators/> .
+@prefix lead_pc_cs: <http://ontology.amt.org/codes/lead-product-interest#> .
+@prefix ex_raw_pc_cs: <http://ontology.amt.org/codes/exhibitor-raw-product-categories#> .
 
 ##
 ## SHACL shapes for AMT CodeSet vocabularies.
@@ -142,14 +144,23 @@ amt-codes:DesignatesRequiredForNonSentinelShape
 ## purpose (the whole point of a sentinel is to record absence of a
 ## designation).
 ##
-amt-codes:SentinelNoDesignatesShape
+amt-codes:SentinelNoCanonicalDesignatesShape
     a sh:NodeShape ;
-    rdfs:label     "Sentinel CodeElement must not designate" ;
+    rdfs:label     "Sentinel CodeElement must not designate a canonical concept" ;
     sh:targetClass amtmeta:SentinelCodeElement ;
-    sh:property [
-        sh:path     cmns-dsg:designates ;
-        sh:maxCount 0 ;
-        sh:message  "amtmeta:SentinelCodeElement instances must NOT carry cmns-dsg:designates targets -- sentinels record the absence of a designation." ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "amtmeta:SentinelCodeElement may only designate another SentinelCodeElement (e.g. the parallel-'Other'-across-codesets case); designating a canonical concept defeats the sentinel's purpose." ;
+        sh:prefixes [
+            sh:declare [ sh:prefix "amtmeta"  ; sh:namespace "http://ontology.amt.org/meta#"^^xsd:anyURI ] ;
+            sh:declare [ sh:prefix "cmns-dsg" ; sh:namespace "https://www.omg.org/spec/Commons/Designators/"^^xsd:anyURI ] ;
+        ] ;
+        sh:select """
+            SELECT $this ?target WHERE {
+                $this cmns-dsg:designates ?target .
+                FILTER NOT EXISTS { ?target a amtmeta:SentinelCodeElement }
+            }
+        """ ;
     ] .
 
 
@@ -215,16 +226,16 @@ imShape:ExhibitorOfferingShape
     rdfs:label     "Exhibitor Product Category Constraint" ;
     sh:targetClass im:ExhibitorRecord ;
     sh:property [
-        sh:path im:hasProductCategory ;
-        sh:node imShape:ExhibitorCodeSetMember ;
-        sh:message "Every im:hasProductCategory target on an im:ExhibitorRecord must be a cmns-cds:CodeElement that is cmns-col:isMemberOf pc_ecs:ExhibitorCodeSet." ;
+        sh:path     im:hasProductCategory ;
+        sh:node     imShape:ExhibitorRawCodeSetMember ;
+        sh:message  "Every im:hasProductCategory target on an im:ExhibitorRecord must be a cmns-cds:CodeElement isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet (the 2024 IMTS catalog vocabulary). The post-2024 harmonized pc_ecs vocabulary is reached via cmns-dsg:designates on each ex_raw_pc_cs CodeElement." ;
     ] .
 
-imShape:ExhibitorCodeSetMember
+imShape:ExhibitorRawCodeSetMember
     a sh:NodeShape ;
     sh:property [
         sh:path     cmns-col:isMemberOf ;
-        sh:hasValue pc_ecs:ExhibitorCodeSet ;
+        sh:hasValue ex_raw_pc_cs:ExhibitorRawCodeSet ;
         sh:minCount 1 ;
     ] .
 
@@ -334,4 +345,171 @@ imShape:PlantEmployeeCountCodeSetMember
         sh:path     cmns-col:isMemberOf ;
         sh:hasValue <http://ontology.amt.org/codes/plant-employee-count#PlantEmployeeCountCodeSet> ;
         sh:minCount 1 ;
+    ] .
+
+
+##
+## v0.5.0 additions -- JIMTOF exhibitor scope. im:hasProductCategory on a
+## JIMTOF exhibitor must come from pc_jimtof_cs:JimtofCodeSet, and
+## im:servesIndustry from ind_jimtof_cs:JimtofIndustryCodeSet. (im: side
+## of these properties has no domain so they can be reused, hence per-
+## targetClass shapes here.)
+##
+
+imShape:JimtofExhibitorProductCategoryShape
+    a sh:NodeShape ;
+    rdfs:label     "JIMTOF Exhibitor Product Category Constraint" ;
+    sh:targetClass <http://ontology.amt.org/external/codes/jimtof-product-categories#Exhibitor> ;
+    sh:property [
+        sh:path     im:hasProductCategory ;
+        sh:node     imShape:JimtofPcCodeSetMember ;
+        sh:message  "im:hasProductCategory target on a pc_jimtof_cs:Exhibitor must be a CodeElement isMemberOf pc_jimtof_cs:JimtofCodeSet." ;
+    ] .
+
+imShape:JimtofPcCodeSetMember
+    a sh:NodeShape ;
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:hasValue <http://ontology.amt.org/external/codes/jimtof-product-categories#JimtofCodeSet> ;
+        sh:minCount 1 ;
+    ] .
+
+imShape:JimtofExhibitorServesIndustryShape
+    a sh:NodeShape ;
+    rdfs:label     "JIMTOF Exhibitor Serves Industry Constraint" ;
+    sh:targetClass <http://ontology.amt.org/external/codes/jimtof-product-categories#Exhibitor> ;
+    sh:property [
+        sh:path     im:servesIndustry ;
+        sh:node     imShape:JimtofIndustryCodeSetMember ;
+        sh:message  "im:servesIndustry target on a pc_jimtof_cs:Exhibitor must be a CodeElement isMemberOf ind_jimtof_cs:JimtofIndustryCodeSet." ;
+    ] .
+
+imShape:JimtofIndustryCodeSetMember
+    a sh:NodeShape ;
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:hasValue <http://ontology.amt.org/external/codes/jimtof-industries#JimtofIndustryCodeSet> ;
+        sh:minCount 1 ;
+    ] .
+
+
+##
+## v0.5.0 -- lead-scan form product-interest scope. Distinct vocabulary
+## from pc_vcs (registration-form interest); see lead_pc_codeset.ttl.
+##
+
+
+imShape:VisitorLeadFormInterestShape
+    a sh:NodeShape ;
+    rdfs:label     "Visitor Lead-Form Interest Constraint" ;
+    sh:targetClass im:VisitorRecord ;
+    sh:property [
+        sh:path     im:hasLeadFormInterest ;
+        sh:node     imShape:LeadFormInterestCodeSetMember ;
+        sh:message  "im:hasLeadFormInterest target on a VisitorRecord must be a CodeElement isMemberOf lead_pc_cs:LeadProductInterestCodeSet." ;
+    ] .
+
+imShape:LeadFormInterestCodeSetMember
+    a sh:NodeShape ;
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:hasValue lead_pc_cs:LeadProductInterestCodeSet ;
+        sh:minCount 1 ;
+    ] .
+
+
+##
+## amtmeta:CatalogValueShape -- canonical "is this a usable catalog
+## value?" constraint. Marker class declared in amtmeta.ttl; the SHACL
+## NodeShape definition lives here so we don't pull the http://www.w3.org/ns/shacl
+## vocabulary into the merged amt-ontology.owl.
+##
+
+amtmeta:CatalogValueShape
+    a sh:NodeShape ;
+    rdfs:label "Catalog Value Constraint" ;
+    sh:property [
+        sh:path     skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:message  "Value is abstract (lacks skos:prefLabel) and cannot be used as a catalog value." ;
+    ] .
+
+
+##
+## v0.5.2 -- closed-world exact-cardinality invariants, aligned to the
+## actual data emitted by scripts/build_individuals.py.
+##
+## The OWL side carries owl:minCardinality 1 (so reasoners can derive
+## the lower bound without backtracking on gUFO Relator's >=2 mediates
+## restriction); these SHACL shapes restore the "exactly one" check
+## per instance for the *populated* fields. Shapes for UFO-pure
+## properties (im:mediatesExhibitor / im:mediatesAssociation /
+## im:manifestedInShow / im:Organizing) are intentionally omitted --
+## the build script does not currently emit them; they remain
+## aspirational OWL constraints only.
+##
+
+imShape:CompanyLabelShape
+    a sh:NodeShape ;
+    rdfs:label "Company must carry exactly one rdfs:label" ;
+    sh:targetClass im:Company ;
+    sh:property [
+        sh:path     rdfs:label ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message  "Every im:Company must have exactly one rdfs:label (the canonical company name; variants live as skos:altLabel)." ;
+    ] .
+
+imShape:VisitorRecordFieldsShape
+    a sh:NodeShape ;
+    rdfs:label "VisitorRecord core fields cardinality" ;
+    sh:targetClass im:VisitorRecord ;
+    sh:property [
+        sh:path     im:badge ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message  "Every im:VisitorRecord must have exactly one im:badge." ;
+    ] ;
+    sh:property [
+        sh:path     im:uuid ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message  "Every im:VisitorRecord must have exactly one im:uuid." ;
+    ] ;
+    sh:property [
+        sh:path     im:registeredForShow ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message  "Every im:VisitorRecord must im:registeredForShow exactly one show." ;
+    ] .
+
+imShape:ExhibitorRecordFieldsShape
+    a sh:NodeShape ;
+    rdfs:label "ExhibitorRecord core fields cardinality" ;
+    sh:targetClass im:ExhibitorRecord ;
+    sh:property [
+        sh:path     im:booth ;
+        sh:minCount 1 ;
+        sh:message  "Every im:ExhibitorRecord must have at least one im:booth (an exhibitor may occupy multiple booths)." ;
+    ] ;
+    sh:property [
+        sh:path     im:registeredForShow ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message  "Every im:ExhibitorRecord must im:registeredForShow exactly one show." ;
+    ] ;
+    sh:property [
+        sh:path     im:representsCompany ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message  "Every im:ExhibitorRecord must im:representsCompany exactly one im:Company." ;
+    ] .
+
+imShape:LeadFieldsShape
+    a sh:NodeShape ;
+    rdfs:label "Lead core fields cardinality" ;
+    sh:targetClass im:Lead ;
+    sh:property [
+        sh:path     im:leadOfVisitor ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message  "Every im:Lead must have exactly one im:leadOfVisitor." ;
+    ] ;
+    sh:property [
+        sh:path     im:leadOfExhibitor ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message  "Every im:Lead must have exactly one im:leadOfExhibitor." ;
     ] .
