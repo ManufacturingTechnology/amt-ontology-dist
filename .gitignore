@@ -1,0 +1,11 @@
+# Protege per-folder import cache. Regenerated on every open; never useful
+# in a published distribution.
+**/catalog-v001.xml
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
