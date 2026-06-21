@@ -511,5 +511,9 @@ imShape:LeadFieldsShape
     sh:property [
         sh:path     im:leadOfExhibitor ;
         sh:minCount 1 ; sh:maxCount 1 ;
-        sh:message  "Every im:Lead must have exactly one im:leadOfExhibitor." ;
+        sh:or (
+            [ sh:class im:ExhibitorRecord ]
+            [ sh:class im:AmtFacility ]
+        ) ;
+        sh:message  "Every im:Lead must have exactly one im:leadOfExhibitor, pointing at an im:ExhibitorRecord or im:AmtFacility." ;
     ] .

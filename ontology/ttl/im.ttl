@@ -151,6 +151,11 @@ im:ExhibitorRecord a owl:Class, gufo:Kind ;
     rdfs:subClassOf im:Registration ;
     rdfs:label "Exhibitor Record" .
 
+im:AmtFacility a owl:Class, gufo:Kind ;
+    rdfs:subClassOf im:Registration ;
+    rdfs:label "AMT Facility Record" ;
+    rdfs:comment "Per-show record for an AMT-operated venue space that has a booth scanner but is not a commercial exhibitor -- e.g. AMT Member Lounge (S103), International Lounge (N226). Sibling Kind of im:ExhibitorRecord under im:Registration. Carries im:representsCompany (typically AMT itself), im:booth, im:registeredForShow, and is the target of im:leadOfExhibitor when a badge is scanned at an AMT facility. Does NOT carry im:hasProductCategory or im:servesIndustry." .
+
 im:Lead a owl:Class, gufo:Kind ;
     rdfs:subClassOf gufo:ExtrinsicMode ;
     rdfs:label "Lead" .
@@ -265,9 +270,9 @@ im:manifestedInShow a owl:ObjectProperty ;
 im:leadOfExhibitor a owl:ObjectProperty ;
     rdfs:subPropertyOf gufo:inheresIn ;
     rdfs:domain im:Lead ;
-    rdfs:range  im:ExhibitorRecord ;
+    rdfs:range  im:Registration ;
     rdfs:label  "lead of exhibitor" ;
-    rdfs:comment "Links a Lead (booth-scan event) to the im:ExhibitorRecord whose booth captured it. Range is the Relator (ExhibitorRecord), not the im:Exhibitor Role -- the booth is registered by the show-edition record, not abstractly by the company-as-exhibitor." .
+    rdfs:comment "Links a Lead (booth-scan event) to the Registration that operated the booth -- usually an im:ExhibitorRecord, occasionally an im:AmtFacility for badges scanned at AMT-operated venue spaces (member lounges, international lounge). Range widened from im:ExhibitorRecord to im:Registration so AmtFacility scans participate in the same exact-1 invariant." .
 
 im:leadOfVisitor a owl:ObjectProperty ;
     rdfs:subPropertyOf gufo:externallyDependsOn ;
@@ -426,10 +431,9 @@ im:emailOptIn a owl:DatatypeProperty ;
     rdfs:comment "Whether the visitor opted in to marketing email. Sourced from visitor_raw.EmailOptIn (Y/N converted to xsd:boolean)." .
 
 im:sourceProvenance a owl:DatatypeProperty ;
-    rdfs:domain im:VisitorRecord ;
     rdfs:range  xsd:string ;
     rdfs:label  "source provenance" ;
-    rdfs:comment "Origin of the record: \"registration\" for records sourced from the Maritz reg export, \"leads\" for records synthesized from scan data because the badge was missing from the reg export." .
+    rdfs:comment "Origin of the record. Domain deliberately unset so any Registration subKind can use it. For VisitorRecord: \"registration\" (Maritz reg export) or \"leads\" (synthesized because badge was missing from reg export). For ExhibitorRecord: \"exhibitor_raw\" (Maritz exhibitor export) or \"leads\" (synthesized because the booth scanned in leads_raw was missing from exhibitor_raw). For AmtFacility: always \"leads\" (these are only discovered from scan data)." .
 
 # --- VisitorRecord: object properties --------------------------------------
 
@@ -444,10 +448,10 @@ im:registeredForShow a owl:ObjectProperty ;
     rdfs:comment "Which trade-show edition this record belongs to. Domain deliberately unset so VisitorRecord, ExhibitorRecord, and external exhibitor classes (e.g. pc_jimtof_cs:Exhibitor) can all use it. One event individual per edition." .
 
 im:hasIndustry a owl:ObjectProperty ;
-    rdfs:domain im:VisitorRecord ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( im:VisitorRecord im:Company ) ] ;
     rdfs:range  cmns-cds:CodeElement ;
     rdfs:label  "has industry" ;
-    rdfs:comment "Industry-group classification reported by the visitor on the lead-scan questionnaire. Stored on VisitorRecord (denormalized) rather than Company. Range scoped to ind_cs:VisitorCodeSet members." .
+    rdfs:comment "Industry-group classification. On VisitorRecord: the industry the visitor reported on the lead-scan questionnaire (per-attendance self-report). On Company: the union of industries declared by every VisitorRecord whose im:representsCompany is this Company -- a derived aggregate. The two are kept in sync at ingest by scripts/build_individuals.py and enforced by TestCompanyHasAllVisitorIndustries. Multi-valued by design: a company whose visitors disagree on industry is faithfully tagged with all reported industries; downstream queries can pick a winner if needed. Range scoped to ind_cs:VisitorCodeSet members." .
 
 im:registrationClass a owl:ObjectProperty ;
     rdfs:domain im:VisitorRecord ;
