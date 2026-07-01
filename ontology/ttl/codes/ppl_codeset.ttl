@@ -1,0 +1,204 @@
+@prefix ppl_cs:     <http://ontology.amt.org/codes/primary-product-line#> .
+@prefix pc_ecs:     <http://ontology.amt.org/codes/exhibitor-product-categories#> .
+@prefix amtmeta:    <http://ontology.amt.org/meta#> .
+@prefix cmns-cds:   <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+@prefix cmns-col:   <https://www.omg.org/spec/Commons/Collections/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:       <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:    <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# Primary Product Line CodeSet
+# ============================================================================
+# AMT-curated coarse business-segment classification used on the
+# Membership Application: member self-selects one Primary Product Line
+# (and optionally a Secondary line, which lives in a separate field on
+# the application). 9 substantive segments + No Response sentinel.
+#
+# Flat CodeElement-direct codeset -- each CodeElement carries its own
+# skos:prefLabel; no underlying Classifier hierarchy. Same shape as
+# jobfn_cs / acqrole_cs / empcount_cs / mtrole_cs.
+#
+# Cross-vocabulary linkage to pc_ecs via SKOS match properties (NOT
+# cmns-dsg:designates). PPL is a member-self-identification vocabulary
+# ("what kind of company I am"); pc_ecs is a show-offering vocabulary
+# ("what products I'm classifying for IMTS"). They are semantically
+# similar but operationally distinct -- a "Robotics & Automation" member
+# can legitimately bring a metrology system to IMTS that classifies
+# under pc_ecs:bucketMetrology. The match is between two separate
+# controlled vocabularies, not a within-vocabulary harmonization
+# (contrast with lead_pc_codeset and ex_raw_pc_codeset which use
+# cmns-dsg:designates as pre-harmonization shadows of pc_vcs / pc_ecs).
+#
+# Match property choice:
+#   * skos:closeMatch  -- PPL value and the pc_ecs bucket are at the
+#     same conceptual grain (e.g. "Accessories & Components" <->
+#     bucketMachineComponentsAndAccessories). Interchangeable in some
+#     applications.
+#   * skos:broadMatch  -- PPL value spans multiple pc_ecs buckets that
+#     pc_ecs treats as peer-level (Digital Manufacturing covers 4 peer
+#     buckets; Metal Cutting & Machining covers Subtractive + Gear).
+#     PPL is the broader concept.
+#
+# Where the pc_ecs target is itself an amtmeta:groups umbrella
+# (bucketSubtractive, bucketJoiningAndForming, bucketAutomatedSystems,
+# bucketToolingAndWorkholding), matching the umbrella reaches all nested
+# sub-buckets transitively for query lineage. Coverage is 25/29 pc_ecs
+# Major buckets; 4 buckets are intentionally unreached (bucketMaterials,
+# bucketPlantOperationsAndMaintenanceEquipment, bucketServices,
+# bucketSpecialPurposeEquipment) because PPL does not carry equivalent
+# member-segmentation categories. See docs/decisions/member-codesets.md.
+#
+# *** Placeholder notations ***
+# Entry IDs PPL001..PPL010 are placeholder pending real AMT-managed IDs.
+# The xlsx source (resources/AMT Taxonomy - Primary Product Line.xlsx)
+# has blank Entry ID columns at the time of authoring.
+# ============================================================================
+
+<http://ontology.amt.org/codes/primary-product-line>
+    a owl:Ontology, amtmeta:CodeSetVocabulary ;
+    owl:imports <http://ontology.amt.org/meta>,
+                <http://ontology.amt.org/codes/exhibitor-product-categories>,
+                <https://www.omg.org/spec/Commons/CodesAndCodeSets/>,
+                <https://www.omg.org/spec/Commons/Collections/> ;
+
+    dcterms:title    "Primary Product Line CodeSet" ;
+    owl:versionInfo  "0.1.0" ;
+    owl:versionIRI   <http://ontology.amt.org/codes/primary-product-line/0.1.0> ;
+
+    amtmeta:status              amtmeta:Active ;
+    amtmeta:taxonomyOwner       "Jordan" ;
+    amtmeta:governedBy          "Bill", "Chrissie", "Ian" ;
+    amtmeta:consumedBy          "Kristin", "Travis", "Chidzik", "Ian", "Chase", "Membership" ;
+
+    amtmeta:relatedProduct
+        "Membership application",
+        "Media Sponsorship (media kit)",
+        "Statistical Program (recruiting)",
+        "Member directory" ;
+
+    amtmeta:relatedSystem       "Salesforce", "Secondary product line" ;
+
+    amtmeta:relatedDocumentation "Taxonomy Change Process.docx" ;
+
+    amtmeta:releaseDate     "2026-06-29"^^xsd:date ;
+    amtmeta:scopeSummary    "v0.1.0 -- AMT member-segmentation vocabulary used on the Membership Application. 9 substantive segments (member self-select) + No Response sentinel. Cross-vocabulary linkage to pc_ecs Major Collection buckets via skos:closeMatch (same-grain mapping) and skos:broadMatch (PPL spans multiple peer buckets). Distinct from lead_pc / ex_raw_pc which use cmns-dsg:designates as within-vocabulary pre-harmonization shadows. Note: members may also select a Secondary Product Line on the application; that captures into a separate property, not modeled here." ;
+    amtmeta:releaseOwner    "Shaurabh" ;
+    amtmeta:approvalStatus  amtmeta:Draft ;
+
+    amtmeta:useCase
+        "Targeted marketing campaigns",
+        "Media kit segmentation",
+        "Membership fit assessment for new members",
+        "Member classification for existing members",
+        "Statistical Program recruit identification" .
+
+#-------------------------------------------------------------------------------
+# Anchor individual (amtmeta:codesFor target)
+#-------------------------------------------------------------------------------
+# Identifies what this codeset is a code set OF. Required by the SHACL
+# CodeSetCodesForShape. For CodeElement-direct codesets like this one,
+# the anchor has no further structure -- it's just a stable identifier
+# for the concept the codes collectively express.
+
+ppl_cs:PrimaryProductLineConcept
+    a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label   "Primary Product Line" ;
+    rdfs:comment "Anchor individual for amtmeta:codesFor on ppl_cs:PrimaryProductLineCodeSet. Has no internal structure: CodeElements in this codeset carry their own skos:prefLabel directly, so no underlying Classifier hierarchy is asserted." .
+
+#-------------------------------------------------------------------------------
+# CodeSet
+#-------------------------------------------------------------------------------
+
+ppl_cs:PrimaryProductLineCodeSet
+    a cmns-cds:CodeSet, owl:NamedIndividual ;
+    amtmeta:codesFor    ppl_cs:PrimaryProductLineConcept ;
+    rdfs:label          "Primary Product Line CodeSet" ;
+    amtmeta:consumerFor "AMT Membership Application (member primary business segment self-selection)" ;
+    rdfs:comment        "Member-side coarse segmentation answer set. 9 substantive segments cross-link (via skos:closeMatch / skos:broadMatch) to pc_ecs: Major Collection buckets in the IMTS Exhibitor pavilion taxonomy. Cross-vocabulary mapping -- PPL and pc_ecs are distinct controlled vocabularies that overlap conceptually but serve different operational purposes (membership self-identification vs show-offering classification)." .
+
+#-------------------------------------------------------------------------------
+# 10 PPL CodeElements (9 substantive + 1 sentinel)
+#-------------------------------------------------------------------------------
+
+ppl_cs:codeAccessoriesComponents
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ppl_cs:PrimaryProductLineCodeSet ;
+    skos:notation       "PPL001"^^xsd:token ;
+    skos:prefLabel      "Accessories & Components" ;
+    skos:closeMatch     pc_ecs:bucketMachineComponentsAndAccessories .
+
+ppl_cs:codeAdditiveManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ppl_cs:PrimaryProductLineCodeSet ;
+    skos:notation       "PPL002"^^xsd:token ;
+    skos:prefLabel      "Additive Manufacturing" ;
+    skos:closeMatch     pc_ecs:bucketAdditive .
+
+ppl_cs:codeDigitalManufacturing
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ppl_cs:PrimaryProductLineCodeSet ;
+    skos:notation       "PPL003"^^xsd:token ;
+    skos:prefLabel      "Digital Manufacturing" ;
+    skos:broadMatch     pc_ecs:bucketSoftwareAndDigitalSolutions,
+                        pc_ecs:bucketCADCAM,
+                        pc_ecs:bucketControls,
+                        pc_ecs:bucketIndustrialAI ;
+    rdfs:comment        "broadMatch: 'Digital Manufacturing' spans 4 peer-level pc_ecs Major buckets (no single pc_ecs umbrella subsumes Software/CAD-CAM/Controls/Industrial-AI). PPL is the broader concept; each target bucket is narrower." .
+
+ppl_cs:codeFinishingCleaning
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ppl_cs:PrimaryProductLineCodeSet ;
+    skos:notation       "PPL004"^^xsd:token ;
+    skos:prefLabel      "Finishing & Cleaning" ;
+    skos:closeMatch     pc_ecs:bucketFinishingAndPostProcessing .
+
+ppl_cs:codeFormingFabricating
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ppl_cs:PrimaryProductLineCodeSet ;
+    skos:notation       "PPL005"^^xsd:token ;
+    skos:prefLabel      "Forming & Fabricating" ;
+    skos:closeMatch     pc_ecs:bucketJoiningAndForming ;
+    rdfs:comment        "closeMatch via umbrella: pc_ecs:bucketJoiningAndForming groups bucketForming + bucketWelding via amtmeta:groups, covering both forming and welding-style fabrication. Same-grain mapping at the umbrella level." .
+
+ppl_cs:codeMetalCuttingMachining
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ppl_cs:PrimaryProductLineCodeSet ;
+    skos:notation       "PPL006"^^xsd:token ;
+    skos:prefLabel      "Metal Cutting & Machining" ;
+    skos:broadMatch     pc_ecs:bucketSubtractive,
+                        pc_ecs:bucketGearManufacturing ;
+    rdfs:comment        "broadMatch: 'Metal Cutting & Machining' spans two pc_ecs Major buckets that pc_ecs treats as peer-level (Subtractive is the umbrella for Broaching/EDM/Milling/Sawing/Turning; GearManufacturing is a separate peer). PPL is the broader concept that covers both." .
+
+ppl_cs:codeRoboticsAutomation
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ppl_cs:PrimaryProductLineCodeSet ;
+    skos:notation       "PPL007"^^xsd:token ;
+    skos:prefLabel      "Robotics & Automation" ;
+    skos:closeMatch     pc_ecs:bucketAutomatedSystems ;
+    rdfs:comment        "closeMatch via umbrella: pc_ecs:bucketAutomatedSystems groups bucketAutomatedSystemsCells + bucketAutomationAndMaterialHandling + bucketTransferMachines via amtmeta:groups, covering robotics, material-handling automation, and transfer-line automation. Same-grain mapping at the umbrella level." .
+
+ppl_cs:codeToolingWorkholding
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ppl_cs:PrimaryProductLineCodeSet ;
+    skos:notation       "PPL008"^^xsd:token ;
+    skos:prefLabel      "Tooling & Workholding" ;
+    skos:closeMatch     pc_ecs:bucketToolingAndWorkholding ;
+    rdfs:comment        "closeMatch via umbrella: pc_ecs:bucketToolingAndWorkholding groups bucketTooling + bucketWorkholding via amtmeta:groups. Same-grain mapping; labels are essentially identical." .
+
+ppl_cs:codeQualityMetrology
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ppl_cs:PrimaryProductLineCodeSet ;
+    skos:notation       "PPL009"^^xsd:token ;
+    skos:prefLabel      "Quality & Metrology" ;
+    skos:closeMatch     pc_ecs:bucketMetrology .
+
+ppl_cs:codeNoResponse
+    a cmns-cds:CodeElement, amtmeta:SentinelCodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ppl_cs:PrimaryProductLineCodeSet ;
+    skos:notation       "PPL010"^^xsd:token ;
+    skos:prefLabel      "Not Specified" ;
+    rdfs:comment        "Sentinel for 'Not Specified' answer on the Membership Application (matches the literal CSV value in amt-membership exports)." .

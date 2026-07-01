@@ -15,6 +15,8 @@
 @prefix cmns-dsg:  <https://www.omg.org/spec/Commons/Designators/> .
 @prefix lead_pc_cs: <http://ontology.amt.org/codes/lead-product-interest#> .
 @prefix ex_raw_pc_cs: <http://ontology.amt.org/codes/exhibitor-raw-product-categories#> .
+@prefix mtrole_cs: <http://ontology.amt.org/codes/mt-role#> .
+@prefix ppl_cs:    <http://ontology.amt.org/codes/primary-product-line#> .
 
 ##
 ## SHACL shapes for AMT CodeSet vocabularies.
@@ -516,4 +518,69 @@ imShape:LeadFieldsShape
             [ sh:class im:AmtFacility ]
         ) ;
         sh:message  "Every im:Lead must have exactly one im:leadOfExhibitor, pointing at an im:ExhibitorRecord or im:AmtFacility." ;
+    ] .
+
+##
+## ---------------------------------------------------------------------------
+## Membership shapes (v0.6.0)
+## ---------------------------------------------------------------------------
+## Mirror the Visitor/Exhibitor Record shapes for the org-level Membership
+## Relator: exact-1 mediation on the Member + Association sides, exact-1 on
+## the bylaw MT Role + Primary Product Line answers, and in-vocabulary scope
+## for the two codeset-mediated answer properties.
+##
+
+imShape:MembershipFieldsShape
+    a sh:NodeShape ;
+    rdfs:label "Membership core fields cardinality" ;
+    sh:targetClass im:Membership ;
+    sh:property [
+        sh:path     im:mediatesMember ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:class    im:Member ;
+        sh:message  "Every im:Membership must im:mediatesMember exactly one im:Member." ;
+    ] ;
+    sh:property [
+        sh:path     im:mediatesAssociation ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:hasValue im:AMT ;
+        sh:message  "Every im:Membership must im:mediatesAssociation exactly once, and that association must be im:AMT in practice." ;
+    ] .
+
+imShape:MembershipMTRoleShape
+    a sh:NodeShape ;
+    rdfs:label     "Membership MT Role Constraint" ;
+    sh:targetClass im:Membership ;
+    sh:property [
+        sh:path     im:hasMTRole ;
+        sh:node     imShape:MTRoleCodeSetMember ;
+        sh:maxCount 1 ;
+        sh:message  "im:hasMTRole on im:Membership is optional (cardinality 0..1); when present it must point at a CodeElement isMemberOf mtrole_cs:MTRoleCodeSet. The current AMT membership export does not include MT Role values; SHACL only enforces in-vocabulary scope + max-1 until the join is available." ;
+    ] .
+
+imShape:MTRoleCodeSetMember
+    a sh:NodeShape ;
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:hasValue <http://ontology.amt.org/codes/mt-role#MTRoleCodeSet> ;
+        sh:minCount 1 ;
+    ] .
+
+imShape:MembershipPrimaryProductLineShape
+    a sh:NodeShape ;
+    rdfs:label     "Membership Primary Product Line Constraint" ;
+    sh:targetClass im:Membership ;
+    sh:property [
+        sh:path     im:hasPrimaryProductLine ;
+        sh:node     imShape:PPLCodeSetMember ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message  "Every im:Membership must have exactly one im:hasPrimaryProductLine pointing at a CodeElement isMemberOf ppl_cs:PrimaryProductLineCodeSet." ;
+    ] .
+
+imShape:PPLCodeSetMember
+    a sh:NodeShape ;
+    sh:property [
+        sh:path     cmns-col:isMemberOf ;
+        sh:hasValue <http://ontology.amt.org/codes/primary-product-line#PrimaryProductLineCodeSet> ;
+        sh:minCount 1 ;
     ] .

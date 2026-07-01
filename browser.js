@@ -18,6 +18,8 @@
     "imts-jobfn-tree",
     "imts-acqrole-tree",
     "imts-empcount-tree",
+    "membership-ppl-tree",
+    "membership-mtrole-tree",
   ];
 
   /* -- Outer tab switching -- */
@@ -161,6 +163,8 @@
     ["search-imts-jobfn",    "imts-jobfn-tree"],
     ["search-imts-acqrole",  "imts-acqrole-tree"],
     ["search-imts-empcount", "imts-empcount-tree"],
+    ["search-membership-ppl",    "membership-ppl-tree"],
+    ["search-membership-mtrole", "membership-mtrole-tree"],
   ].forEach(function (pair) {
     const input = document.getElementById(pair[0]);
     const treeId = pair[1];
@@ -189,6 +193,8 @@
     ["imts-jobfn-total-count",     "imts-jobfn-tree"],
     ["imts-acqrole-total-count",   "imts-acqrole-tree"],
     ["imts-empcount-total-count",  "imts-empcount-tree"],
+    ["membership-ppl-total-count",    "membership-ppl-tree"],
+    ["membership-mtrole-total-count", "membership-mtrole-tree"],
   ].forEach(function (pair) {
     setBadge(pair[0], countNodes(pair[1]) + " total nodes");
   });

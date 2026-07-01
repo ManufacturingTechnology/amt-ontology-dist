@@ -17,8 +17,8 @@
                 <http://purl.org/nemo/gufo> ;
 
     dcterms:title    "AMT/IMTS Information Model" ;
-    owl:versionInfo  "0.5.3" ;
-    owl:versionIRI   <http://ontology.amt.org/im/0.5.3> ;
+    owl:versionInfo  "0.6.1" ;
+    owl:versionIRI   <http://ontology.amt.org/im/0.6.1> ;
 
     amtmeta:status              amtmeta:Active ;
     amtmeta:taxonomyOwner       "Chris Downs" ;
@@ -44,19 +44,20 @@
 
     amtmeta:relatedDocumentation <https://amtonline.sharepoint.com/sites/governance/Shared%20Documents/Taxonomy%20Change%20Process.docx> ;
 
-    amtmeta:releaseDate     "2026-06-12"^^xsd:date ;
-    amtmeta:scopeSummary    "AMT Information Model: registration / lead / organizing relator patterns plus the per-record ingestion-data property surface. Cross-ontology classification of Industry / Interest / Product Category is mediated through OMG Commons CodeSets in ontology/codes/. Trade-show class hierarchy (im:TradeShow) supports both IMTS and external shows." ;
+    amtmeta:releaseDate     "2026-06-29"^^xsd:date ;
+    amtmeta:scopeSummary    "AMT Information Model: registration / lead / organizing / membership relator patterns plus the per-record ingestion-data property surface. Cross-ontology classification of Industry / Interest / Product Category / MT Role / Primary Product Line is mediated through OMG Commons CodeSets in ontology/codes/. Trade-show class hierarchy (im:TradeShow) supports both IMTS and external shows. v0.6.0 added im:Member (Role) + im:Membership (Relator, sibling of im:Registration) for AMT member-application data. v0.6.1 refines the address/URL surface: every per-record snapshot field (streetAddress, city, stateProvince, postalCode, country, companyURL) attaches to a Relator (Registration or Membership), never to a substantial entity (Company / Person) directly. Company stays identity-only and is reached via mediatesMember from its current Membership." ;
     amtmeta:releaseOwner    "Shaurabh" ;
     amtmeta:approvalStatus  amtmeta:Draft ;
-    amtmeta:gitTag          "v0.5.3" ;
-    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.5.3> ;
-    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.5.3> ;
+    amtmeta:gitTag          "v0.6.1" ;
+    amtmeta:githubRelease   <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.6.1> ;
+    amtmeta:releaseNotes    <https://github.com/ManufacturingTechnology/amt-ontology/releases/tag/v0.6.1> ;
 
     amtmeta:useCase
         "Encodes registration data captured at IMTS shows",
         "Backbone for visitor/exhibitor matching queries",
         "Bridge between pc: and ind: taxonomies",
-        "Captures post-show leads data via Lead relator" .
+        "Captures post-show leads data via Lead relator",
+        "Encodes AMT member-application data via Member role + Membership relator" .
 
 #-------------------------------------------------------------------------------
 # Kinds — substantial entities
@@ -117,6 +118,11 @@ im:BoothStaff a owl:Class, gufo:Role ;
     rdfs:subClassOf im:Visitor ;
     rdfs:label "Booth Staff" .
 
+im:Member a owl:Class, gufo:Role ;
+    rdfs:subClassOf im:Company ;
+    rdfs:label "AMT Member" ;
+    rdfs:comment "A Company in its capacity as an AMT member. Anti-rigid Role: the same Company may cease to be a member without losing its Company identity. Distinct from im:Exhibitor (per-show role played for IMTS) -- Member is the org-level long-running role with AMT itself, scoped to the bylaw-defined member categories in mtrole_cs and self-declared market segment in ppl_cs. The role's data lives on im:Membership (the Relator that mediates Member and im:AMT); the Role itself is just the role-typing on the Company." .
+
 #-------------------------------------------------------------------------------
 # Cross-ontology classifiers
 #-------------------------------------------------------------------------------
@@ -155,6 +161,11 @@ im:AmtFacility a owl:Class, gufo:Kind ;
     rdfs:subClassOf im:Registration ;
     rdfs:label "AMT Facility Record" ;
     rdfs:comment "Per-show record for an AMT-operated venue space that has a booth scanner but is not a commercial exhibitor -- e.g. AMT Member Lounge (S103), International Lounge (N226). Sibling Kind of im:ExhibitorRecord under im:Registration. Carries im:representsCompany (typically AMT itself), im:booth, im:registeredForShow, and is the target of im:leadOfExhibitor when a badge is scanned at an AMT facility. Does NOT carry im:hasProductCategory or im:servesIndustry." .
+
+im:Membership a owl:Class, gufo:Kind ;
+    rdfs:subClassOf gufo:Relator ;
+    rdfs:label "Membership" ;
+    rdfs:comment "Long-running AMT membership relationship. Sibling of im:Registration under gufo:Relator (not a sub-Kind -- Registration is per-show, Membership is org-level). Mediates one im:Member (the company) and one im:Association (im:AMT in practice). One Membership instance per Company; renewals extend the same instance rather than minting a new one. Carries the org-level membership-application attributes: im:hasMTRole (bylaw-defined member type) and im:hasPrimaryProductLine (coarse business segment). Lifecycle fields like memberSinceDate / dues / memberClass are not modeled here yet -- they will land when AMT supplies a Salesforce export carrying those columns (see docs/decisions/im.md)." .
 
 im:Lead a owl:Class, gufo:Kind ;
     rdfs:subClassOf gufo:ExtrinsicMode ;
@@ -235,10 +246,18 @@ im:mediatesEmployer a owl:ObjectProperty ;
 
 im:mediatesAssociation a owl:ObjectProperty ;
     rdfs:subPropertyOf gufo:mediates ;
-    rdfs:domain im:Registration ;
+    rdfs:domain [ a owl:Class ;
+                  owl:unionOf ( im:Registration im:Membership ) ] ;
     rdfs:range  im:Association ;
     rdfs:label  "mediates association" ;
-    rdfs:comment "Connects a Registration to the organizing Association that accepts it. Cardinality 1 on Registration -- the second mandatory Endurant participant required by gufo:Relator (the registrant is the first; the show is connected separately via im:manifestedInShow). Constrained to im:AMT in practice." .
+    rdfs:comment "Connects a Registration OR Membership to the organizing/owning Association that accepts it. For Registration this is the show organizer (im:AMT for IMTS); for Membership this is the association the member belongs to (im:AMT). Cardinality 1 on each Relator subject. Constrained to im:AMT in practice." .
+
+im:mediatesMember a owl:ObjectProperty ;
+    rdfs:subPropertyOf gufo:mediates ;
+    rdfs:domain im:Membership ;
+    rdfs:range  im:Member ;
+    rdfs:label  "mediates member" ;
+    rdfs:comment "Connects a Membership Relator to the Member Role it confers on a Company. Parallels im:mediatesVisitor / im:mediatesExhibitor for the registration-side. The Member side of the Membership Relator -- the other mandatory mediation is im:mediatesAssociation pointing at im:AMT." .
 
 #-------------------------------------------------------------------------------
 # Object properties — Show manifestation (sub-property of gufo:manifestedIn)
@@ -333,9 +352,10 @@ im:hasLeadFormInterest a owl:ObjectProperty ;
     rdfs:comment "Visitor's selected product-interest answers on the lead-scan form (a pre-harmonization vocabulary distinct from the registration-form pc_vcs question). Membership scope enforced by imShape:VisitorLeadFormInterestShape against lead_pc_cs:LeadProductInterestCodeSet." .
 
 im:hasProductCategory a owl:ObjectProperty ;
+    rdfs:domain  im:Registration ;
     rdfs:range   cmns-cds:CodeElement ;
     rdfs:label   "has product category" ;
-    rdfs:comment "Self-classification of an exhibitor's offering against a product-category vocabulary. Domain deliberately unset so im:ExhibitorRecord and external exhibitor classes (e.g. pc_jimtof_cs:Exhibitor) can both use it. Membership scope enforced per consumer by shapes in shapes/codeset-shapes.ttl." .
+    rdfs:comment "Self-classification of an exhibitor's offering against a product-category vocabulary. Domain im:Registration (v0.6.1) covers im:ExhibitorRecord and external exhibitor Kinds that sit under im:Registration (e.g. pc_jimtof_cs:Exhibitor). The per-Kind constraint that ONLY exhibitor-side sub-Kinds use this property is enforced by SHACL shapes in shapes/codeset-shapes.ttl, since a bare rdfs:domain declaration would either miss the JIMTOF external class (if narrowed to im:ExhibitorRecord) or force im.ttl to import the external codeset (a reverse dependency we forbid)." .
 
 #-------------------------------------------------------------------------------
 # v0.4.0 additions -- ingestion-data properties (added for individuals build)
@@ -387,34 +407,41 @@ im:title a owl:DatatypeProperty ;
     rdfs:label  "title" ;
     rdfs:comment "Job title. Low-PII (frequently appears in public bios) but dropped in fixtures together with the name fields." .
 
-# --- VisitorRecord: address fields ------------------------------------------
+# --- Address fields (shared: VisitorRecord home address + Company HQ address)
+# Domain widened from im:VisitorRecord-only to (im:VisitorRecord ∪ im:Company)
+# in v0.6.0 so AMT-member corporate HQ addresses can attach directly to the
+# Company. Visitor-side values remain PII (dropped in pseudonymized fixtures);
+# Company-side values are public corporate HQ addresses and NOT redacted.
 
 im:streetAddress a owl:DatatypeProperty ;
-    rdfs:domain im:VisitorRecord ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( im:Registration im:Membership ) ] ;
     rdfs:range  xsd:string ;
     rdfs:label  "street address" ;
-    rdfs:comment "PII. Multi-valued: visitor_raw has ADD1/ADD2/ADD3 columns; each non-null line emits one im:streetAddress triple in order. Dropped in pseudonymized fixtures." .
+    rdfs:comment "Relator-anchored: address-line snapshot captured by a Registration (the visitor / exhibitor home address as of show registration) or Membership (the member company's HQ as of the membership application). Multi-valued. Never attached to im:Company or im:Person directly -- the value is a property of the relationship instance, not of the substantial entity. On VisitorRecord: PII (visitor home); stripped in pseudonymized fixtures. On Membership: street-level corporate HQ; still semi-PII (granular building address); stripped in fixtures." .
 
 im:city a owl:DatatypeProperty ;
-    rdfs:domain im:VisitorRecord ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( im:Registration im:Membership ) ] ;
     rdfs:range  xsd:string ;
-    rdfs:label  "city" .
+    rdfs:label  "city" ;
+    rdfs:comment "Relator-anchored. On VisitorRecord / ExhibitorRecord: PII (visitor home / exhibitor company city as of registration); stripped in fixtures. On Membership: public corporate-HQ city as of membership application; kept in fixtures." .
 
 im:stateProvince a owl:DatatypeProperty ;
-    rdfs:domain im:VisitorRecord ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( im:Registration im:Membership ) ] ;
     rdfs:range  xsd:string ;
-    rdfs:label  "state or province" .
+    rdfs:label  "state or province" ;
+    rdfs:comment "Relator-anchored. Same Visitor-vs-Membership PII split as im:city." .
 
 im:postalCode a owl:DatatypeProperty ;
-    rdfs:domain im:VisitorRecord ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( im:Registration im:Membership ) ] ;
     rdfs:range  xsd:string ;
     rdfs:label  "postal code" ;
-    rdfs:comment "Source may be numeric (US ZIP) or alphanumeric (Canadian, UK, etc.). Stored as string to preserve leading zeros." .
+    rdfs:comment "Relator-anchored. Source may be numeric (US ZIP) or alphanumeric (Canadian, UK, etc.). Stored as string to preserve leading zeros. Same Visitor-vs-Membership PII split as im:city." .
 
 im:country a owl:DatatypeProperty ;
-    rdfs:domain im:VisitorRecord ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( im:Registration im:Membership ) ] ;
     rdfs:range  xsd:string ;
-    rdfs:label  "country" .
+    rdfs:label  "country" ;
+    rdfs:comment "Relator-anchored. Same Visitor-vs-Membership PII split as im:city." .
 
 # --- VisitorRecord: registration-flow fields --------------------------------
 
@@ -431,21 +458,24 @@ im:emailOptIn a owl:DatatypeProperty ;
     rdfs:comment "Whether the visitor opted in to marketing email. Sourced from visitor_raw.EmailOptIn (Y/N converted to xsd:boolean)." .
 
 im:sourceProvenance a owl:DatatypeProperty ;
+    rdfs:domain im:Registration ;
     rdfs:range  xsd:string ;
     rdfs:label  "source provenance" ;
-    rdfs:comment "Origin of the record. Domain deliberately unset so any Registration subKind can use it. For VisitorRecord: \"registration\" (Maritz reg export) or \"leads\" (synthesized because badge was missing from reg export). For ExhibitorRecord: \"exhibitor_raw\" (Maritz exhibitor export) or \"leads\" (synthesized because the booth scanned in leads_raw was missing from exhibitor_raw). For AmtFacility: always \"leads\" (these are only discovered from scan data)." .
+    rdfs:comment "Origin of the record. Domain im:Registration (v0.6.1, previously unset) covers any Registration sub-Kind. For VisitorRecord: \"registration\" (Maritz reg export) or \"leads\" (synthesized because badge was missing from reg export). For ExhibitorRecord: \"exhibitor_raw\" (Maritz exhibitor export) or \"leads\" (synthesized because the booth scanned in leads_raw was missing from exhibitor_raw). For AmtFacility: always \"leads\" (these are only discovered from scan data)." .
 
 # --- VisitorRecord: object properties --------------------------------------
 
 im:representsCompany a owl:ObjectProperty ;
+    rdfs:domain im:Registration ;
     rdfs:range  im:Company ;
     rdfs:label  "represents company" ;
-    rdfs:comment "Links a record to its corporate entity. Domain deliberately unset so both VisitorRecord and ExhibitorRecord can use it. Target Company IRI is hash-derived from the normalized company name so identical companies across record types collapse to one entity." .
+    rdfs:comment "Links a record to its corporate entity. Domain im:Registration (v0.6.1) covers VisitorRecord, ExhibitorRecord, AmtFacility, and external exhibitor sub-Kinds (e.g. pc_jimtof_cs:Exhibitor). Target Company IRI is hash-derived from the normalized company name so identical companies across record types collapse to one entity." .
 
 im:registeredForShow a owl:ObjectProperty ;
+    rdfs:domain im:Registration ;
     rdfs:range  im:TradeShow ;
     rdfs:label  "registered for show" ;
-    rdfs:comment "Which trade-show edition this record belongs to. Domain deliberately unset so VisitorRecord, ExhibitorRecord, and external exhibitor classes (e.g. pc_jimtof_cs:Exhibitor) can all use it. One event individual per edition." .
+    rdfs:comment "Which trade-show edition this record belongs to. Domain im:Registration (v0.6.1) covers VisitorRecord, ExhibitorRecord, AmtFacility, and external exhibitor sub-Kinds (e.g. pc_jimtof_cs:Exhibitor). One event individual per edition." .
 
 im:hasIndustry a owl:ObjectProperty ;
     rdfs:domain [ a owl:Class ; owl:unionOf ( im:VisitorRecord im:Company ) ] ;
@@ -477,17 +507,37 @@ im:plantEmployeeCount a owl:ObjectProperty ;
     rdfs:label  "plant employee count" ;
     rdfs:comment "Bracketed total employees at the visitor\u2019s plant. Captured per visitor and stored on VisitorRecord (denormalized, same rationale as im:hasIndustry). Range scoped to empcount_cs:PlantEmployeeCountCodeSet members via SHACL." .
 
+# --- Membership-side: bylaw role + primary business segment -----------------
+# Attached to im:Membership (the Relator), NOT to im:Company or im:Member.
+# Reason: these are answers to the Membership Application; if a company ever
+# lapses and rejoins with a different MT Role / PPL, the new Membership
+# instance records the change without re-typing the Company.
+
+im:hasMTRole a owl:ObjectProperty ;
+    rdfs:domain im:Membership ;
+    rdfs:range  cmns-cds:CodeElement ;
+    rdfs:label  "has MT role" ;
+    rdfs:comment "Bylaw-defined classification of the member's relationship to the manufacturing-technology ecosystem (Builder / Distributor / Affiliate / Investor). Range scoped to mtrole_cs:MTRoleCodeSet members via SHACL. Captured on the Membership Application; sourced from Salesforce." .
+
+im:hasPrimaryProductLine a owl:ObjectProperty ;
+    rdfs:domain im:Membership ;
+    rdfs:range  cmns-cds:CodeElement ;
+    rdfs:label  "has primary product line" ;
+    rdfs:comment "Member's coarse business-segment self-selection on the Membership Application. Range scoped to ppl_cs:PrimaryProductLineCodeSet members via SHACL. The Application also captures a secondary line into a separate field; im:hasSecondaryProductLine is deferred until that data lands -- see docs/decisions/im.md." .
+
 # --- Exhibitor-side: products + industry coverage --------------------------
 
 im:exhibits a owl:DatatypeProperty ;
+    rdfs:domain im:Registration ;
     rdfs:range  xsd:string ;
     rdfs:label  "exhibits" ;
-    rdfs:comment "Specific product line(s) an exhibitor brings to a show. Free text, multi-valued. Distinct from im:hasProductCategory (vocabulary-level self-categorization). Domain deliberately unset so im:ExhibitorRecord and external exhibitor classes can both use it." .
+    rdfs:comment "Specific product line(s) an exhibitor brings to a show. Free text, multi-valued. Distinct from im:hasProductCategory (vocabulary-level self-categorization). Domain im:Registration (v0.6.1) covers ExhibitorRecord and external exhibitor sub-Kinds (e.g. pc_jimtof_cs:Exhibitor). Per-Kind restriction to exhibitor-side subjects only is enforced by SHACL." .
 
 im:servesIndustry a owl:ObjectProperty ;
+    rdfs:domain im:Registration ;
     rdfs:range  cmns-cds:CodeElement ;
     rdfs:label  "serves industry" ;
-    rdfs:comment "Industries an exhibitor targets or serves with its products. Multi-valued, codeset-mediated (each show's codeset scope enforced via SHACL). Distinct from im:hasIndustry, which is the visitor-side question (the visitor's own company industry)." .
+    rdfs:comment "Industries an exhibitor targets or serves with its products. Multi-valued, codeset-mediated (each show's codeset scope enforced via SHACL). Distinct from im:hasIndustry, which is the visitor-side question (the visitor's own company industry). Domain im:Registration (v0.6.1) covers ExhibitorRecord and external exhibitor sub-Kinds (e.g. pc_jimtof_cs:Exhibitor); per-Kind restriction enforced by SHACL." .
 
 im:recordCreatedAt a owl:DatatypeProperty ;
     rdfs:domain im:VisitorRecord ;
@@ -496,10 +546,10 @@ im:recordCreatedAt a owl:DatatypeProperty ;
     rdfs:comment "Database timestamp when the registration record was created. Distinct from im:registrationDate (the visitor's actual registration moment) and from im:scanDateTime (per-Lead scan time)." .
 
 im:companyURL a owl:DatatypeProperty ;
-    rdfs:domain im:Company ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( im:Registration im:Membership ) ] ;
     rdfs:range  xsd:anyURI ;
     rdfs:label  "company URL" ;
-    rdfs:comment "Company's primary web URL. Captured from lead-scan data when available." .
+    rdfs:comment "Relator-anchored: the company's primary web URL as captured by a specific relationship-instance (a lead-scan Registration's snapshot, or the Membership's snapshot at application time). Domain widened from im:Company to (im:Registration ∪ im:Membership) in v0.6.1 -- the URL is treated as a per-source snapshot rather than an identity-level fact, so different sources can record different URLs over time (rebrands, mergers) without conflict. The Company itself stays identity-only; to read the current URL for a Company, traverse ^im:mediatesMember/im:companyURL through its Membership." .
 
 
 # --- ExhibitorRecord: additions ---------------------------------------------
@@ -586,13 +636,16 @@ im:staffsFor a owl:ObjectProperty ;
 # asserted separately:
 #   im:Visitor ⊑ im:Person  and  im:Exhibitor ⊑ im:Company
 #   im:Person  ⟂ im:Company  ⇒  im:Visitor ⟂ im:Exhibitor
-# (Note: im:BoothStaff ⊑ im:Visitor by design, so they are NOT disjoint.)
+# (Note: im:BoothStaff ⊑ im:Visitor by design, so they are NOT disjoint.
+#  im:Member ⊑ im:Company by design, so Member ⟂ Visitor follows from
+#  Company ⟂ Person.)
 
 [] a owl:AllDisjointClasses ;
    owl:members ( im:Person im:Company im:Association im:Department ) .
 
 im:VisitorRecord owl:disjointWith im:ExhibitorRecord .
 im:Registration  owl:disjointWith im:Lead .
+im:Registration  owl:disjointWith im:Membership .
 
 #-------------------------------------------------------------------------------
 # Cardinality restrictions
@@ -654,3 +707,16 @@ im:Lead rdfs:subClassOf
 im:Organizing rdfs:subClassOf
     [ a owl:Restriction ; owl:onProperty im:organizedBy     ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
     [ a owl:Restriction ; owl:onProperty im:organizesEvent  ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] .
+
+# Membership constraints: every Membership instance mediates exactly one Member
+# and one Association, and carries exactly one Primary Product Line. MT Role
+# is optional (max-1, enforced in SHACL only) because the current AMT
+# membership export does not carry MT Role values for each row -- they live
+# in a separate Salesforce field that hasn't been joined into the export yet.
+# OWL minCardinality below; the exact-1 invariant is enforced in shapes/
+# (parallels the SHACL exact-1 pattern used for Visitor / Exhibitor records).
+im:Membership rdfs:subClassOf
+    [ a owl:Restriction ; owl:onProperty im:mediatesMember        ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:mediatesAssociation   ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:hasMTRole             ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ,
+    [ a owl:Restriction ; owl:onProperty im:hasPrimaryProductLine ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] .

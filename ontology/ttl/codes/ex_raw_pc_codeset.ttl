@@ -559,6 +559,12 @@ ex_raw_pc_cs:codeScrewMachinesSingleSpindleCamType
     skos:notation       "1825"^^xsd:token ;
     skos:prefLabel      "Screw Machines, Single-Spindle, Cam-Type" ;
     cmns-dsg:designates pc_ecs:codeSingleSpindleCamScrewMachine .
+ex_raw_pc_cs:codeScrewMachinesMultiSpindleCamType
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "1830"^^xsd:token ;
+    skos:prefLabel      "Screw Machines, Multi-Spindle, Cam-Type" ;
+    cmns-dsg:designates pc_ecs:codeMultiSpindleCamScrewMachine .
 ex_raw_pc_cs:codeScrewMachinesSwissCamType
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
@@ -902,6 +908,12 @@ ex_raw_pc_cs:codeStraighteningMachines
     skos:notation       "3280"^^xsd:token ;
     skos:prefLabel      "Straightening Machines" ;
     cmns-dsg:designates pc_ecs:codeStraighteningMachine .
+ex_raw_pc_cs:codeStretchBenders
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "3285"^^xsd:token ;
+    skos:prefLabel      "Stretch Benders" ;
+    cmns-dsg:designates pc_ecs:codeStretchBender .
 ex_raw_pc_cs:codeSwagingMachines
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
@@ -1166,6 +1178,12 @@ ex_raw_pc_cs:codeDiecastingMachines
     skos:notation       "4040"^^xsd:token ;
     skos:prefLabel      "Diecasting Machines" ;
     cmns-dsg:designates pc_ecs:codeDiecastingMachine .
+ex_raw_pc_cs:codeDiecuttingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4050"^^xsd:token ;
+    skos:prefLabel      "Diecutting Machines" ;
+    cmns-dsg:designates pc_ecs:codeDiecuttingMachine .
 ex_raw_pc_cs:codeElectroChemicalMachinesEcm
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
@@ -1208,6 +1226,12 @@ ex_raw_pc_cs:codeCleaningAndDegreasingEquipment
     skos:notation       "4130"^^xsd:token ;
     skos:prefLabel      "Cleaning and Degreasing Equipment" ;
     cmns-dsg:designates pc_ecs:codeCleaningDegreasingEquipment .
+ex_raw_pc_cs:codeMetalDisintegrators
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4140"^^xsd:token ;
+    skos:prefLabel      "Metal Disintegrators" ;
+    cmns-dsg:designates pc_ecs:codeMetalDisintegrator .
 ex_raw_pc_cs:codeMiniatureMachinesForTraining
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
@@ -1232,6 +1256,12 @@ ex_raw_pc_cs:codePlasticJoiningEquipment
     skos:notation       "4152"^^xsd:token ;
     skos:prefLabel      "Plastic Joining Equipment" ;
     cmns-dsg:designates pc_ecs:codePlasticJoiningEquipment .
+ex_raw_pc_cs:codePlasticAssemblyEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4153"^^xsd:token ;
+    skos:prefLabel      "Plastic Assembly Equipment" ;
+    cmns-dsg:designates pc_ecs:codePlasticAssemblyEquipment .
 ex_raw_pc_cs:codePlasticCuttingAndSlittingEquipment
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
@@ -1347,12 +1377,24 @@ ex_raw_pc_cs:codeCoilEquipmentSystems
     skos:notation       "4503"^^xsd:token ;
     skos:prefLabel      "Coil Equipment Systems" ;
     cmns-dsg:designates pc_ecs:codeCoilEquipmentSystem .
+ex_raw_pc_cs:codeCoilSlittingEquipment
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4505"^^xsd:token ;
+    skos:prefLabel      "Coil Slitting Equipment" ;
+    cmns-dsg:designates pc_ecs:codeCoilSlittingEquipment .
 ex_raw_pc_cs:codeCutToLengthMachines
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
     skos:notation       "4507"^^xsd:token ;
     skos:prefLabel      "Cut to Length Machines" ;
     cmns-dsg:designates pc_ecs:codeCutToLengthMachine .
+ex_raw_pc_cs:codeStripHandlingMachines
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "4509"^^xsd:token ;
+    skos:prefLabel      "Strip Handling Machines" ;
+    cmns-dsg:designates pc_ecs:codeStripHandlingMachine .
 ex_raw_pc_cs:codeCompressors
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
@@ -2881,6 +2923,12 @@ ex_raw_pc_cs:codeManufacturingEquipmentForAutomationElectricalSystems
     skos:notation       "10001"^^xsd:token ;
     skos:prefLabel      "Manufacturing Equipment for Automation & Electrical Systems" ;
     cmns-dsg:designates pc_ecs:codeAutomationElectricalEquipmentCollection .
+ex_raw_pc_cs:codeLacqueringEnamelingPlasticCoatingSystems
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;
+    skos:notation       "10002"^^xsd:token ;
+    skos:prefLabel      "Lacquering, Enameling & Plastic Coating Systems" ;
+    cmns-dsg:designates pc_ecs:codeCoatingSystemCollection .
 ex_raw_pc_cs:codeSystemsForIndustrialPlasmaSurfaceTechnology
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf ex_raw_pc_cs:ExhibitorRawCodeSet ;

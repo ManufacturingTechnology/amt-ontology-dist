@@ -89,6 +89,7 @@ header a { color: #fffbcc; text-decoration: underline; font-weight: 600; }
 .dot-pc        { background: var(--amt-blue); }
 .dot-ind       { background: var(--industry-color); }
 .dot-imts      { background: #6d28d9; }
+.dot-membership { background: #0e7490; }
 
 /* ── Sub-tab bar (inner, lighter) ── */
 .sub-tab-bar {
@@ -139,15 +140,23 @@ header a { color: #fffbcc; text-decoration: underline; font-weight: 600; }
 .sub-dot-imts-jobfn     { background: #be185d; }
 .sub-dot-imts-acqrole   { background: #047857; }
 .sub-dot-imts-empcount  { background: #b45309; }
+.sub-dot-membership-ppl    { background: #0e7490; }
+.sub-dot-membership-mtrole { background: #7c3aed; }
 /* When the parent panel is "ind", colour the active sub-tab to match */
 .panel-ind  .sub-tab-btn.active { color: var(--industry-color); border-bottom-color: var(--industry-color); }
 .panel-im   .sub-tab-btn.active { color: var(--im-color);       border-bottom-color: var(--im-color); }
 .panel-imts .sub-tab-btn.active { color: #6d28d9;               border-bottom-color: #6d28d9; }
+.panel-membership .sub-tab-btn.active { color: #0e7490;         border-bottom-color: #0e7490; }
 
 /* ── IMTS-specific tweaks ── */
 .imts-title { color: #6d28d9; }
 .imts-badge { background: #ede9fe; color: #6d28d9; border-color: #c4b5fd; }
 .card-imts  .card-header-text h2 { color: #6d28d9; }
+
+/* ── Membership-specific tweaks ── */
+.membership-title { color: #0e7490; }
+.membership-badge { background: #cffafe; color: #0e7490; border-color: #67e8f9; }
+.card-membership .card-header-text h2 { color: #0e7490; }
 .notation-badge {
   display: inline-block;
   margin-left: 8px;

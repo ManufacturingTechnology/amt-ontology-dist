@@ -119,39 +119,45 @@ jobfn_cs:codeDeptSalesMarketing
     skos:notation       "JF06"^^xsd:token ;
     skos:prefLabel      "Department, Sales & Marketing" .
 
-jobfn_cs:codeMgmtCorporateExecutive
+jobfn_cs:codeDeptFinanceHR
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
     skos:notation       "JF07"^^xsd:token ;
+    skos:prefLabel      "Finance/HR Department" .
+
+jobfn_cs:codeMgmtCorporateExecutive
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
+    skos:notation       "JF08"^^xsd:token ;
     skos:prefLabel      "Management, Corporate and Executive" .
 
 jobfn_cs:codeMgmtDesignRD
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
-    skos:notation       "JF08"^^xsd:token ;
+    skos:notation       "JF09"^^xsd:token ;
     skos:prefLabel      "Management, Design or R&D" .
 
 jobfn_cs:codeMgmtMfgEngineering
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
-    skos:notation       "JF09"^^xsd:token ;
+    skos:notation       "JF10"^^xsd:token ;
     skos:prefLabel      "Management, Manufacturing Engineering" .
 
 jobfn_cs:codeMgmtMfgProduction
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
-    skos:notation       "JF10"^^xsd:token ;
+    skos:notation       "JF11"^^xsd:token ;
     skos:prefLabel      "Management, Manufacturing Production" .
 
 jobfn_cs:codeOther
     a cmns-cds:CodeElement, amtmeta:SentinelCodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf      jobfn_cs:JobFunctionCodeSet ;
-    skos:notation            "JF11"^^xsd:token ;
+    skos:notation            "JF12"^^xsd:token ;
     skos:prefLabel           "Other (Please specify)" ;
     amtmeta:promptsFreeText  "true"^^xsd:boolean .
 
 jobfn_cs:codeNoResponse
     a cmns-cds:CodeElement, amtmeta:SentinelCodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf jobfn_cs:JobFunctionCodeSet ;
-    skos:notation       "JF12"^^xsd:token ;
+    skos:notation       "JF13"^^xsd:token ;
     skos:prefLabel      "No Response" .

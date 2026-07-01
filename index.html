@@ -22,6 +22,7 @@
   
   
   
+  
 
   <!-- ========== OUTER TAB BAR ========== -->
   <div class="tab-bar" role="tablist">
@@ -40,6 +41,10 @@
     <button class="tab-btn "
             role="tab" aria-controls="panel-imts" data-tab="imts">
       <span class="tab-dot dot-imts"></span>IMTS
+    </button>
+    <button class="tab-btn "
+            role="tab" aria-controls="panel-membership" data-tab="membership">
+      <span class="tab-dot dot-membership"></span>Membership
     </button>
   </div>
 
@@ -200,6 +205,41 @@
         </div>
       
       
+    </li><li class="tree-node" data-label="membership" title="http://ontology.amt.org/im#Membership">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row"><span class="label-leaf label-parent">Membership</span></span>
+      
+      
+        <div class="prop-list">
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#hasMTRole">
+              <span class="prop-name">has MT role</span>
+              <span class="prop-card">0..1</span>
+              <span class="prop-range">CodeElement</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#hasPrimaryProductLine">
+              <span class="prop-name">has primary product line</span>
+              <span class="prop-card">1..*</span>
+              <span class="prop-range">CodeElement</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#mediatesAssociation">
+              <span class="prop-name">mediates association</span>
+              <span class="prop-card">1..*</span>
+              <span class="prop-range">Association</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#mediatesMember">
+              <span class="prop-name">mediates member</span>
+              <span class="prop-card">1..*</span>
+              <span class="prop-range">AMT Member</span>
+            </div>
+          
+        </div>
+      
+      
     </li><li class="tree-node" data-label="organization" title="http://ontology.amt.org/im#Organization">
       
         <span class="icon-box">
@@ -226,12 +266,6 @@
       
         <div class="prop-list">
           
-            <div class="prop-row" title="http://ontology.amt.org/im#companyURL">
-              <span class="prop-name">company URL</span>
-              
-              <span class="prop-range">anyURI</span>
-            </div>
-          
             <div class="prop-row" title="http://ontology.amt.org/im#name">
               <span class="prop-name">name</span>
               <span class="prop-card">1..*</span>
@@ -242,7 +276,14 @@
       
       
         <ul class="nested">
-          <li class="tree-node" data-label="exhibitor" title="http://ontology.amt.org/im#Exhibitor">
+          <li class="tree-node" data-label="amt member" title="http://ontology.amt.org/im#Member">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row"><span class="label-leaf label-parent">AMT Member</span></span>
+      
+      
+      
+    </li><li class="tree-node" data-label="exhibitor" title="http://ontology.amt.org/im#Exhibitor">
       
         <span class="icon-box"><span class="caret-icon-leaf"></span></span>
         <span class="node-row"><span class="label-leaf label-parent">Exhibitor</span></span>
@@ -357,6 +398,18 @@
       
         <div class="prop-list">
           
+            <div class="prop-row" title="http://ontology.amt.org/im#exhibits">
+              <span class="prop-name">exhibits</span>
+              
+              <span class="prop-range">string</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#hasProductCategory">
+              <span class="prop-name">has product category</span>
+              
+              <span class="prop-range">CodeElement</span>
+            </div>
+          
             <div class="prop-row" title="http://ontology.amt.org/im#manifestedInShow">
               <span class="prop-name">manifested in show</span>
               <span class="prop-card">1..*</span>
@@ -369,10 +422,34 @@
               <span class="prop-range">Association</span>
             </div>
           
+            <div class="prop-row" title="http://ontology.amt.org/im#registeredForShow">
+              <span class="prop-name">registered for show</span>
+              
+              <span class="prop-range">Trade Show</span>
+            </div>
+          
             <div class="prop-row" title="http://ontology.amt.org/im#registrationDate">
               <span class="prop-name">registration date</span>
               <span class="prop-card">1..*</span>
               <span class="prop-range">date</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#representsCompany">
+              <span class="prop-name">represents company</span>
+              
+              <span class="prop-range">Company</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#servesIndustry">
+              <span class="prop-name">serves industry</span>
+              
+              <span class="prop-range">CodeElement</span>
+            </div>
+          
+            <div class="prop-row" title="http://ontology.amt.org/im#sourceProvenance">
+              <span class="prop-name">source provenance</span>
+              
+              <span class="prop-range">string</span>
             </div>
           
             <div class="prop-row" title="http://ontology.amt.org/im#uuid">
@@ -447,18 +524,6 @@
               <span class="prop-range">string</span>
             </div>
           
-            <div class="prop-row" title="http://ontology.amt.org/im#city">
-              <span class="prop-name">city</span>
-              
-              <span class="prop-range">string</span>
-            </div>
-          
-            <div class="prop-row" title="http://ontology.amt.org/im#country">
-              <span class="prop-name">country</span>
-              
-              <span class="prop-range">string</span>
-            </div>
-          
             <div class="prop-row" title="http://ontology.amt.org/im#email">
               <span class="prop-name">email</span>
               
@@ -519,12 +584,6 @@
               <span class="prop-range">CodeElement</span>
             </div>
           
-            <div class="prop-row" title="http://ontology.amt.org/im#postalCode">
-              <span class="prop-name">postal code</span>
-              
-              <span class="prop-range">string</span>
-            </div>
-          
             <div class="prop-row" title="http://ontology.amt.org/im#recordCreatedAt">
               <span class="prop-name">record created at</span>
               
@@ -539,18 +598,6 @@
           
             <div class="prop-row" title="http://ontology.amt.org/im#registrationDay">
               <span class="prop-name">registration day</span>
-              
-              <span class="prop-range">string</span>
-            </div>
-          
-            <div class="prop-row" title="http://ontology.amt.org/im#stateProvince">
-              <span class="prop-name">state or province</span>
-              
-              <span class="prop-range">string</span>
-            </div>
-          
-            <div class="prop-row" title="http://ontology.amt.org/im#streetAddress">
-              <span class="prop-name">street address</span>
               
               <span class="prop-range">string</span>
             </div>
@@ -11955,13 +12002,23 @@
           
         </span>
       
+    </li><li class="tree-node" data-label="finance/hr department" title="http://ontology.amt.org/codes/job-function#codeDeptFinanceHR">
+      
+        <span class="icon-box"><span class="caret-icon-leaf"></span></span>
+        <span class="node-row">
+          <span class="label-leaf">Finance/HR Department</span>
+          
+            <span class="notation-badge" title="skos:notation">JF07</span>
+          
+        </span>
+      
     </li><li class="tree-node" data-label="management, corporate and executive" title="http://ontology.amt.org/codes/job-function#codeMgmtCorporateExecutive">
       
         <span class="icon-box"><span class="caret-icon-leaf"></span></span>
         <span class="node-row">
           <span class="label-leaf">Management, Corporate and Executive</span>
           
-            <span class="notation-badge" title="skos:notation">JF07</span>
+            <span class="notation-badge" title="skos:notation">JF08</span>
           
         </span>
       
@@ -11971,7 +12028,7 @@
         <span class="node-row">
           <span class="label-leaf">Management, Design or R&amp;D</span>
           
-            <span class="notation-badge" title="skos:notation">JF08</span>
+            <span class="notation-badge" title="skos:notation">JF09</span>
           
         </span>
       
@@ -11981,7 +12038,7 @@
         <span class="node-row">
           <span class="label-leaf">Management, Manufacturing Engineering</span>
           
-            <span class="notation-badge" title="skos:notation">JF09</span>
+            <span class="notation-badge" title="skos:notation">JF10</span>
           
         </span>
       
@@ -11991,7 +12048,7 @@
         <span class="node-row">
           <span class="label-leaf">Management, Manufacturing Production</span>
           
-            <span class="notation-badge" title="skos:notation">JF10</span>
+            <span class="notation-badge" title="skos:notation">JF11</span>
           
         </span>
       
@@ -12001,7 +12058,7 @@
         <span class="node-row">
           <span class="label-leaf">Other (Please specify)</span>
           
-            <span class="notation-badge" title="skos:notation">JF11</span>
+            <span class="notation-badge" title="skos:notation">JF12</span>
           
         </span>
       
@@ -12011,7 +12068,7 @@
         <span class="node-row">
           <span class="label-leaf">No Response</span>
           
-            <span class="notation-badge" title="skos:notation">JF12</span>
+            <span class="notation-badge" title="skos:notation">JF13</span>
           
         </span>
       
@@ -12217,10 +12274,77 @@
     </div>
   </div><!-- /panel-imts -->
 
+  <!-- ========== MEMBERSHIP PANEL (member-application taxonomies) ========== -->
+  <div id="panel-membership" class="tab-panel panel-membership ">
+
+    <div class="sub-tab-bar" role="tablist">
+      <button class="sub-tab-btn active"
+              role="tab" data-outer="membership" data-sub="ppl" data-target="sub-membership-ppl">
+        <span class="sub-dot sub-dot-membership-ppl"></span>Primary Product Line
+      </button>
+      <button class="sub-tab-btn "
+              role="tab" data-outer="membership" data-sub="mtrole" data-target="sub-membership-mtrole">
+        <span class="sub-dot sub-dot-membership-mtrole"></span>MT Role
+      </button>
+    </div>
+
+    <!-- Membership Primary Product Line CodeSet -->
+    <div id="sub-membership-ppl" class="sub-panel active">
+      <div class="card card-membership">
+        <div class="card-header">
+          <div class="card-header-text">
+            <h2 class="membership-title">Primary Product Line CodeSet</h2>
+            <p>AMT Membership Application field: members self-select their primary business segment. 9 substantive segments + 'Not Specified' sentinel. Each non-sentinel CodeElement <code>cmns-dsg:designates</code> one or more <code>pc_ecs:bucket*</code> IMTS Exhibitor pavilion buckets. Placeholder Entry IDs (PPL001..PPL010).</p>
+          </div>
+          <div class="stats-badge">
+            <span class="badge membership-badge" id="membership-ppl-total-count">Loading...</span>
+          </div>
+        </div>
+        <div class="search-row">
+          <input class="search-box" type="search" placeholder="Filter codes..."
+                 id="search-membership-ppl" autocomplete="off">
+          <button class="expand-all-btn"   data-tree="membership-ppl-tree">Expand All</button>
+          <button class="collapse-all-btn" data-tree="membership-ppl-tree">Collapse All</button>
+        </div>
+        <div class="tree-container membership" id="membership-ppl-tree">
+          
+            <div class="empty-state"><p>Primary Product Line CodeSet not loaded.</p></div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Membership MT Role CodeSet -->
+    <div id="sub-membership-mtrole" class="sub-panel ">
+      <div class="card card-membership">
+        <div class="card-header">
+          <div class="card-header-text">
+            <h2 class="membership-title">MT Role CodeSet</h2>
+            <p>AMT bylaw-defined classification of a member's relationship to the manufacturing-technology ecosystem: Builder, Distributor, Affiliate, Investor. 6 active categories + 1 deprecated (<em>Investment Community</em>, retained for historical Salesforce data resolution) + 'No Response' sentinel. Placeholder Entry IDs (MTR001..MTR008).</p>
+          </div>
+          <div class="stats-badge">
+            <span class="badge membership-badge" id="membership-mtrole-total-count">Loading...</span>
+          </div>
+        </div>
+        <div class="search-row">
+          <input class="search-box" type="search" placeholder="Filter codes..."
+                 id="search-membership-mtrole" autocomplete="off">
+          <button class="expand-all-btn"   data-tree="membership-mtrole-tree">Expand All</button>
+          <button class="collapse-all-btn" data-tree="membership-mtrole-tree">Collapse All</button>
+        </div>
+        <div class="tree-container membership" id="membership-mtrole-tree">
+          
+            <div class="empty-state"><p>MT Role CodeSet not loaded.</p></div>
+          
+        </div>
+      </div>
+    </div>
+  </div><!-- /panel-membership -->
+
 </div><!-- .page -->
 
 <!-- Cytoscape.js elements for the IM Interactive sub-tab. -->
-<script type="application/json" id="im-cytoscape-data">{"edges": [{"data": {"id": "e1", "kind": "subClassOf", "label": "subClassOf", "source": "AmtFacility", "target": "Registration"}}, {"data": {"id": "e2", "kind": "subClassOf", "label": "subClassOf", "source": "Association", "target": "Organization"}}, {"data": {"id": "e3", "kind": "subClassOf", "label": "subClassOf", "source": "BoothStaff", "target": "Visitor"}}, {"data": {"id": "e4", "kind": "subClassOf", "label": "subClassOf", "source": "Company", "target": "Organization"}}, {"data": {"id": "e5", "kind": "subClassOf", "label": "subClassOf", "source": "ExhibitionDepartment", "target": "Department"}}, {"data": {"id": "e6", "kind": "subClassOf", "label": "subClassOf", "source": "Exhibitor", "target": "Company"}}, {"data": {"id": "e7", "kind": "subClassOf", "label": "subClassOf", "source": "ExhibitorRecord", "target": "Registration"}}, {"data": {"id": "e8", "kind": "subClassOf", "label": "subClassOf", "source": "IMTS", "target": "TradeShow"}}, {"data": {"id": "e9", "kind": "subClassOf", "label": "subClassOf", "source": "Visitor", "target": "Person"}}, {"data": {"id": "e10", "kind": "subClassOf", "label": "subClassOf", "source": "VisitorRecord", "target": "Registration"}}, {"data": {"id": "e11", "kind": "instanceOf", "label": "instanceOf", "source": "AMT", "target": "Association"}}, {"data": {"id": "e12", "kind": "instanceOf", "label": "instanceOf", "source": "AMTExhibitionDepartment", "target": "ExhibitionDepartment"}}, {"data": {"cardinality": "", "id": "e13", "kind": "association", "label": "acquisitionRole", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e14", "kind": "association", "label": "hasIndustry", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e15", "kind": "association", "label": "hasIndustry", "source": "Company", "target": "CodeElement"}}, {"data": {"cardinality": "1..*", "id": "e16", "kind": "association", "label": "hasInterest", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e17", "kind": "association", "label": "hasLeadFormInterest", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e18", "kind": "association", "label": "jobFunction", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "0..1", "id": "e19", "kind": "association", "label": "leadCapturedBy", "source": "Lead", "target": "BoothStaff"}}, {"data": {"cardinality": "", "id": "e20", "kind": "association", "label": "leadFrom", "source": "Lead", "target": "VisitorRecord"}}, {"data": {"cardinality": "", "id": "e21", "kind": "association", "label": "leadOf", "source": "Lead", "target": "ExhibitorRecord"}}, {"data": {"cardinality": "1..*", "id": "e22", "kind": "association", "label": "leadOfExhibitor", "source": "Lead", "target": "Registration"}}, {"data": {"cardinality": "1..*", "id": "e23", "kind": "association", "label": "leadOfVisitor", "source": "Lead", "target": "VisitorRecord"}}, {"data": {"cardinality": "1..*", "id": "e24", "kind": "association", "label": "manifestedInShow", "source": "Registration", "target": "IMTS"}}, {"data": {"cardinality": "1..*", "id": "e25", "kind": "association", "label": "mediatesAssociation", "source": "Registration", "target": "Association"}}, {"data": {"cardinality": "0..1", "id": "e26", "kind": "association", "label": "mediatesEmployer", "source": "VisitorRecord", "target": "Company"}}, {"data": {"cardinality": "1..*", "id": "e27", "kind": "association", "label": "mediatesExhibitor", "source": "ExhibitorRecord", "target": "Exhibitor"}}, {"data": {"cardinality": "1..*", "id": "e28", "kind": "association", "label": "mediatesVisitor", "source": "VisitorRecord", "target": "Visitor"}}, {"data": {"cardinality": "1..*", "id": "e29", "kind": "association", "label": "organizedBy", "source": "Organizing", "target": "ExhibitionDepartment"}}, {"data": {"cardinality": "1..*", "id": "e30", "kind": "association", "label": "organizesEvent", "source": "Organizing", "target": "IMTS"}}, {"data": {"cardinality": "", "id": "e31", "kind": "association", "label": "plantEmployeeCount", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e32", "kind": "association", "label": "registrationClass", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "1..*", "id": "e33", "kind": "association", "label": "staffsFor", "source": "BoothStaff", "target": "Exhibitor"}}, {"data": {"id": "e34", "kind": "assertion", "label": "isComponentOf", "source": "AMTExhibitionDepartment", "target": "AMT"}}], "nodes": [{"data": {"attrs": [], "id": "AmtFacility", "kind": "class", "label": "AmtFacility", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "Association", "kind": "class", "label": "Association", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "BoothStaff", "kind": "class", "label": "BoothStaff", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "", "name": "companyURL", "range": "anyURI"}, {"card": "1..*", "name": "name", "range": "string"}], "id": "Company", "kind": "class", "label": "Company", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "Department", "kind": "class", "label": "Department", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "ExhibitionDepartment", "kind": "class", "label": "ExhibitionDepartment", "stereotype": "SubKind"}}, {"data": {"attrs": [], "id": "Exhibitor", "kind": "class", "label": "Exhibitor", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "1..*", "name": "booth", "range": "string"}, {"card": "", "name": "categorizationDate", "range": "dateTime"}], "id": "ExhibitorRecord", "kind": "class", "label": "ExhibitorRecord", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "IMTS", "kind": "class", "label": "IMTS", "stereotype": "EventType"}}, {"data": {"attrs": [{"card": "", "name": "eventCode", "range": "string"}, {"card": "", "name": "scanBooth", "range": "string"}, {"card": "", "name": "scanDateTime", "range": "dateTime"}, {"card": "", "name": "scanHall", "range": "string"}, {"card": "", "name": "scanPavilion", "range": "string"}, {"card": "", "name": "terminalID", "range": "string"}], "id": "Lead", "kind": "class", "label": "Lead", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "Organization", "kind": "class", "label": "Organization", "stereotype": "Category"}}, {"data": {"attrs": [], "id": "Organizing", "kind": "class", "label": "Organizing", "stereotype": "Kind"}}, {"data": {"attrs": [{"card": "1..*", "name": "name", "range": "string"}], "id": "Person", "kind": "class", "label": "Person", "stereotype": "Kind"}}, {"data": {"attrs": [{"card": "1..*", "name": "registrationDate", "range": "date"}, {"card": "1..*", "name": "uuid", "range": "string"}], "id": "Registration", "kind": "class", "label": "Registration", "stereotype": "Category"}}, {"data": {"attrs": [], "id": "TradeShow", "kind": "class", "label": "TradeShow", "stereotype": "EventType"}}, {"data": {"attrs": [], "id": "Visitor", "kind": "class", "label": "Visitor", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "1..*", "name": "badge", "range": "string"}, {"card": "", "name": "city", "range": "string"}, {"card": "", "name": "country", "range": "string"}, {"card": "", "name": "email", "range": "string"}, {"card": "", "name": "emailOptIn", "range": "boolean"}, {"card": "", "name": "firstName", "range": "string"}, {"card": "", "name": "lastName", "range": "string"}, {"card": "", "name": "postalCode", "range": "string"}, {"card": "", "name": "recordCreatedAt", "range": "dateTime"}, {"card": "", "name": "registrationDay", "range": "string"}, {"card": "", "name": "stateProvince", "range": "string"}, {"card": "", "name": "streetAddress", "range": "string"}, {"card": "", "name": "title", "range": "string"}], "id": "VisitorRecord", "kind": "class", "label": "VisitorRecord", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "AMT", "kind": "individual", "label": "AMT", "stereotype": "NamedIndividual"}}, {"data": {"attrs": [], "id": "AMTExhibitionDepartment", "kind": "individual", "label": "AMTExhibitionDepartment", "stereotype": "NamedIndividual"}}, {"data": {"attrs": [], "id": "CodeElement", "kind": "external", "label": "CodeElement", "stereotype": "external"}}]}</script>
+<script type="application/json" id="im-cytoscape-data">{"edges": [{"data": {"id": "e1", "kind": "subClassOf", "label": "subClassOf", "source": "AmtFacility", "target": "Registration"}}, {"data": {"id": "e2", "kind": "subClassOf", "label": "subClassOf", "source": "Association", "target": "Organization"}}, {"data": {"id": "e3", "kind": "subClassOf", "label": "subClassOf", "source": "BoothStaff", "target": "Visitor"}}, {"data": {"id": "e4", "kind": "subClassOf", "label": "subClassOf", "source": "Company", "target": "Organization"}}, {"data": {"id": "e5", "kind": "subClassOf", "label": "subClassOf", "source": "ExhibitionDepartment", "target": "Department"}}, {"data": {"id": "e6", "kind": "subClassOf", "label": "subClassOf", "source": "Exhibitor", "target": "Company"}}, {"data": {"id": "e7", "kind": "subClassOf", "label": "subClassOf", "source": "ExhibitorRecord", "target": "Registration"}}, {"data": {"id": "e8", "kind": "subClassOf", "label": "subClassOf", "source": "IMTS", "target": "TradeShow"}}, {"data": {"id": "e9", "kind": "subClassOf", "label": "subClassOf", "source": "Member", "target": "Company"}}, {"data": {"id": "e10", "kind": "subClassOf", "label": "subClassOf", "source": "Visitor", "target": "Person"}}, {"data": {"id": "e11", "kind": "subClassOf", "label": "subClassOf", "source": "VisitorRecord", "target": "Registration"}}, {"data": {"id": "e12", "kind": "instanceOf", "label": "instanceOf", "source": "AMT", "target": "Association"}}, {"data": {"id": "e13", "kind": "instanceOf", "label": "instanceOf", "source": "AMTExhibitionDepartment", "target": "ExhibitionDepartment"}}, {"data": {"cardinality": "", "id": "e14", "kind": "association", "label": "acquisitionRole", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e15", "kind": "association", "label": "hasIndustry", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e16", "kind": "association", "label": "hasIndustry", "source": "Company", "target": "CodeElement"}}, {"data": {"cardinality": "1..*", "id": "e17", "kind": "association", "label": "hasInterest", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e18", "kind": "association", "label": "hasLeadFormInterest", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "0..1", "id": "e19", "kind": "association", "label": "hasMTRole", "source": "Membership", "target": "CodeElement"}}, {"data": {"cardinality": "1..*", "id": "e20", "kind": "association", "label": "hasPrimaryProductLine", "source": "Membership", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e21", "kind": "association", "label": "hasProductCategory", "source": "Registration", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e22", "kind": "association", "label": "jobFunction", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "0..1", "id": "e23", "kind": "association", "label": "leadCapturedBy", "source": "Lead", "target": "BoothStaff"}}, {"data": {"cardinality": "", "id": "e24", "kind": "association", "label": "leadFrom", "source": "Lead", "target": "VisitorRecord"}}, {"data": {"cardinality": "", "id": "e25", "kind": "association", "label": "leadOf", "source": "Lead", "target": "ExhibitorRecord"}}, {"data": {"cardinality": "1..*", "id": "e26", "kind": "association", "label": "leadOfExhibitor", "source": "Lead", "target": "Registration"}}, {"data": {"cardinality": "1..*", "id": "e27", "kind": "association", "label": "leadOfVisitor", "source": "Lead", "target": "VisitorRecord"}}, {"data": {"cardinality": "1..*", "id": "e28", "kind": "association", "label": "manifestedInShow", "source": "Registration", "target": "IMTS"}}, {"data": {"cardinality": "1..*", "id": "e29", "kind": "association", "label": "mediatesAssociation", "source": "Registration", "target": "Association"}}, {"data": {"cardinality": "1..*", "id": "e30", "kind": "association", "label": "mediatesAssociation", "source": "Membership", "target": "Association"}}, {"data": {"cardinality": "0..1", "id": "e31", "kind": "association", "label": "mediatesEmployer", "source": "VisitorRecord", "target": "Company"}}, {"data": {"cardinality": "1..*", "id": "e32", "kind": "association", "label": "mediatesExhibitor", "source": "ExhibitorRecord", "target": "Exhibitor"}}, {"data": {"cardinality": "1..*", "id": "e33", "kind": "association", "label": "mediatesMember", "source": "Membership", "target": "Member"}}, {"data": {"cardinality": "1..*", "id": "e34", "kind": "association", "label": "mediatesVisitor", "source": "VisitorRecord", "target": "Visitor"}}, {"data": {"cardinality": "1..*", "id": "e35", "kind": "association", "label": "organizedBy", "source": "Organizing", "target": "ExhibitionDepartment"}}, {"data": {"cardinality": "1..*", "id": "e36", "kind": "association", "label": "organizesEvent", "source": "Organizing", "target": "IMTS"}}, {"data": {"cardinality": "", "id": "e37", "kind": "association", "label": "plantEmployeeCount", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e38", "kind": "association", "label": "registeredForShow", "source": "Registration", "target": "TradeShow"}}, {"data": {"cardinality": "", "id": "e39", "kind": "association", "label": "registrationClass", "source": "VisitorRecord", "target": "CodeElement"}}, {"data": {"cardinality": "", "id": "e40", "kind": "association", "label": "representsCompany", "source": "Registration", "target": "Company"}}, {"data": {"cardinality": "", "id": "e41", "kind": "association", "label": "servesIndustry", "source": "Registration", "target": "CodeElement"}}, {"data": {"cardinality": "1..*", "id": "e42", "kind": "association", "label": "staffsFor", "source": "BoothStaff", "target": "Exhibitor"}}, {"data": {"id": "e43", "kind": "assertion", "label": "isComponentOf", "source": "AMTExhibitionDepartment", "target": "AMT"}}], "nodes": [{"data": {"attrs": [], "id": "AmtFacility", "kind": "class", "label": "AmtFacility", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "Association", "kind": "class", "label": "Association", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "BoothStaff", "kind": "class", "label": "BoothStaff", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "1..*", "name": "name", "range": "string"}], "id": "Company", "kind": "class", "label": "Company", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "Department", "kind": "class", "label": "Department", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "ExhibitionDepartment", "kind": "class", "label": "ExhibitionDepartment", "stereotype": "SubKind"}}, {"data": {"attrs": [], "id": "Exhibitor", "kind": "class", "label": "Exhibitor", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "1..*", "name": "booth", "range": "string"}, {"card": "", "name": "categorizationDate", "range": "dateTime"}], "id": "ExhibitorRecord", "kind": "class", "label": "ExhibitorRecord", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "IMTS", "kind": "class", "label": "IMTS", "stereotype": "EventType"}}, {"data": {"attrs": [{"card": "", "name": "eventCode", "range": "string"}, {"card": "", "name": "scanBooth", "range": "string"}, {"card": "", "name": "scanDateTime", "range": "dateTime"}, {"card": "", "name": "scanHall", "range": "string"}, {"card": "", "name": "scanPavilion", "range": "string"}, {"card": "", "name": "terminalID", "range": "string"}], "id": "Lead", "kind": "class", "label": "Lead", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "Member", "kind": "class", "label": "Member", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "", "name": "city", "range": "string"}, {"card": "", "name": "companyURL", "range": "anyURI"}, {"card": "", "name": "country", "range": "string"}, {"card": "", "name": "postalCode", "range": "string"}, {"card": "", "name": "stateProvince", "range": "string"}, {"card": "", "name": "streetAddress", "range": "string"}], "id": "Membership", "kind": "class", "label": "Membership", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "Organization", "kind": "class", "label": "Organization", "stereotype": "Category"}}, {"data": {"attrs": [], "id": "Organizing", "kind": "class", "label": "Organizing", "stereotype": "Kind"}}, {"data": {"attrs": [{"card": "1..*", "name": "name", "range": "string"}], "id": "Person", "kind": "class", "label": "Person", "stereotype": "Kind"}}, {"data": {"attrs": [{"card": "", "name": "city", "range": "string"}, {"card": "", "name": "companyURL", "range": "anyURI"}, {"card": "", "name": "country", "range": "string"}, {"card": "", "name": "exhibits", "range": "string"}, {"card": "", "name": "postalCode", "range": "string"}, {"card": "1..*", "name": "registrationDate", "range": "date"}, {"card": "", "name": "sourceProvenance", "range": "string"}, {"card": "", "name": "stateProvince", "range": "string"}, {"card": "", "name": "streetAddress", "range": "string"}, {"card": "1..*", "name": "uuid", "range": "string"}], "id": "Registration", "kind": "class", "label": "Registration", "stereotype": "Category"}}, {"data": {"attrs": [], "id": "TradeShow", "kind": "class", "label": "TradeShow", "stereotype": "EventType"}}, {"data": {"attrs": [], "id": "Visitor", "kind": "class", "label": "Visitor", "stereotype": "Role"}}, {"data": {"attrs": [{"card": "1..*", "name": "badge", "range": "string"}, {"card": "", "name": "email", "range": "string"}, {"card": "", "name": "emailOptIn", "range": "boolean"}, {"card": "", "name": "firstName", "range": "string"}, {"card": "", "name": "lastName", "range": "string"}, {"card": "", "name": "recordCreatedAt", "range": "dateTime"}, {"card": "", "name": "registrationDay", "range": "string"}, {"card": "", "name": "title", "range": "string"}], "id": "VisitorRecord", "kind": "class", "label": "VisitorRecord", "stereotype": "Kind"}}, {"data": {"attrs": [], "id": "AMT", "kind": "individual", "label": "AMT", "stereotype": "NamedIndividual"}}, {"data": {"attrs": [], "id": "AMTExhibitionDepartment", "kind": "individual", "label": "AMTExhibitionDepartment", "stereotype": "NamedIndividual"}}, {"data": {"attrs": [], "id": "CodeElement", "kind": "external", "label": "CodeElement", "stereotype": "external"}}]}</script>
 
 <!-- Cytoscape.js + Dagre layout (UMD globals: cytoscape, dagre, cytoscapeDagre). -->
 <script src="https://cdn.jsdelivr.net/npm/cytoscape@3.30.2/dist/cytoscape.min.js"></script>

@@ -710,7 +710,7 @@ lead_pc_cs:codeComponentsAccessoriesAttachmentsPartsMaterials
     cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
     skos:notation       "3P"^^xsd:token ;
     skos:prefLabel      "Components, Accessories, Attachments, Parts & Materials" ;
-    cmns-dsg:designates pc_vcs:bucketMachineComponentsAndAccessories, pc_vcs:bucketMaterials ;
+    cmns-dsg:designates pc_vcs:bucketMachineComponentsAndAccessories;
     skos:editorialNote  "harmonization-action: Update" .
 lead_pc_cs:codeLinearGuidesSlidesWaysBallLeadScrews
     a cmns-cds:CodeElement, owl:NamedIndividual ;
@@ -1200,12 +1200,14 @@ lead_pc_cs:codeMobileRobotsAgvUgvAmr
     cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
     skos:notation       "3W27"^^xsd:token ;
     skos:prefLabel      "Mobile Robots - (AGV / UGV / AMR)" ;
+    cmns-dsg:designates pc_vcs:codeMobileRobot ;
     skos:editorialNote  "harmonization-action: Keep" .
 lead_pc_cs:codeStationaryRobotsRobotArm
     a cmns-cds:CodeElement, owl:NamedIndividual ;
     cmns-col:isMemberOf lead_pc_cs:LeadProductInterestCodeSet ;
     skos:notation       "3W28"^^xsd:token ;
     skos:prefLabel      "Stationary Robots - (Robot Arm)" ;
+    cmns-dsg:designates pc_vcs:codeStationaryRobot ;
     skos:editorialNote  "harmonization-action: Keep" .
 lead_pc_cs:codeMicrosystemsTechnology
     a cmns-cds:CodeElement, owl:NamedIndividual ;

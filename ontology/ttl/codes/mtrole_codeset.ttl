@@ -1,0 +1,156 @@
+@prefix mtrole_cs:  <http://ontology.amt.org/codes/mt-role#> .
+@prefix amtmeta:    <http://ontology.amt.org/meta#> .
+@prefix cmns-cds:   <https://www.omg.org/spec/Commons/CodesAndCodeSets/> .
+@prefix cmns-col:   <https://www.omg.org/spec/Commons/Collections/> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:       <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:    <http://purl.org/dc/terms/> .
+
+# ============================================================================
+# MT Role CodeSet
+# ============================================================================
+# Bylaw-defined classification of how a company relates to the
+# manufacturing-technology ecosystem: Builder vs Distributor vs Affiliate
+# vs Investor. Sourced from AMT Bylaws via the Membership Application;
+# stored in Salesforce; consumed by IMTS Distributor Registration,
+# Research, Membership, and Distribution Summit.
+#
+# Flat CodeElement-direct codeset -- each CodeElement carries its own
+# skos:prefLabel; no underlying Classifier hierarchy. Same shape as
+# jobfn_cs / acqrole_cs / empcount_cs.
+#
+# No cmns-dsg:designates triples: MT Role is organizational/bylaw, not
+# product or industry classification. See docs/decisions/.
+#
+# *** Placeholder notations ***
+# Entry IDs MTR001..MTR007 are placeholder pending real Salesforce IDs.
+# The deprecated entry codeInvestmentCommunity keeps its notation for
+# historical-data resolution.
+# ============================================================================
+
+<http://ontology.amt.org/codes/mt-role>
+    a owl:Ontology, amtmeta:CodeSetVocabulary ;
+    owl:imports <http://ontology.amt.org/meta>,
+                <https://www.omg.org/spec/Commons/CodesAndCodeSets/>,
+                <https://www.omg.org/spec/Commons/Collections/> ;
+
+    dcterms:title    "MT Role CodeSet" ;
+    owl:versionInfo  "0.1.0" ;
+    owl:versionIRI   <http://ontology.amt.org/codes/mt-role/0.1.0> ;
+
+    amtmeta:status              amtmeta:Active ;
+    amtmeta:taxonomyOwner       "Jordan Marks" ;
+    amtmeta:governedBy          "Bill", "Chrissie" ;
+    amtmeta:consumedBy          "Achilles", "Chase", "Kristin", "Chrissie" ;
+    amtmeta:technicalSteward    "Alka" ;
+
+    amtmeta:relatedProduct
+        "IMTS", "Research", "Membership", "Distribution Summit" ;
+
+    amtmeta:relatedSystem       "Salesforce" ;
+
+    amtmeta:relatedDocumentation "AMT Bylaws" ;
+
+    amtmeta:releaseDate     "2026-06-29"^^xsd:date ;
+    amtmeta:scopeSummary    "v0.1.0 -- bylaw-defined classification of a company's relationship to the manufacturing-technology ecosystem (Builder, Distributor, Affiliate, Investor). 6 active substantive codes + 1 deprecated (Investment Community, no longer on the Membership Application) + No Response sentinel. Entry IDs MTR001..MTR007 are placeholders pending real Salesforce IDs." ;
+    amtmeta:releaseOwner    "Shaurabh" ;
+    amtmeta:approvalStatus  amtmeta:Draft ;
+
+    amtmeta:useCase
+        "IMTS Distributor Registration",
+        "Research Requests",
+        "Global Services - Identifying Prospects",
+        "Marketing Campaigns for Events",
+        "Membership Application",
+        "Registration and recruiting for all events",
+        "Post event evaluation for all events" .
+
+#-------------------------------------------------------------------------------
+# Anchor individual (amtmeta:codesFor target)
+#-------------------------------------------------------------------------------
+# Identifies what this codeset is a code set OF. Required by the SHACL
+# CodeSetCodesForShape ({Every cmns-cds:CodeSet must carry exactly one
+# amtmeta:codesFor}). For CodeElement-direct codesets like this one,
+# the anchor has no further structure -- it's just a stable identifier
+# for the concept the codes collectively express.
+
+mtrole_cs:MTRoleConcept
+    a amtmeta:Collection, owl:NamedIndividual ;
+    rdfs:label   "MT Role" ;
+    rdfs:comment "Anchor individual for amtmeta:codesFor on mtrole_cs:MTRoleCodeSet. Has no internal structure: CodeElements in this codeset carry their own skos:prefLabel directly, so no underlying Classifier hierarchy is asserted." .
+
+#-------------------------------------------------------------------------------
+# CodeSet
+#-------------------------------------------------------------------------------
+
+mtrole_cs:MTRoleCodeSet
+    a cmns-cds:CodeSet, owl:NamedIndividual ;
+    amtmeta:codesFor    mtrole_cs:MTRoleConcept ;
+    rdfs:label          "MT Role CodeSet" ;
+    amtmeta:consumerFor "AMT Membership Application (member relationship to the MT ecosystem)" ;
+    rdfs:comment        "Bylaw-defined member-role answer set. Captured on the Membership Application and tracked in Salesforce. Deprecated entries remain in the CodeSet (via cmns-col:isMemberOf) so historical Salesforce records continue to resolve." .
+
+#-------------------------------------------------------------------------------
+# 8 MT Role CodeElements (6 active + 1 deprecated + 1 sentinel)
+#-------------------------------------------------------------------------------
+
+mtrole_cs:codeUsBuilder
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf mtrole_cs:MTRoleCodeSet ;
+    skos:notation       "MTR001"^^xsd:token ;
+    skos:prefLabel      "U.S. Manufacturing Technology Builder" ;
+    skos:altLabel       "Builder" ;
+    rdfs:comment        "Previously labeled 'Builder' on the application; renamed for U.S./Foreign distinction." .
+
+mtrole_cs:codeUsDistributor
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf mtrole_cs:MTRoleCodeSet ;
+    skos:notation       "MTR002"^^xsd:token ;
+    skos:prefLabel      "U.S. Manufacturing Technology Distributor" ;
+    skos:altLabel       "Distributor" ;
+    rdfs:comment        "Previously labeled 'Distributor' on the application." .
+
+mtrole_cs:codeForeignBuilder
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf mtrole_cs:MTRoleCodeSet ;
+    skos:notation       "MTR003"^^xsd:token ;
+    skos:prefLabel      "Foreign Manufacturing Technology Builder" ;
+    skos:altLabel       "Foreign Builder" ;
+    rdfs:comment        "Previously labeled 'Foreign Builder' on the application." .
+
+mtrole_cs:codeMasterDistributor
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf mtrole_cs:MTRoleCodeSet ;
+    skos:notation       "MTR004"^^xsd:token ;
+    skos:prefLabel      "Manufacturing Technology Master Distributor" ;
+    skos:altLabel       "Master Distributor" ;
+    rdfs:comment        "Previously labeled 'Master Distributor' on the application." .
+
+mtrole_cs:codeResearchEducationAffiliate
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf mtrole_cs:MTRoleCodeSet ;
+    skos:notation       "MTR005"^^xsd:token ;
+    skos:prefLabel      "Research & Education Affiliate" .
+
+mtrole_cs:codeCommercialAffiliate
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf mtrole_cs:MTRoleCodeSet ;
+    skos:notation       "MTR006"^^xsd:token ;
+    skos:prefLabel      "Commercial Affiliate" .
+
+mtrole_cs:codeInvestmentCommunity
+    a cmns-cds:CodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf mtrole_cs:MTRoleCodeSet ;
+    skos:notation       "MTR007"^^xsd:token ;
+    skos:prefLabel      "Investment Community" ;
+    owl:deprecated      true ;
+    rdfs:comment        "Deprecated: no longer offered on the Membership Application. IRI and notation retained so historical Salesforce records continue to resolve." .
+
+mtrole_cs:codeNoResponse
+    a cmns-cds:CodeElement, amtmeta:SentinelCodeElement, owl:NamedIndividual ;
+    cmns-col:isMemberOf mtrole_cs:MTRoleCodeSet ;
+    skos:notation       "MTR008"^^xsd:token ;
+    skos:prefLabel      "No Response" .
